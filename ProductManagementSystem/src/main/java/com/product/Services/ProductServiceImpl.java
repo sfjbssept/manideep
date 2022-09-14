@@ -50,4 +50,10 @@ public class ProductServiceImpl implements IProductService {
 		productRepsitory.deleteById(id);		
 	}
 
+	@Override
+	public String deleteAll() {
+		productRepsitory.deleteAll();
+		return "deleted all successfully";
+	}
+
 }

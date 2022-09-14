@@ -15,4 +15,6 @@ public interface IProductService {
 	Product updateProduct(Product product , Integer id);
 	
 	public void deleteById(Integer id);
+	
+	public String deleteAll();
 }

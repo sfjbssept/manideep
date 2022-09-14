@@ -60,6 +60,11 @@ public class ProductController {
 		return responseEntity;
 	}
 	
+	@DeleteMapping("/deleteallproducts")
+	public String deleteAllProducts(){
+		return productService.deleteAll();
+	}
+	
 	
 	
 	
