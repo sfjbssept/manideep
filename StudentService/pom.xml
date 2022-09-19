@@ -8,11 +8,11 @@
 		<version>2.7.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.school.app</groupId>
-	<artifactId>SchoolService</artifactId>
+	<groupId>com.student.app</groupId>
+	<artifactId>StudentService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>SchoolService</name>
-	<description>school microservice for our restfull microservices application</description>
+	<name>StudentService</name>
+	<description>student microservice to link school</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
