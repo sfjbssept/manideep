@@ -14,9 +14,6 @@
 .example-sidenav {
     padding: 20px;
 }
-.navbar-brand{
-    padding-left: 20px;
-}
 mat-list-item{
     cursor: pointer !important;
 }

@@ -1,0 +1,37 @@
+/* .example-container {
+    width: auto;
+    height: 100%;
+    background-color: white;
+}
+
+.example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.example-sidenav {
+    padding: 20px;
+    .navbar-brand{
+        padding-left: 20px;
+    }
+    mat-list-item{
+        cursor: pointer !important;
+    }
+} */
+.navbar>.container-fluid{
+    justify-content: space-between !important;
+}
+.form-control{
+    line-height:0px
+}
+#dataTable{
+    width: 100%;
+}
+.riderMailDiv > table > tr > td{
+    padding-bottom: 20px;
+}
+.riderMailDiv{
+    padding-top:20px;
+}

@@ -1,0 +1,43 @@
+<div class="header-nav">
+    <ul class="nav" style="justify-content: space-between;">
+        <li class="nav-item">
+            <span class="material-icons" style="padding-left:110px;">directions_bike</span>
+        </li>
+        <li class="nav-item">
+            <span class="nav-link active" class="title">{{title}}</span>
+        </li>
+        <li class="nav-item">
+        </li>
+    </ul>
+</div>
+<div class="main-content">
+    <div class="left-content">
+        <mat-selection-list #shoes [multiple]="false" style="text-align:center;">
+            <mat-list-option routerLink="/login" class="active">
+                Login
+            </mat-list-option>
+            <mat-list-option routerLink="/signup">
+              Sign up
+            </mat-list-option>
+            <mat-list-option routerLink="/aboutus">
+              About us
+            </mat-list-option>
+        </mat-selection-list>
+    </div>
+    <div class="right-content">
+        <form>
+            <h2>Login</h2>
+            <div class="mb-3">
+                <label for="username" class="form-label">User name</label>
+                <input type="text" class="form-control" id="username" aria-describedby="" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <br>
+        <!-- <span>Forgot password ? </span> <a href="">click here</a> -->
+    </div>
+</div>
