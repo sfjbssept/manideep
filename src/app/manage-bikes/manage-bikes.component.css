@@ -1,25 +1,3 @@
-.example-container {
-    width: auto;
-    height: 100%;
-    background-color: white;
-}
-
-.example-sidenav-content {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-}
-
-.example-sidenav {
-    padding: 20px;
-}
-/* .navbar>.container-fluid{
-    justify-content: space- !important;
-} */
-.navbar-brand{
-    padding-left: 20px;
-}
-mat-list-item{
-    cursor: pointer !important;
+table{
+    width: 100%;
 }
