@@ -1,39 +1,17 @@
-<mat-drawer-container class="example-container" autosize>
-    <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-            <div style="display: flex;">
-                <mat-icon (click)="drawer.toggle()">menu</mat-icon>
-                <span style="padding-top: 3px;padding-left: 15px;">Dashboard</span>
-            </div>
-            <div class="navbar-brand" style="padding-left: 190px;">Smart Mobility</div>
-            <div></div>
-            <div></div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-    </nav>
-    <mat-drawer #drawer class="example-sidenav" mode="over">
-        <mat-list role="list">
-<mat-list-item role="listitem" routerLink="/home" (click)="drawer.toggle()">Home
-            </mat-list-item>
-            <mat-list-item role="listitem" routerLink="/manage-riders" (click)="drawer.toggle()">Manage Riders
-            </mat-list-item>
-            <mat-list-item role="listitem" routerLink="/manage-bikes" (click)="drawer.toggle()">Manage Bikes
-            </mat-list-item>
-            <mat-list-item role="listitem" routerLink="/Ride-History" (click)="drawer.toggle()">Ride History
-            </mat-list-item>
-            <mat-list-item role="listitem" routerLink="/Rider-Issues" (click)="drawer.toggle()">Rider Issues
-            </mat-list-item>
-            <mat-list-item role="listitem" routerLink="/Manage-Locations" (click)="drawer.toggle()">Manage Locations
-            </mat-list-item>
-        </mat-list>
-    </mat-drawer>
 
-    <div style="text-align:center;">
-        <h1>Our Services</h1>
-        <img src="" alt="img">
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <div style="display: flex;">
+            <span style="padding-top: 3px;padding-left: 15px;">Dashboard</span>
+        </div>
+        <div></div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
     </div>
-</mat-drawer-container>
-<!-- <app-nav-bar></app-nav-bar> -->
+</nav>
+<div style="text-align:center;">
+    <h2>Our Services</h2>
+    <img src="" alt="img">
+</div>

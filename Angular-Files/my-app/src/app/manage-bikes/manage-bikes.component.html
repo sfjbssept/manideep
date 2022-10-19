@@ -4,7 +4,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link">Manage Riders</a>
+                    <a class="nav-link">Manage Bikes</a>
                 </li>
                 <form class="d-flex" role="search" *ngIf="!isAdd && !isEdit && !isDelete">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -28,32 +28,9 @@
 <div class="container-fluid">
     <div *ngIf="!isAdd && !isEdit && !isDelete">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" id="dataTable">
-
-            <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-
-            <!-- Position Column -->
-            <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef> No. </th>
-                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-            </ng-container>
-
-            <!-- Name Column -->
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-            </ng-container>
-
-            <!-- Weight Column -->
-            <ng-container matColumnDef="weight">
-                <th mat-header-cell *matHeaderCellDef> Weight </th>
-                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-            </ng-container>
-
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="symbol">
-                <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+            <ng-container *ngFor="let x of displayedColumns" [matColumnDef]="x">
+                <th mat-header-cell *matHeaderCellDef> {{x}} </th>
+                <td mat-cell *matCellDef="let element">{{element[x]}}</td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -62,7 +39,7 @@
     </div>
 
     <div class="manageScreens">
-        <h3 (click)="back()" *ngIf="isAdd || isEdit || isDelete"><i class="bi bi-backspace-fill"></i> Back</h3>
+        <h3 (click)="back()" style="cursor:pointer;" *ngIf="isAdd || isEdit || isDelete"><i class="bi bi-backspace-fill"></i> Back</h3>
         <div *ngIf="isAdd" align="center">
             <h1>Add Bike</h1>
             <table>
