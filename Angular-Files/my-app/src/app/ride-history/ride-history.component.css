@@ -1,25 +1,15 @@
-.example-container {
-    width: auto;
-    height: 100%;
-    background-color: white;
+#dataTable{
+    width: 100%;
 }
-
-.example-sidenav-content {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
+.navbar>.container-fluid{
+    justify-content: space-between !important;
+    margin-top: 20px !important;
 }
-
-.example-sidenav {
-    padding: 20px;
+/* .manageScreens > div > table > tr > td{
+    padding-bottom: 20px;
 }
-/* .navbar>.container-fluid{
-    justify-content: space- !important;
+.manageScreens{
+    justify-content: space-between;
+    display:flex;
+    padding-top:20px;
 } */
-.navbar-brand{
-    padding-left: 20px;
-}
-mat-list-item{
-    cursor: pointer !important;
-}

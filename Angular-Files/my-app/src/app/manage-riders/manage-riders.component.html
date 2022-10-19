@@ -124,78 +124,75 @@
         </table>
     </div>
 
-    <div class="riderMailDiv" align="center" *ngIf="isEmailBlock">
-        <div style="display:flex;justify-content:space-between;">
-            <h3 (click)="back()"><i class="bi bi-backspace-fill"></i> Back</h3>
-            <h1>Send Email To Rider</h1>
-            <h1></h1>
+    <div class="manageScreens">
+        <div align="center" *ngIf="isEmailBlock">
+            <div style="display:flex;justify-content:space-between;">
+                <h3 (click)="back()"><i class="bi bi-backspace-fill"></i> Back</h3>
+                <h1>Send Email To Rider</h1>
+                <h1></h1>
+            </div>
+            <table>
+                <tr>
+                    <td>Email Id</td>
+                    <td><input class="form-control me-2" type="email" placeholder="Email Id" required></td>
+                </tr>
+                <tr>
+                    <td>Subject</td>
+                    <td><input class="form-control me-2" type="text" placeholder="Subject" required></td>
+                </tr>
+                <tr>
+                    <td>Message body</td>
+                    <td><input class="form-control me-2" type="text" placeholder="Message body" required></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="button" class="btn btn-success btn-sm">
+                            <i class="bi bi-check-circle"></i> Send
+                        </button>
+                        &nbsp;
+                        <button type="button" class="btn btn-danger btn-sm" (click)="back()">
+                            <i class="bi bi-x-circle"></i> Cancel
+                        </button>
+                    </td>
+                </tr>
+            </table>
         </div>
-        <table>
-            <tr>
-                <td>Email Id</td>
-                <td><input class="form-control me-2" type="email" placeholder="Email Id" required></td>
-            </tr>
-            <tr>
-                <td>Subject</td>
-                <td><input class="form-control me-2" type="text" placeholder="Subject" required></td>
-            </tr>
-            <tr>
-                <td>Message body</td>
-                <td><input class="form-control me-2" type="text" placeholder="Message body" required></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <button type="button" class="btn btn-success btn-sm">
-                        <i class="bi bi-check-circle"></i> Send
-                    </button>
-                    &nbsp;
-                    <button type="button" class="btn btn-danger btn-sm" (click)="back()">
-                        <i class="bi bi-x-circle"></i> Cancel
-                    </button>
-                </td>
-            </tr>
-        </table>
-    </div>
 
 
-    <div class="riderMailDiv" align="center" *ngIf="isBlockDiv">
-        <div style="display:flex;justify-content:space-between;">
-            <h3 (click)="back()"><i class="bi bi-backspace-fill"></i> Back</h3>
-            <h1>Block Rider</h1>
-            <h1></h1>
+        <div align="center" *ngIf="isBlockDiv">
+            <div style="display:flex;justify-content:space-between;">
+                <h3 (click)="back()"><i class="bi bi-backspace-fill"></i> Back</h3>
+                <h1>Block Rider</h1>
+                <h1></h1>
+            </div>
+            <table>
+                <tr>
+                    <td>Rider Id</td>
+                    <td><input class="form-control me-2" type="number" placeholder="Rider id" required></td>
+                </tr>
+                <tr>
+                    <td>Reason For blocking</td>
+                    <td>
+                        <select name="" id="" class="selectDropdown" (change)="change($event.target)">
+                            <option value="">---select---</option>
+                            <option [value]="x.value" *ngFor="let x of reasonsList">{{x.name}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr *ngIf="selectedValue == 0">
+                    <td></td>
+                    <td><input class="form-control me-2" type="text" placeholder="Type other reasons here"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="button" class="btn btn-success btn-sm">
+                            <i class="bi bi-check-circle"></i> Block
+                        </button>
+                    </td>
+                </tr>
+            </table>
         </div>
-        <table>
-            <tr>
-                <td>Rider Id</td>
-                <td><input class="form-control me-2" type="number" placeholder="Rider id" required></td>
-            </tr>
-            <tr>
-                <td>Reason For blocking</td>
-                <td>
-                    <select name="" id="" class="selectDropdown" (change)="change($event.target)">
-                        <option value="">---select---</option>
-                        <option [value]="x.value" *ngFor="let x of reasonsList">{{x.name}}</option>
-                    </select>
-                </td>
-            </tr>
-            <tr *ngIf="selectedValue == 4">
-                <td></td>
-                <td><input class="form-control me-2" type="text" placeholder="Type other reasons here"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <button type="button" class="btn btn-success btn-sm">
-                        <i class="bi bi-check-circle"></i> Block
-                    </button>
-                    <!-- &nbsp;
-                    <button type="button" class="btn btn-danger btn-sm" (click)="back()">
-                        <i class="bi bi-x-circle"></i> Cancel
-                    </button> -->
-                </td>
-            </tr>
-        </table>
     </div>
-
 </div>

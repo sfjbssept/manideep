@@ -30,10 +30,10 @@
 #dataTable{
     width: 100%;
 }
-.riderMailDiv > table > tr > td{
+.manageScreens > div > table > tr > td{
     padding-bottom: 20px;
 }
-.riderMailDiv{
+.manageScreens{
     padding-top:20px;
 }
 .selectDropdown{

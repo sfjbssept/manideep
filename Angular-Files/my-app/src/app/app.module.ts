@@ -21,7 +21,8 @@ import { RiderIssuesComponent } from './rider-issues/rider-issues.component';
 import { ManageLocationsComponent } from './manage-locations/manage-locations.component';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogMessageComponent } from './dialog-message/dialog-message.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {MatTableModule} from '@angular/material/table';
     NavBarComponent,
     RideHistoryComponent,
     RiderIssuesComponent,
-    ManageLocationsComponent
+    ManageLocationsComponent,
+    DialogMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import {MatTableModule} from '@angular/material/table';
     MatIconModule,
     MatToolbarModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

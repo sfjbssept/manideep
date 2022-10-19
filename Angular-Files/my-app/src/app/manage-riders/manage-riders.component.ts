@@ -33,7 +33,7 @@ export class ManageRidersComponent implements OnInit {
       {name:'Bad behaviour with customer care',value:"1"},
       {name:'Damaged the bike',value:"2"},
       {name:'Not following traffic rules',value:"3"},
-      {name:'Others',value:"4"},
+      {name:'Others',value:"0"},
     ]
   }
   showMailDiv(){
