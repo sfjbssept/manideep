@@ -1,6 +1,0 @@
-spring.mail.host = smtp.gmail.com
-sprint.mail.port = 587
-sprint.mail.username = 111manideep@gmail.com
-sprint.mail.password = jdlrbhfcdhddhvgz
-sprint.mail.properties.mail.setup.auth=true
-sprint.mail.properties.mail.smtp.starttls.enable = true
