@@ -1,4 +1,7 @@
 <div class="container-fluid" style="margin-top: 20px;">
+    <div style="float: left;">
+        <h2>Flight Details</h2>
+    </div>
     <div style="float: right;" class="buttonsGroup">
         <button class="btn btn-sm edit" (click)="isEditEnable()">Edit</button>
         <button class="btn btn-sm delete" (click)="isDeleteEnable()">Delete</button>
@@ -11,21 +14,36 @@
                         <span>
                             {{displayColObj.displayLabel}}
                         </span>
-                        <!-- <span *ngIf="isEdit || isDelete">
-                            Manage
-                        </span> -->
                     </th>
                     <td mat-cell *matCellDef="let element">
-                        <span *ngIf="element.id != editElementId">{{element[displayColObj.column]}} </span>
-                        <span *ngIf="element.id == editElementId"> <input type="text" [value]="element[displayColObj.column]"> </span>
-                        <button class="btn btn-sm btn-warning" *ngIf="displayColObj.column == 'manage' && isEdit"
-                            (click)="edit(element)">
-                            Edit<i class='fa fa-edit'></i>
-                        </button>
-                        <button class="btn btn-sm btn-danger" *ngIf="displayColObj.column == 'manage' && isDelete"
-                            (click)="delete(element.flightNumber)">
-                            Delete <i class='fa-solid fa-trash-can'></i>
-                        </button>
+                        <span
+                            *ngIf="element.id != editElementId || displayColObj.column == ['flightNumber']">{{element[displayColObj.column]}}
+                        </span>
+                        <span
+                            *ngIf="(displayColObj.column == ['startDate'] || displayColObj.column == ['endDate']) && element.id == editElementId">
+                            <input type="date" class="form-control" [(ngModel)]="element[displayColObj.column]">
+                        </span>
+                        <span
+                            *ngIf="(displayColObj.column != ['manage'] && displayColObj.column != ['flightNumber'] && displayColObj.column != ['startDate'] && displayColObj.column != ['endDate'] ) && element.id == editElementId">
+                            <input type="text" class="form-control" [(ngModel)]="element[displayColObj.column]">
+                        </span>
+                        <i class="bi bi-pencil-square"
+                            *ngIf="displayColObj.column == 'manage' && isEdit && (element.id != editElementId)"
+                            (click)="edit(element)" title="Edit Record"></i>
+
+                        <span style="display: flex; justify-content: space-between;">
+                            <i *ngIf="displayColObj.column == 'manage' && isEdit && element.id == editElementId"
+                                (click)="cancel()">
+                                <i class="bi bi-x-circle-fill" title="Cancel"></i>
+                            </i>
+                            <i *ngIf="displayColObj.column == 'manage' && isEdit && element.id == editElementId"
+                                (click)="saveChanges(element)">
+                                <i class="bi bi-check-circle-fill" title="Save Changes"></i>
+                            </i>
+                        </span>
+                        <i *ngIf="displayColObj.column == 'manage' && isDelete" (click)="delete(element.flightNumber)">
+                            <i class="bi bi-trash" title="Delete Record"></i>
+                        </i>
                     </td>
                 </ng-container>
             </ng-container>

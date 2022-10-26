@@ -15,4 +15,10 @@ export class AdminServiceService {
   deleteFlightById(flightId: any) {
     return this.http.delete(this.baseUrl + "deleteFlight/" + flightId , {responseType: "text"})
   }
+  editFlightById(flightId: any , payLoad: any) {
+    return this.http.put(this.baseUrl + "update/" + flightId , payLoad , {responseType: "text"})
+  }
+  addFlight(payLoad: any) {
+    return this.http.post(this.baseUrl + "addFlight", payLoad , {responseType: "json"})
+  }
 }

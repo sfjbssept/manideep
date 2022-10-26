@@ -8,19 +8,30 @@ import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.componen
 import {MatTableModule} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { AddFlightComponent } from './admin/add-flight/add-flight.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AdminNavbarComponent
+    AdminNavbarComponent,
+    AddFlightComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatTableModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatInputModule,
+    FormsModule,
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

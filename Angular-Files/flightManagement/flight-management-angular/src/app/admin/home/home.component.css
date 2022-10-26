@@ -9,7 +9,6 @@ th{
 }
 td , th{
     text-align: center !important;
-    /* border-right: 1px solid black; */
     padding: 0px 10px !important;
 }
 .edit{
@@ -21,4 +20,8 @@ td , th{
     border-color: red;
     width: 80px;
     margin: 0px 0px 10px 10px;
+}
+i{
+    cursor: pointer;
+    font-size: medium;
 }

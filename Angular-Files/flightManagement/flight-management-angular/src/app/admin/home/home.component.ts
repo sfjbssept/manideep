@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
     { column: "totalBusinessSeats", displayLabel: "Total Business Seats" },
     { column: "totalNonBusinessSeats", displayLabel: "Total Non Business Seats" },
     { column: "manage", displayLabel: "Manage" },
-    // "flightNumber","airLineName","endDate"
   ];
   isEdit: boolean = false
   isDelete: boolean = false
@@ -44,12 +43,12 @@ export class HomeComponent implements OnInit {
   isEditEnable() {
     this.isEdit = !this.isEdit
     this.isDelete = false
-    // !this.isEdit && !this.isDelete ? delete this.columnNamesManage.column['manage'] : ""
-    // console.log(this.columnNamesManage)
+    this.editElementId = ""
   }
   isDeleteEnable() {
     this.isDelete = !this.isDelete
     this.isEdit = false
+    this.editElementId = ""
   }
 
   edit(element: any) {
@@ -60,6 +59,18 @@ export class HomeComponent implements OnInit {
       r => {
         this.getAllFlightDetails();
         console.log(r)
+      }
+    )
+  }
+
+  cancel(){
+    this.editElementId = ""
+  }
+  saveChanges(element: any){
+    this._auth.editFlightById(element.flightNumber , element).subscribe(
+      r => {
+        console.log(r)
+        this.editElementId = ""
       }
     )
   }
