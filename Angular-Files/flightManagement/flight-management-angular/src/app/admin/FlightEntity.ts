@@ -1,6 +1,6 @@
 export default class FlightEntity 
 {
-    // id : Number =  0;
+    id : Number =  0;
     flightNumber : string =  "";
     airLineName : String =  "";
     flyFrom : String =  "";

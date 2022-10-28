@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { AddFlightComponent } from './admin/add-flight/add-flight.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     AppComponent,
     HomeComponent,
     AdminNavbarComponent,
-    AddFlightComponent
+    AddFlightComponent,
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

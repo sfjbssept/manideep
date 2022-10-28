@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AdminServiceService } from '../admin-service.service';
 
 @Component({
@@ -8,8 +9,9 @@ import { AdminServiceService } from '../admin-service.service';
 })
 export class HomeComponent implements OnInit {
   editElementId: any;
+  isLoggedIn: boolean = false;
 
-  constructor(private _auth: AdminServiceService) { }
+  constructor(private _auth: AdminServiceService, private _router: Router) { }
   dataSource: any
   displayedColumns?: String[]
   columnNamesManage: any = [
@@ -24,15 +26,23 @@ export class HomeComponent implements OnInit {
     { column: "ticketCost", displayLabel: "Ticket Cost" },
     { column: "totalBusinessSeats", displayLabel: "Total Business Seats" },
     { column: "totalNonBusinessSeats", displayLabel: "Total Non Business Seats" },
-    { column: "manage", displayLabel: "Manage" },
+    { column: "actions", displayLabel: "Actions" },
   ];
   isEdit: boolean = false
   isDelete: boolean = false
   ngOnInit(): void {
+    if (this._auth.checkUserLoggedIn()) {
+      this._router.navigate(['/home'])
+      this.isLoggedIn = true 
+    } else {
+      this._router.navigate(['/signIn']);
+      this.isLoggedIn = false
+      return;
+    }
     this.displayedColumns = this.columnNamesManage.map((c: any) => c.column);
     this.getAllFlightDetails();
   }
-  getAllFlightDetails(){
+  getAllFlightDetails() {
     this._auth.getAllFlights().subscribe(
       r => {
         this.dataSource = r
@@ -63,11 +73,11 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  cancel(){
+  cancel() {
     this.editElementId = ""
   }
-  saveChanges(element: any){
-    this._auth.editFlightById(element.flightNumber , element).subscribe(
+  saveChanges(element: any) {
+    this._auth.editFlightById(element.flightNumber, element).subscribe(
       r => {
         console.log(r)
         this.editElementId = ""

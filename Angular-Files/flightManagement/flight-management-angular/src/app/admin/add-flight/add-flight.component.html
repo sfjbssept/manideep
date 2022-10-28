@@ -19,7 +19,7 @@
 
                 <td>
                     <label for="">Flight Number</label>
-                    <input type="text" placeholder="Enter value" class="form-control"
+                    <input type="number" placeholder="Enter value" class="form-control"
                         [(ngModel)]="newFlightDetail.flightNumber">
                 </td>
 
@@ -106,7 +106,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <button class="btn btn-success col-12" (click)="addInventory()">Add Flight</button>
+                    <input type="submit" name="" id="" class="btn btn-success col-12" value="Add Flight"  (keyup.enter)="addInventory()">
                 </td>
             </tr>
         </table>

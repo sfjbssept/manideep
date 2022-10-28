@@ -1,4 +1,4 @@
-<div class="container-fluid" style="margin-top: 20px;">
+<div class="container-fluid" style="margin-top: 20px;" *ngIf="isLoggedIn">
     <div style="float: left;">
         <h2>Flight Details</h2>
     </div>
@@ -24,24 +24,24 @@
                             <input type="date" class="form-control" [(ngModel)]="element[displayColObj.column]">
                         </span>
                         <span
-                            *ngIf="(displayColObj.column != ['manage'] && displayColObj.column != ['flightNumber'] && displayColObj.column != ['startDate'] && displayColObj.column != ['endDate'] ) && element.id == editElementId">
+                            *ngIf="(displayColObj.column != ['actions'] && displayColObj.column != ['flightNumber'] && displayColObj.column != ['startDate'] && displayColObj.column != ['endDate'] ) && element.id == editElementId">
                             <input type="text" class="form-control" [(ngModel)]="element[displayColObj.column]">
                         </span>
                         <i class="bi bi-pencil-square"
-                            *ngIf="displayColObj.column == 'manage' && isEdit && (element.id != editElementId)"
+                            *ngIf="displayColObj.column == 'actions' && isEdit && (element.id != editElementId)"
                             (click)="edit(element)" title="Edit Record"></i>
 
                         <span style="display: flex; justify-content: space-between;">
-                            <i *ngIf="displayColObj.column == 'manage' && isEdit && element.id == editElementId"
+                            <i *ngIf="displayColObj.column == 'actions' && isEdit && element.id == editElementId"
                                 (click)="cancel()">
                                 <i class="bi bi-x-circle-fill" title="Cancel"></i>
                             </i>
-                            <i *ngIf="displayColObj.column == 'manage' && isEdit && element.id == editElementId"
+                            <i *ngIf="displayColObj.column == 'actions' && isEdit && element.id == editElementId"
                                 (click)="saveChanges(element)">
                                 <i class="bi bi-check-circle-fill" title="Save Changes"></i>
                             </i>
                         </span>
-                        <i *ngIf="displayColObj.column == 'manage' && isDelete" (click)="delete(element.flightNumber)">
+                        <i *ngIf="displayColObj.column == 'actions' && isDelete" (click)="delete(element.flightNumber)">
                             <i class="bi bi-trash" title="Delete Record"></i>
                         </i>
                     </td>
