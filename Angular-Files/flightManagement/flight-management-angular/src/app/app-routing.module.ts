@@ -3,16 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddFlightComponent } from './admin/add-flight/add-flight.component';
 import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
 import { HomeComponent } from './admin/home/home.component';
-import { AppComponent } from './app.component';
-import { SignInComponent } from './sign-in/sign-in.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { UserNavbarComponent } from './user/user-navbar/user-navbar.component';
 
 const routes: Routes = [
-  {path:"",component:HomeComponent},
-  {path:"home",component:HomeComponent},
-  {path:"addFlight",component:AddFlightComponent},
-  // {path:"signIn",component:SignInComponent},
-  // {path:"signUp",component:SignUpComponent},
+  {path:"admin",component:AdminNavbarComponent},
+  {path:"admin/home",component:HomeComponent},
+  {path:"admin/addFlight",component:AddFlightComponent},
+  {path:"user",component:UserNavbarComponent},
+  // {path:"user/home",component:HomeComponent},
+  {path:"**",component:PageNotFoundComponent},
 ];
 
 @NgModule({

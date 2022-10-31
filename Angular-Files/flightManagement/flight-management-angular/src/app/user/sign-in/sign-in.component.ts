@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { AdminServiceService } from '../admin/admin-service.service';
+import { AdminServiceService } from '../../admin/admin-service.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,7 +15,7 @@ export class SignInComponent implements OnInit {
   }
   login(){
     this._service.setUserSession("true")
-    this._service.changeSessionRoute()
+    this._service.updateAdminSessionRoute()
     this.loginEmitter.emit()
   }
 

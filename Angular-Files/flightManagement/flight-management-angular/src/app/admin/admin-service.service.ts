@@ -25,8 +25,8 @@ export class AdminServiceService {
   checkUserLoggedIn() {
     return (sessionStorage.getItem("loggedInUser") == "true") ? true : false
   }
-  changeSessionRoute(){
-    sessionStorage.getItem("loggedInUser") == "true" ? this.router.navigate(['/home']) : this.router.navigate(['/signIn'])
+  updateAdminSessionRoute(){
+    sessionStorage.getItem("loggedInUser") == "true" ? this.router.navigate(['/admin/home']) : this.router.navigate(['/admin'])
   }
   setUserSession(sessionValue: any) {
     sessionStorage.setItem("loggedInUser" , sessionValue)

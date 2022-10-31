@@ -32,10 +32,10 @@ export class HomeComponent implements OnInit {
   isDelete: boolean = false
   ngOnInit(): void {
     if (this._auth.checkUserLoggedIn()) {
-      this._router.navigate(['/home'])
+      this._router.navigate(['/admin/home'])
       this.isLoggedIn = true 
     } else {
-      this._router.navigate(['/signIn']);
+      this._router.navigate(['/admin']);
       this.isLoggedIn = false
       return;
     }

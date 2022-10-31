@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <a class="navbar-brand">Welcome {{loggedInUserName}}</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav" *ngIf="isUserLoggedIn">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/addFlight">Add Flight</a>
+          </li>
+        </ul>
+      </div>
+      <div class="d-flex">
+        <ul class="navbar-nav">
+          <li class="nav-item" *ngIf="isUserLoggedIn">
+            <button class="btn btn-sm btn-primary">Logout</button>
+            <!-- <button class="btn btn-sm btn-primary" (click)="logOut()">Logout</button> -->
+          </li>
+          <li class="nav-item" *ngIf="!isUserLoggedIn">
+            <button class="btn btn-sm btn-primary">SignUp</button>
+            <!-- <button class="btn btn-sm btn-primary" (click)="isRegister = true ; isLogin= false">SignUp</button> -->
+            &nbsp;
+            <button class="btn btn-sm btn-primary" >SignIn</button>
+            <!-- <button class="btn btn-sm btn-primary" (click)="isLogin= true ; isRegister = false">SignIn</button> -->
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- <app-sign-up *ngIf="isRegister" (registerEmitter)="signUp()"></app-sign-up>
+  <app-sign-in *ngIf="isLogin" (loginEmitter)="signIn()"></app-sign-in> -->

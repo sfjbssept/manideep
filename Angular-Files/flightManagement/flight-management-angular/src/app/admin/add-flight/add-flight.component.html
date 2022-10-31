@@ -1,20 +1,10 @@
+<app-admin-navbar></app-admin-navbar>
 <div class="container-fluid" style="margin-top:20px;" align="center">
     <div>
         <h2>Add New Flight Details</h2>
     </div>
     <div>
         <table>
-            <!-- <span *ngFor="let row  of newFlightDetail">
-                <tr *ngFor="let x of row | keyvalue">
-                    <td>
-                        <label [for]="x.key">{{x.key}}</label>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" placeholder="Enter value" value = {{x.value}} *ngIf="x.key != 'startDate' && x.key != 'endDate'">
-                        <input type="date" class="form-control" value = {{x.value}} *ngIf="x.key == 'startDate' || x.key == 'endDate'">
-                    </td>
-                </tr>
-            </span> -->
             <tr>
 
                 <td>
@@ -104,9 +94,9 @@
                 </td>
             </tr>
             <tr>
-                <td></td>
-                <td>
-                    <input type="submit" name="" id="" class="btn btn-success col-12" value="Add Flight"  (keyup.enter)="addInventory()">
+                <td colspan="3">
+                    <input type="submit" name="" id="" class="btn btn-success col-12" value="Add Flight"
+                        (click)="addInventory()">
                 </td>
             </tr>
         </table>

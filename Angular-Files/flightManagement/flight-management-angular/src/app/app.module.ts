@@ -13,8 +13,11 @@ import { FormsModule } from '@angular/forms';
 import { AddFlightComponent } from './admin/add-flight/add-flight.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { SignInComponent } from './sign-in/sign-in.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignInComponent } from './user/sign-in/sign-in.component';
+import { SignUpComponent } from './user/sign-up/sign-up.component';
+import { UserNavbarComponent } from './user/user-navbar/user-navbar.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -24,7 +27,9 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     AdminNavbarComponent,
     AddFlightComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    UserNavbarComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     MatInputModule,
     FormsModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
