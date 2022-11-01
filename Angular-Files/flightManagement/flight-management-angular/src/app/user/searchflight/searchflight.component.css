@@ -1,0 +1,20 @@
+mat-card {
+    box-shadow: 0px 0px 10px silver !important;
+    /* border-radius: 10px !important; */
+    margin-top: 15px;
+    /* margin: 20px 20px; */
+    border: 1px solid skyblue !important;
+}
+
+
+.bodyContents{
+    display: flex;
+    justify-content: space-between;
+}
+.bodyContents > span{
+    /* margin: 0px 150px 0px 0px !important; */
+    text-align: center;
+}
+.boldText{
+    font-weight: 500;
+}

@@ -16,8 +16,8 @@ export class SignUpComponent implements OnInit {
   }
   register() {
     //db code
-    this._service.setUserSession("true")
-    this._service.updateAdminSessionRoute()
+    // this._service.setUserSession("true")
+    // this._service.updateAdminSessionRoute()
     this.registerEmitter.emit()
   }
 

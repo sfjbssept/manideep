@@ -1,104 +1,109 @@
 <app-admin-navbar></app-admin-navbar>
-<div class="container-fluid" style="margin-top:20px;" align="center">
-    <div>
+<div class="container" style="margin-top:20px;">
+    <!-- <div>
         <h2>Add New Flight Details</h2>
-    </div>
-    <div>
-        <table>
-            <tr>
+    </div> -->
+    <div class="mat-card-cvr">
+        <mat-card>
+            <mat-card-title>Add New Flight Details</mat-card-title>
+            <mat-card-actions>
+                <table>
+                    <tr>
 
-                <td>
-                    <label for="">Flight Number</label>
-                    <input type="number" placeholder="Enter value" class="form-control"
-                        [(ngModel)]="newFlightDetail.flightNumber">
-                </td>
-
-
-
-                <td>
-                    <label for="">Air Line Name</label>
-                    <input type="text" placeholder="Enter value" class="form-control"
-                        [(ngModel)]="newFlightDetail.airLineName">
-                </td>
+                        <td>
+                            <label for="">Flight Number</label>
+                            <input type="number" placeholder="Enter value" class="form-control"
+                                [(ngModel)]="newFlightDetail.flightNumber">
+                        </td>
 
 
 
-                <td>
-                    <label for="">From</label>
-                    <input type="text" placeholder="Enter value" class="form-control"
-                        [(ngModel)]="newFlightDetail.flyFrom">
-                </td>
-            </tr>
-            <tr>
-
-                <td>
-                    <label for="">To</label>
-                    <input type="text" placeholder="Enter value" class="form-control"
-                        [(ngModel)]="newFlightDetail.flyTo">
-                </td>
+                        <td>
+                            <label for="">Air Line Name</label>
+                            <input type="text" placeholder="Enter value" class="form-control"
+                                [(ngModel)]="newFlightDetail.airLineName">
+                        </td>
 
 
 
-                <td>
-                    <label for="">Start Date</label>
-                    <input type="date" placeholder="Enter value" class="form-control"
-                        [(ngModel)]="newFlightDetail.startDate">
-                </td>
+                        <td>
+                            <label for="">From</label>
+                            <input type="text" placeholder="Enter value" class="form-control"
+                                [(ngModel)]="newFlightDetail.flyFrom">
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td>
+                            <label for="">To</label>
+                            <input type="text" placeholder="Enter value" class="form-control"
+                                [(ngModel)]="newFlightDetail.flyTo">
+                        </td>
 
 
 
-                <td>
-                    <label for="">End Date</label>
-                    <input type="date" placeholder="Enter value" class="form-control"
-                        [(ngModel)]="newFlightDetail.endDate">
-                </td>
-            </tr>
-            <tr>
-
-                <td>
-                    <label for="">Instrument Used</label>
-                    <input type="text" placeholder="Enter value" class="form-control"
-                        [(ngModel)]="newFlightDetail.instrumentUsed">
-                </td>
+                        <td>
+                            <label for="">Start Date</label>
+                            <input type="datetime-local" placeholder="Enter value" class="form-control"
+                                [(ngModel)]="newFlightDetail.startDate">
+                        </td>
 
 
 
-                <td>
-                    <label for="">Total Business Seats Available</label>
-                    <input type="number" placeholder="Enter value" class="form-control"
-                        [(ngModel)]="newFlightDetail.totalBusinessSeats">
-                </td>
+                        <td>
+                            <label for="">End Date</label>
+                            <input type="datetime-local" placeholder="Enter value" class="form-control"
+                                [(ngModel)]="newFlightDetail.endDate">
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td>
+                            <label for="">Instrument Used</label>
+                            <input type="text" placeholder="Enter value" class="form-control"
+                                [(ngModel)]="newFlightDetail.instrumentUsed">
+                        </td>
 
 
 
-                <td>
-                    <label for="">Total Non Business Seats Available</label>
-                    <input type="number" placeholder="Enter value" class="form-control"
-                        [(ngModel)]="newFlightDetail.totalNonBusinessSeats">
-                </td>
-            </tr>
-            <tr>
-
-                <td>
-                    <label for="">Tickt Cost</label>
-                    <input type="number" placeholder="Enter value" class="form-control"
-                        [(ngModel)]="newFlightDetail.ticketCost">
-                </td>
+                        <td>
+                            <label for="">Total Business Seats Available</label>
+                            <input type="number" placeholder="Enter value" class="form-control"
+                                [(ngModel)]="newFlightDetail.totalBusinessSeats">
+                        </td>
 
 
 
-                <td>
-                    <label for="">Meals Provided</label>
-                    <input type="text" placeholder="Enter value" class="form-control"
-                        [(ngModel)]="newFlightDetail.meal">
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3">
-                    <input type="submit" name="" id="" class="btn btn-success col-12" value="Add Flight"
-                        (click)="addInventory()">
-                </td>
-            </tr>
-        </table>
+                        <td>
+                            <label for="">Total Non Business Seats Available</label>
+                            <input type="number" placeholder="Enter value" class="form-control"
+                                [(ngModel)]="newFlightDetail.totalNonBusinessSeats">
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td>
+                            <label for="">Tickt Cost</label>
+                            <input type="number" placeholder="Enter value" class="form-control"
+                                [(ngModel)]="newFlightDetail.ticketCost">
+                        </td>
+
+
+
+                        <td>
+                            <label for="">Meals Provided</label>
+                            <input type="text" placeholder="Enter value" class="form-control"
+                                [(ngModel)]="newFlightDetail.meal">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <input type="submit" name="" id="" class="btn btn-success col-12" value="Add Flight"
+                                (click)="addInventory()">
+                        </td>
+                    </tr>
+                </table>
+            </mat-card-actions>
+        </mat-card>
     </div>
 </div>

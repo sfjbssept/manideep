@@ -1,6 +1,17 @@
-table{
+table {
     align-items: center;
 }
+
 table td {
     padding: 15px;
+}
+
+mat-card {
+    display: inline-block;
+    box-shadow: 0px 0px 15px silver !important;
+}
+
+.mat-card-cvr {
+    width: 100%;
+    text-align: center;
 }

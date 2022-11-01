@@ -12,8 +12,8 @@ export class PageNotFoundComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  goToHomeFrom404(){
-    this._service.updateAdminSessionRoute()
-  }
+  // goToHomeFrom404(){
+  //   this._service.updateAdminSessionRoute()
+  // }
 
 }

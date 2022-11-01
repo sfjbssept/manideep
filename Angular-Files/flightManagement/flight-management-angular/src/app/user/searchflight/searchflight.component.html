@@ -1,0 +1,40 @@
+<app-user-navbar></app-user-navbar>
+<div class="container">
+    <mat-card *ngFor="let flightObject of flightDetails">
+        <mat-card-title><i class="bi bi-airplane-engines"></i> {{flightObject.airLineName}}</mat-card-title>
+        <mat-card-subtitle>
+        </mat-card-subtitle>
+        <mat-card-content>
+            <div class="bodyContents">
+                <span>
+                    <div>{{flightObject.flyFrom}}</div>
+                    <div class="boldText">{{flightObject.startDate | date}}, {{flightObject.startDate | date:"HH:mm"}}</div>
+                </span>
+                <span>
+                    <div>- Duration -</div>
+                    <div class="boldText">
+                        <span>
+                            {{getDays(flightObject)}}
+                            {{getHours(flightObject)}}
+                            {{getMinutes(flightObject)}}
+                        </span>
+                    </div>
+                </span>
+                <span>
+                    <div>{{flightObject.flyTo}}</div>
+                    <div class="boldText">{{flightObject.endDate | date}}, {{flightObject.endDate | date:"HH:mm"}}</div>
+                </span>
+                <span>
+                    <div>&nbsp;</div>
+                    <div class="boldText" style="color:green;">
+                        {{flightObject.ticketCost | currency:"INR"}}
+                    </div>
+                </span>
+            </div>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button mat-stroked-button style="color:orange;">View More</button>
+            <!-- <button mat-stroked-button style="color:green;">Book Now</button> -->
+        </mat-card-actions>
+    </mat-card>
+</div>

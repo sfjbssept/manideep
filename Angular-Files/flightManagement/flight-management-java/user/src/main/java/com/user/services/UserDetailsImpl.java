@@ -24,7 +24,7 @@ public class UserDetailsImpl implements IUserDetails {
 		List<LoginUserDetails> loginUserDetails = userRepoService.findAll();
 		for (LoginUserDetails userObjects : loginUserDetails) {
 			if(userObjects.getuMobileNumber() == loginAttemptDetails.getuMobileNumber()) {
-				if (userObjects.getuPassword().equals(loginAttemptDetails.getuPassword()))g {
+				if (userObjects.getuPassword().equals(loginAttemptDetails.getuPassword())) {
 					return "Login success !!";
 				} else {
 					return "Password is wrong!!";

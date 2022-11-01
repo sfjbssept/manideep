@@ -1,5 +1,5 @@
 package com.user.controller;
 
-public class UserBooking {
+public class UserController {
 
 }

@@ -18,6 +18,10 @@ import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { UserNavbarComponent } from './user/user-navbar/user-navbar.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
+import { SearchflightComponent } from './user/searchflight/searchflight.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {CdkAccordionModule} from '@angular/cdk/accordion';
 
 
 @NgModule({
@@ -29,7 +33,8 @@ import {MatCardModule} from '@angular/material/card';
     SignInComponent,
     SignUpComponent,
     UserNavbarComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SearchflightComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,10 @@ import {MatCardModule} from '@angular/material/card';
     FormsModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule,
+    MatExpansionModule,
+    CdkAccordionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

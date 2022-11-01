@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AdminServiceService } from '../../admin/admin-service.service';
+import { UserServiceService } from '../user-service.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -8,14 +9,14 @@ import { AdminServiceService } from '../../admin/admin-service.service';
 })
 export class SignInComponent implements OnInit {
 
-  constructor(private _service: AdminServiceService) { }
+  constructor(private _service: UserServiceService) { }
   @Output() loginEmitter = new EventEmitter();
 
   ngOnInit(): void {
   }
   login(){
-    this._service.setUserSession("true")
-    this._service.updateAdminSessionRoute()
+    // this._service.setUserSession("true")
+    // this._service.updateAdminSessionRoute()
     this.loginEmitter.emit()
   }
 

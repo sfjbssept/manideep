@@ -22,7 +22,7 @@
                         </span>
                         <span
                             *ngIf="(displayColObj.column == ['startDate'] || displayColObj.column == ['endDate']) && element.id == editElementId">
-                            <input type="date" class="form-control" [(ngModel)]="element[displayColObj.column]">
+                            <input type="datetime-local" class="form-control" [(ngModel)]="element[displayColObj.column]">
                         </span>
                         <span
                             *ngIf="(displayColObj.column != ['actions'] && displayColObj.column != ['flightNumber'] && displayColObj.column != ['startDate'] && displayColObj.column != ['endDate'] ) && element.id == editElementId">
