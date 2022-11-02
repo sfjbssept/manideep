@@ -17,4 +17,8 @@ export class UserServiceService {
   getAllFlightDetails(){
     return this.http.get(this.adminBaseUrl + "getAllFlights", {responseType: 'json'})
   }
+
+  searchFlights(payload: any){
+    return this.http.post(this.adminBaseUrl + "searchFlight" , payload , {responseType : 'json'})
+  }
 }

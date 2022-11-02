@@ -15,4 +15,5 @@ public interface IAdminService {
 	
 	String updateFlight(FlightDetails updateFlightDetails , int flightNumber);
 	
+	List<FlightDetails> getFlightDetailsUsingJPQL(String startDate , String from , String to);
 }

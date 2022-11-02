@@ -41,7 +41,12 @@ public class AdminController {
 		return adminService.updateFlight(flightDetails, flightNumber);
 	}
 	
-	@GetMapping("working")
+	@PostMapping("/searchFlight")
+	public List<FlightDetails> searchFlight(@RequestBody FlightDetails flightDetails) {
+		return adminService.getFlightDetailsUsingJPQL(flightDetails.getStartDate() , flightDetails.getFlyFrom() , flightDetails.getFlyTo());
+	}
+	
+	@GetMapping("/working")
 	public String working() {
 		return "working...";
 	}

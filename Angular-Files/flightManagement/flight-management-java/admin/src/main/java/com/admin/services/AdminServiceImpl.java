@@ -66,4 +66,9 @@ public class AdminServiceImpl implements IAdminService{
 		return (found == true) ? "Successfully Updated !" : "Flight Number '"+flightNumber+"' Found";
 	}
 
+	@Override
+	public List<FlightDetails> getFlightDetailsUsingJPQL(String startDate , String from , String to) {
+		return adminRepository.searchFlights(startDate , from , to);
+	}
+
 }

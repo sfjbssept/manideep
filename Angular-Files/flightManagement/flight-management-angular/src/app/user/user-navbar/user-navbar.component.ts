@@ -33,5 +33,6 @@ export class UserNavbarComponent implements OnInit {
   }
   logOut(){
     sessionStorage.removeItem("userName")
+    this.isUserLoggedIn = false
   }
 }

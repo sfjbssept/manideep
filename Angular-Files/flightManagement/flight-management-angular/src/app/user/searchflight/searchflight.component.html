@@ -1,4 +1,25 @@
 <app-user-navbar></app-user-navbar>
+<nav class="navbar sticky-top bg-light">
+    <div class="container-fluid d-flex justify-content-evenly">
+        <!-- <form class="d-flex" role="search"> -->
+            <!-- <input class="form-control me-2" type="search" placeholder="From" aria-label="Search"> -->
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" placeholder="From" [(ngModel)]="flightStructure.flyFrom">
+                <label for="floatingInput">From</label>
+            </div>
+            <button class="btn"><i class="bi bi-arrow-left-right"></i></button>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" placeholder="To" [(ngModel)]="flightStructure.flyTo">
+                <label for="floatingInput">To</label>
+            </div>
+            <div class="form-floating" style="margin-left:30px;">
+                <input type="date" class="form-control" id="floatingInput" placeholder="Depart" [(ngModel)]="flightStructure.startDate">
+                <label for="floatingInput">Depart</label>
+            </div>
+        <!-- </form> -->
+            <button class="btn btn-outline-success" type="submit" (click)="searchFlight()">Search</button>
+    </div>
+</nav>
 <div class="container">
     <mat-card *ngFor="let flightObject of flightDetails">
         <mat-card-title><i class="bi bi-airplane-engines"></i> {{flightObject.airLineName}}</mat-card-title>
@@ -7,34 +28,46 @@
         <mat-card-content>
             <div class="bodyContents">
                 <span>
+                    <div class="topRowStyles">
+                        <!-- {{flightObject.startDate | date}},  -->
+                        {{flightObject.startDate | date:"HH:mm"}}
+                    </div>
                     <div>{{flightObject.flyFrom}}</div>
-                    <div class="boldText">{{flightObject.startDate | date}}, {{flightObject.startDate | date:"HH:mm"}}</div>
                 </span>
                 <span>
-                    <div>- Duration -</div>
-                    <div class="boldText">
+                    <div>&nbsp;</div>
+                    <div style="border-bottom:1px solid pink;width: 100px;"></div>
+                </span>
+                <span>
+                    <div class="topRowStyles">
                         <span>
                             {{getDays(flightObject)}}
                             {{getHours(flightObject)}}
                             {{getMinutes(flightObject)}}
                         </span>
                     </div>
-                </span>
-                <span>
-                    <div>{{flightObject.flyTo}}</div>
-                    <div class="boldText">{{flightObject.endDate | date}}, {{flightObject.endDate | date:"HH:mm"}}</div>
+                    <div> <small>Non stop</small></div>
                 </span>
                 <span>
                     <div>&nbsp;</div>
-                    <div class="boldText" style="color:green;">
+                    <div style="border-bottom:1px solid pink;width: 100px;"></div>
+                </span>
+                <span>
+                    <div class="topRowStyles">
+                        <!-- {{flightObject.endDate | date}},  -->
+                        {{flightObject.endDate | date:"HH:mm"}}
+                    </div>
+                    <div>{{flightObject.flyTo}}</div>
+                </span>
+                <span>
+                    <div class="priceCol topRowStyles">
                         {{flightObject.ticketCost | currency:"INR"}}
+                    </div>
+                    <div>
+                        <button mat-stroked-button style="color:rgb(199, 131, 5);">View More</button>
                     </div>
                 </span>
             </div>
         </mat-card-content>
-        <mat-card-actions align="end">
-            <button mat-stroked-button style="color:orange;">View More</button>
-            <!-- <button mat-stroked-button style="color:green;">Book Now</button> -->
-        </mat-card-actions>
     </mat-card>
 </div>

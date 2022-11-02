@@ -22,6 +22,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { SearchflightComponent } from './user/searchflight/searchflight.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
+import { PreviewDetailsComponent } from './user/preview-details/preview-details.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
     SignUpComponent,
     UserNavbarComponent,
     PageNotFoundComponent,
-    SearchflightComponent
+    SearchflightComponent,
+    PreviewDetailsComponent
   ],
   imports: [
     BrowserModule,
