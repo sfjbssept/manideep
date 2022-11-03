@@ -9,7 +9,7 @@ import {MatTableModule} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import {MatInputModule} from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddFlightComponent } from './admin/add-flight/add-flight.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
@@ -23,6 +23,8 @@ import { SearchflightComponent } from './user/searchflight/searchflight.componen
 import {MatExpansionModule} from '@angular/material/expansion';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
 import { PreviewDetailsComponent } from './user/preview-details/preview-details.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -51,7 +53,10 @@ import { PreviewDetailsComponent } from './user/preview-details/preview-details.
     MatCardModule,
     MatButtonModule,
     MatExpansionModule,
-    CdkAccordionModule
+    CdkAccordionModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
