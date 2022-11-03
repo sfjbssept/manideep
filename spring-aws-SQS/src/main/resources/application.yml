@@ -1,0 +1,12 @@
+  cloud:
+    aws:
+      region:
+        static: us-east-1
+        auto: false
+      credentials:
+        access-key: key
+        secret-key: key
+      end-point:
+        url:  https://sqs.us-east-1.amazonaws.com/850763061324/aws-SQS-manideep
+  server:
+    port: 8084
