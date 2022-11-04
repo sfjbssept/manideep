@@ -1,11 +1,31 @@
 package com.admin.entity;
 
 import javax.persistence.Entity;
-//import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
+import javax.persistence.ConstructorResult;
+import javax.persistence.ColumnResult;
+
+
+//@NamedNativeQuery(name = "ChessPlayer.findPlayerNameDtoById_Named",
+//query = "select " +
+//		" cd.city_name as from_city, " +
+//		" cd.city_short_name as from_city_short_name , " +
+//		" cdd.city_name as to_city, " +
+//        " cdd.city_short_name as to_city_short_name" +
+//		" from flight_details fd" +
+//		" left join airline_details ad on fd.airline_id = ad.airline_id" +
+//		" left join cities_details cd on fd.fly_from = cd.city_id" +
+//		" left join cities_details cdd on fd.fly_to = cdd.city_id",
+//resultSetMapping = "Mapping.PlayerNameDto")
+//@SqlResultSetMapping(name = "Mapping.PlayerNameDto",
+//   classes = @ConstructorResult(targetClass = PlayerNameDto.class,
+//                                columns = {@ColumnResult(name = "first"),
+//                                           @ColumnResult(name = "last")}))
 
 @Entity
 @Table(name = "flight_details")
@@ -14,7 +34,7 @@ public class FlightDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private int flightNumber;
-	private String airLineName;
+	private String airlineId;
 	private String flyFrom;
 	private String flyTo;
 	private String startDate;
@@ -24,13 +44,13 @@ public class FlightDetails {
 	private int totalNonBusinessSeats;
 	private int ticketCost;
 	private String meal;
-	public FlightDetails(int id, int flightNumber, String airLineName, String flyFrom, String flyTo, String startDate,
+	public FlightDetails(int id, int flightNumber, String airlineId, String flyFrom, String flyTo, String startDate,
 			String endDate, String instrumentUsed, int totalBusinessSeats, int totalNonBusinessSeats, int ticketCost,
 			String meal) {
 		super();
 		this.id = id;
 		this.flightNumber = flightNumber;
-		this.airLineName = airLineName;
+		this.airlineId = airlineId;
 		this.flyFrom = flyFrom;
 		this.flyTo = flyTo;
 		this.startDate = startDate;
@@ -59,11 +79,11 @@ public class FlightDetails {
 	public void setFlightNumber(int flightNumber) {
 		this.flightNumber = flightNumber;
 	}
-	public String getAirLineName() {
-		return airLineName;
+	public String getairlineId() {
+		return airlineId;
 	}
-	public void setAirLineName(String airLineName) {
-		this.airLineName = airLineName;
+	public void setairlineId(String airlineId) {
+		this.airlineId = airlineId;
 	}
 	public String getFlyFrom() {
 		return flyFrom;

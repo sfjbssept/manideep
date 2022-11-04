@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.admin.entity.FlightDetails;
+//import com.admin.entity.FlightDetailsEntity;
 
 public interface IAdminRepository extends JpaRepository<FlightDetails, Integer> {
 
@@ -18,4 +19,8 @@ public interface IAdminRepository extends JpaRepository<FlightDetails, Integer> 
 			
 		  )
 	List<FlightDetails> searchFlights(String startDate, String from , String to);
+	
+	
+//	@Query(nativeQuery = true)
+//	List<FlightDetailsEntity> getFlights();
 }

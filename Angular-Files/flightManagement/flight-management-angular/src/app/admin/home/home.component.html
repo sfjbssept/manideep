@@ -1,89 +1,107 @@
 <app-admin-navbar></app-admin-navbar>
 <div class="container-fluid" style="margin-top: 20px;" *ngIf="isLoggedIn">
-    <div style="float: left;">
-        <h2>Flight Details</h2>
-    </div>
-    <div style="float: right;" class="buttonsGroup">
-        <button class="btn btn-sm edit" (click)="isEditEnable()">Edit</button>
-        <button class="btn btn-sm delete" (click)="isDeleteEnable()">Delete</button>
-    </div>
-    <div>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-            <ng-container *ngFor="let displayColObj of columnNamesManage">
-                <ng-container [matColumnDef]="displayColObj.column">
-                    <th mat-header-cell *matHeaderCellDef>
-                        <span>
-                            {{displayColObj.displayLabel}}
-                        </span>
-                    </th>
-                    <td mat-cell *matCellDef="let element">
-                        <span
-                            *ngIf="element.id != editElementId || displayColObj.column == ['flightNumber']">{{element[displayColObj.column]}}
-                        </span>
-                        <span
-                            *ngIf="(displayColObj.column == ['startDate'] || displayColObj.column == ['endDate']) && element.id == editElementId">
-                            <input type="datetime-local" class="form-control" [(ngModel)]="element[displayColObj.column]">
-                        </span>
-                        <span
-                            *ngIf="(displayColObj.column != ['actions'] && displayColObj.column != ['flightNumber'] && displayColObj.column != ['startDate'] && displayColObj.column != ['endDate'] ) && element.id == editElementId">
-                            <input type="text" class="form-control" [(ngModel)]="element[displayColObj.column]">
-                        </span>
-                        <i class="bi bi-pencil-square"
-                            *ngIf="displayColObj.column == 'actions' && isEdit && (element.id != editElementId)"
-                            (click)="edit(element)" title="Edit Record"></i>
+  <div style="float: left;">
+    <h2>Flight Details</h2>
+  </div>
+  <div style="float: right;" class="buttonsGroup">
+    <button class="btn btn-sm edit" (click)="isEditEnable()">Edit</button>
+    <button class="btn btn-sm delete" (click)="isDeleteEnable()">Delete</button>
+  </div>
+  <div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container *ngFor="let displayColObj of columnNamesManage">
+        <ng-container [matColumnDef]="displayColObj.column">
+          <th mat-header-cell *matHeaderCellDef>
+            <span>
+              {{displayColObj.displayLabel}}
+            </span>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <span
+              *ngIf="element.id != editElementId || displayColObj.column == ['flightNumber']">{{element[displayColObj.column]}}
+            </span>
+            <span
+              *ngIf="(displayColObj.column == ['startDate'] || displayColObj.column == ['endDate']) && element.id == editElementId">
+              <input type="datetime-local" class="form-control" [(ngModel)]="element[displayColObj.column]">
+            </span>
+            <span
+              *ngIf="(displayColObj.column == ['flyFrom'] || displayColObj.column == ['flyTo']) && element.id == editElementId">
+              <select name="" id="" class="form-control" [(ngModel)]="element[displayColObj.column]">
+                <option *ngFor="let citiesObj of cities" [value]="citiesObj.cityId">
+                  {{"(" + citiesObj.cityShortName + " ) " + citiesObj.cityName}}
+                </option>
+              </select>
+            </span>
+            <span *ngIf="(displayColObj.column == ['airlineId']) && element.id == editElementId">
+              <select name="" id="" class="form-control" [(ngModel)]="element[displayColObj.column]">
+                <option *ngFor="let airlineObj of airLineDetails" [value]="airlineObj.airline_id">
+                  {{ airlineObj.airline_name }}
+                </option>
+              </select>
+            </span>
+            <span
+              *ngIf="(displayColObj.column == ['instrumentUsed'] || displayColObj.column == ['totalBusinessSeats'] || displayColObj.column == ['totalNonBusinessSeats'] || displayColObj.column == ['ticketCost'] || displayColObj.column == ['meal']) && element.id == editElementId">
+              <input type="text" class="form-control" [(ngModel)]="element[displayColObj.column]">
+            </span>
+            <i class="bi bi-pencil-square"
+              *ngIf="displayColObj.column == 'actions' && isEdit && (element.id != editElementId)"
+              (click)="edit(element)" title="Edit Record"></i>
 
-                        <span style="display: flex; justify-content: space-between;">
-                            <i *ngIf="displayColObj.column == 'actions' && isEdit && element.id == editElementId"
-                                (click)="cancel()">
-                                <i class="bi bi-x-circle-fill" title="Cancel"></i>
-                            </i>
-                            <i *ngIf="displayColObj.column == 'actions' && isEdit && element.id == editElementId"
-                                (click)="saveChanges(element)">
-                                <i class="bi bi-check-circle-fill" title="Save Changes"></i>
-                            </i>
-                        </span>
-                        <i *ngIf="displayColObj.column == 'actions' && isDelete" (click)="delete(element.flightNumber)">
-                            <i class="bi bi-trash" title="Delete Record"></i>
-                        </i>
-                    </td>
-                </ng-container>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-    </div>
+            <span style="display: flex; justify-content: space-between;">
+              <i *ngIf="displayColObj.column == 'actions' && isEdit && element.id == editElementId" (click)="cancel()">
+                <i class="bi bi-x-circle-fill" title="Cancel"></i>
+              </i>
+              <i *ngIf="displayColObj.column == 'actions' && isEdit && element.id == editElementId"
+                (click)="saveChanges(element)">
+                <i class="bi bi-check-circle-fill" title="Save Changes"></i>
+              </i>
+            </span>
+            <i *ngIf="displayColObj.column == 'actions' && isDelete" (click)="delete(element.flightNumber)">
+              <i class="bi bi-trash" title="Delete Record"></i>
+            </i>
+          </td>
+        </ng-container>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
 </div>
 
-<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Modal 1</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Show a second modal and hide this one with the button below.
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button>
-        </div>
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+  tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Modal 1</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Show a second modal and hide this one with the button below.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second
+          modal</button>
       </div>
     </div>
   </div>
-  <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Hide this modal and show the first with the button below.
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
-        </div>
+</div>
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+  tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Hide this modal and show the first with the button below.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to
+          first</button>
       </div>
     </div>
   </div>
-  <a class="btn btn-primary" data-bs-toggle="modal"  role="button">Open first modal</a>
+</div>
+<a class="btn btn-primary" data-bs-toggle="modal" role="button">Open first modal</a>

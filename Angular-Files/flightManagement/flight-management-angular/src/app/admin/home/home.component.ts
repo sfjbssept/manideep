@@ -10,13 +10,15 @@ import { AdminServiceService } from '../admin-service.service';
 export class HomeComponent implements OnInit {
   editElementId: any;
   isLoggedIn: boolean = false;
+  airLineDetails: any;
+  cities: any;
 
   constructor(private _auth: AdminServiceService, private _router: Router) { }
   dataSource: any
   displayedColumns?: String[]
   columnNamesManage: any = [
     { column: "flightNumber", displayLabel: "Flight Name" },
-    { column: "airLineName", displayLabel: "AirLine Name" },
+    { column: "airlineId", displayLabel: "AirLine Name" },
     { column: "startDate", displayLabel: "Start Date" },
     { column: "endDate", displayLabel: "End Date" },
     { column: "flyFrom", displayLabel: "Location From" },
@@ -41,12 +43,28 @@ export class HomeComponent implements OnInit {
     }
     this.displayedColumns = this.columnNamesManage.map((c: any) => c.column);
     this.getAllFlightDetails();
+    this.getAirlineDetails()
+    this.getCities()
   }
   getAllFlightDetails() {
     this._auth.getAllFlights().subscribe(
       r => {
         this.dataSource = r
         console.log(this.dataSource)
+      }
+    )
+  }
+  getAirlineDetails(){
+    this._auth.getAirlineDetails().subscribe(
+      r => {
+        this.airLineDetails = r
+      }
+    )
+  }
+  getCities(){
+    this._auth.getCities().subscribe(
+      r => {
+        this.cities = r
       }
     )
   }

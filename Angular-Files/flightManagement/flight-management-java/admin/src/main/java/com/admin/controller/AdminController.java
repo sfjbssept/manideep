@@ -62,4 +62,9 @@ public class AdminController {
 	public String working() {
 		return "working...";
 	}
+	
+//	@GetMapping("/checkFlights")
+//	public List<FlightDetailsEntity> getFlightsNew() {
+//		return adminService.getFlightsNew();
+//	}
 }

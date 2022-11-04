@@ -58,7 +58,7 @@ public class AdminServiceImpl implements IAdminService{
 			if(flightDetails.getFlightNumber() == flightNumber) {
 				found = true;
 //				FlightDetails updateRepo = adminRepository.findById(flightDetails.getId()).orElseThrow();
-				flightDetails.setAirLineName(updateFlightDetails.getAirLineName());
+				flightDetails.setairlineId(updateFlightDetails.getairlineId());
 				flightDetails.setFlyFrom(updateFlightDetails.getFlyFrom());
 				flightDetails.setFlyTo(updateFlightDetails.getFlyTo());
 				flightDetails.setStartDate(updateFlightDetails.getStartDate());

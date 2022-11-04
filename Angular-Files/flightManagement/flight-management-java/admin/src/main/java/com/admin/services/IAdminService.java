@@ -22,4 +22,5 @@ public interface IAdminService {
 	List<AirlineDetails> getAirlineDetails();
 	
 	List<FlightDetails> getFlightDetailsUsingJPQL(String startDate , String from , String to);
+	
 }

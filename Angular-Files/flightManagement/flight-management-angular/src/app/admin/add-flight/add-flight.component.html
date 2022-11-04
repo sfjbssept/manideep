@@ -22,7 +22,7 @@
                             <label for="">Air Line Name</label>
                             <!-- <input type="text" placeholder="Enter value" class="form-control"
                                 [(ngModel)]="newFlightDetail.airLineName"> -->
-                            <select name="" id="" class="form-control" [(ngModel)]="newFlightDetail.airLineName">
+                            <select name="" id="" class="form-control" [(ngModel)]="newFlightDetail.airlineId">
                                 <option value="0">--Select AirLine--</option>
                                 <option *ngFor="let airlineObj of airLineDetails" [value]="airlineObj.airline_id">
                                     {{ airlineObj.airline_name }}
