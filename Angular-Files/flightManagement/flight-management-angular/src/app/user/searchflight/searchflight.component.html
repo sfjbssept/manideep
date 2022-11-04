@@ -2,35 +2,49 @@
 <nav class="navbar sticky-top bg-light">
     <div class="container-fluid d-flex justify-content-evenly">
         <form class="d-flex justify-content-evenly" role="search" [formGroup]="validation">
-            <!-- <input class="form-control me-2" type="search" placeholder="From" aria-label="Search"> -->
+
+            <!-- <mat-form-field appearance="fill">
+                <mat-label>From</mat-label>
+                <mat-select formControlName="flyFrom">
+                    <mat-option>--select</mat-option>
+                    <mat-option>--select</mat-option>
+                    <mat-option *ngFor="let fromCity of options" [value]="fromCity">
+                        {{fromCity}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field> -->
+            
+            
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" placeholder="From" formControlName="flyFrom"
-                    [ngStyle]="{'border-color' : isValidationError('flyFrom') ? 'red' : '#ced4da' }">
+                <select name="" id="" formControlName="flyFrom" class="form-control"
+                [ngStyle]="{'border-color' : isValidationError('flyFrom') ? 'red' : '#ced4da' }">
+                    <!-- <option value="0">select from location</option> -->
+                    <option *ngFor="let fromCity of cities" [value]="fromCity.cityId">
+                        {{"(" + fromCity.cityShortName + " ) " + fromCity.cityName}}
+                    </option>
+                </select>
                 <label for="floatingInput">From<small>*</small></label>
-                <!-- <small *ngIf="isValidationError('flyFrom')" style="color:red;">Required</small> -->
+                <!-- <input type="text" class="form-control" id="floatingInput" placeholder="From" formControlName="flyFrom"
+                    [ngStyle]="{'border-color' : isValidationError('flyFrom') ? 'red' : '#ced4da' }">
+                <label for="floatingInput">From<small>*</small></label> -->
             </div>
-            <div class="form-floating" style="margin: auto ;">
-                <button class="btn"><i class="bi bi-arrow-left-right"></i></button>
+            <div class="form-floating" style="margin: 10px 20px;">
+                <button class="btn"><i class="bi bi-arrow-left-right" (click)="swapFromAndTo()"></i></button>
             </div>
             <div class="form-floating">
+                <select name="" id="" formControlName="flyTo" class="form-control"
+                [ngStyle]="{'border-color' : isValidationError('flyTo') ? 'red' : '#ced4da' }">
+                    <option *ngFor="let fromCity of cities" [value]="fromCity.cityId">
+                        {{"( " + fromCity.cityShortName + " ) " + fromCity.cityName}}
+                    </option>
+                </select>
+                <label for="floatingInput">From<small>*</small></label>
+            </div>
+            <!-- <div class="form-floating">
                 <input type="text" class="form-control" id="floatingInput" placeholder="To" formControlName="flyTo"
                     [ngStyle]="{'border-color' : isValidationError('flyTo') ? 'red' : '#ced4da' }">
                 <label for="floatingInput">To<small>*</small></label>
-                <!-- <small *ngIf="isValidationError('flyTo')" style="color:red;">Required</small> -->
-            </div>
-            <!-- <div class="form-floating" style="margin-left:30px;">
-                <input type="date" class="form-control" id="floatingInput" placeholder="Depart"
-                    formControlName="startDate"
-                    [ngStyle]="{'border-color' : isValidationError('startDate') ? 'red' : '#ced4da' }">
-
-                <label for="floatingInput">Depart<small>*</small></label>
-                <small *ngIf="isValidationError('startDate')" style="color:red;">Required</small>
             </div> -->
-
-            <!-- <input matInput [matDatepicker]="picker" formControlName="startDate" />
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker> -->
-
             <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Choose a date</mat-label>
                 <input matInput [matDatepicker]="picker" formControlName="startDate">
@@ -39,7 +53,10 @@
             </mat-form-field>
 
             <div class="form-floating" style="margin: auto;margin-left: 30px;">
-                <button class="btn btn-outline-success" type="submit" (click)="searchFlight()">Search</button>
+                <button class="btn btn-outline-success" type="submit" (click)="searchFlight()">{{searchButtonName}}</button>
+            </div>
+            <div class="form-floating" style="margin: auto;margin-left: 30px;" *ngIf="searched">
+                <button class="btn btn-outline-success" type="submit" (click)="getFlights()">Clear Search</button>
             </div>
         </form>
     </div>

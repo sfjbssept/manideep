@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.admin.entity.AirlineDetails;
+import com.admin.entity.CityDetails;
 import com.admin.entity.FlightDetails;
 import com.admin.services.IAdminService;
 
@@ -39,6 +41,16 @@ public class AdminController {
 	@PutMapping("/update/{flightNumber}")
 	public String updateFlightDetails(@RequestBody FlightDetails flightDetails , @PathVariable int flightNumber) {
 		return adminService.updateFlight(flightDetails, flightNumber);
+	}
+	
+	@GetMapping("/getCities")
+	public List<CityDetails> getCities() {
+		return adminService.getAllCityDetails();
+	}
+	
+	@GetMapping("/airlineDetails")
+	public List<AirlineDetails> getAirlineDetails() {
+		return adminService.getAirlineDetails();
 	}
 	
 	@PostMapping("/searchFlight")

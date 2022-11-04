@@ -9,6 +9,8 @@ import FlightEntity from '../FlightEntity';
   styleUrls: ['./add-flight.component.css']
 })
 export class AddFlightComponent implements OnInit {
+  cities: any;
+  airLineDetails: any;
 
   constructor(private _auth: AdminServiceService,private _router: Router) { }
   newFlightDetail: FlightEntity = new FlightEntity()
@@ -47,12 +49,29 @@ export class AddFlightComponent implements OnInit {
     // TruJet.
 
       console.log(this.newFlightDetail)
+    this.getCities()
+    this.getAirlineDetails()
   }
   addInventory() {
     console.log(this.newFlightDetail)
     this._auth.addFlight(this.newFlightDetail).subscribe(
       r => {
         console.log(r)
+      }
+    )
+  }
+  getCities(){
+    this._auth.getCities().subscribe(
+      r => {
+        this.cities = r
+      }
+    )
+  }
+
+  getAirlineDetails(){
+    this._auth.getAirlineDetails().subscribe(
+      r => {
+        this.airLineDetails = r
       }
     )
   }

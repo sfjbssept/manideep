@@ -25,6 +25,8 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
 import { PreviewDetailsComponent } from './user/preview-details/preview-details.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -56,7 +58,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     CdkAccordionModule,
     ReactiveFormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatAutocompleteModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

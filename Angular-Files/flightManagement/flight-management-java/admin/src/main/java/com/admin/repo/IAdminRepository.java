@@ -13,7 +13,7 @@ public interface IAdminRepository extends JpaRepository<FlightDetails, Integer> 
 	@Query("select f from FlightDetails f " + 
 			"where "+
 			"Date(startDate) = Date(?1) "+
-			" or "+
+			" and "+
 			"(flyFrom = ?2 and flyTo = ?3)"
 			
 		  )

@@ -7,14 +7,24 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.admin.entity.AirlineDetails;
+import com.admin.entity.CityDetails;
 import com.admin.entity.FlightDetails;
 import com.admin.repo.IAdminRepository;
+import com.admin.repo.IAirlineDetails;
+import com.admin.repo.ICitiesRepository;
 
 @Service
 public class AdminServiceImpl implements IAdminService{
 
 	@Autowired
 	IAdminRepository adminRepository;
+	
+	@Autowired
+	ICitiesRepository citiesRepository;
+	
+	@Autowired
+	IAirlineDetails airLineDetails;
 	
 	@Override
 	public FlightDetails addFlight(FlightDetails flightDetails) {
@@ -69,6 +79,16 @@ public class AdminServiceImpl implements IAdminService{
 	@Override
 	public List<FlightDetails> getFlightDetailsUsingJPQL(String startDate , String from , String to) {
 		return adminRepository.searchFlights(startDate , from , to);
+	}
+
+	@Override
+	public List<CityDetails> getAllCityDetails() {
+		return citiesRepository.findAll();
+	}
+
+	@Override
+	public List<AirlineDetails> getAirlineDetails() {
+		return airLineDetails.findAll();
 	}
 
 }

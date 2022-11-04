@@ -8,12 +8,12 @@ import { SearchflightComponent } from './user/searchflight/searchflight.componen
 import { UserNavbarComponent } from './user/user-navbar/user-navbar.component';
 
 const routes: Routes = [
-  {path:"admin",component:AdminNavbarComponent},
-  {path:"admin/home",component:HomeComponent},
-  {path:"admin/addFlight",component:AddFlightComponent},
-  {path:"user",component:UserNavbarComponent},
-  {path:"user/searchFlight",component:SearchflightComponent},
-  {path:"**",component:PageNotFoundComponent},
+  { path: "admin", component: AdminNavbarComponent },
+  { path: "admin/home", component: HomeComponent },
+  { path: "admin/addFlight", component: AddFlightComponent },
+  { path: "user", component: UserNavbarComponent },
+  { path: "user/searchFlight", component: SearchflightComponent },
+  { path: "**", component: PageNotFoundComponent },
 ];
 
 @NgModule({
