@@ -39,13 +39,13 @@ public class FlightDetails {
 	private String flyTo;
 	private String startDate;
 	private String endDate;
-	private String instrumentUsed;
+	private String stops;
 	private int totalBusinessSeats;
 	private int totalNonBusinessSeats;
 	private int ticketCost;
 	private String meal;
 	public FlightDetails(int id, int flightNumber, String airlineId, String flyFrom, String flyTo, String startDate,
-			String endDate, String instrumentUsed, int totalBusinessSeats, int totalNonBusinessSeats, int ticketCost,
+			String endDate, String stops, int totalBusinessSeats, int totalNonBusinessSeats, int ticketCost,
 			String meal) {
 		super();
 		this.id = id;
@@ -55,7 +55,7 @@ public class FlightDetails {
 		this.flyTo = flyTo;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.instrumentUsed = instrumentUsed;
+		this.stops = stops;
 		this.totalBusinessSeats = totalBusinessSeats;
 		this.totalNonBusinessSeats = totalNonBusinessSeats;
 		this.ticketCost = ticketCost;
@@ -109,11 +109,11 @@ public class FlightDetails {
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
-	public String getInstrumentUsed() {
-		return instrumentUsed;
+	public String getstops() {
+		return stops;
 	}
-	public void setInstrumentUsed(String instrumentUsed) {
-		this.instrumentUsed = instrumentUsed;
+	public void setstops(String stops) {
+		this.stops = stops;
 	}
 	public int getTotalBusinessSeats() {
 		return totalBusinessSeats;

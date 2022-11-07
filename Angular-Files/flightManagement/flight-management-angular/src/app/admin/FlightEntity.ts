@@ -7,7 +7,7 @@ export default class FlightEntity
     flyTo : String =  "";
     startDate : String =  "";
     endDate : String =  "";
-    instrumentUsed : String =  "";
+    stops : String =  "";
     totalBusinessSeats : Number =  0;
     totalNonBusinessSeats : Number =  0;
     ticketCost : Number =  0;

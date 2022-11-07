@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
 import { Router } from '@angular/router';
@@ -105,4 +105,7 @@ export class SearchflightComponent implements OnInit {
     this.validation.get('flyFrom')?.setValue(toValue)
   }
 
+  sendToPreview(flightObject: any){
+    sessionStorage.setItem("selectedFlight",JSON.stringify(flightObject))
+  }
 }

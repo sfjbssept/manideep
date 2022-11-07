@@ -63,7 +63,7 @@ public class AdminServiceImpl implements IAdminService{
 				flightDetails.setFlyTo(updateFlightDetails.getFlyTo());
 				flightDetails.setStartDate(updateFlightDetails.getStartDate());
 				flightDetails.setEndDate(updateFlightDetails.getEndDate());
-				flightDetails.setInstrumentUsed(updateFlightDetails.getInstrumentUsed());
+				flightDetails.setstops(updateFlightDetails.getstops());
 				flightDetails.setTotalBusinessSeats(updateFlightDetails.getTotalBusinessSeats());
 				flightDetails.setTotalNonBusinessSeats(updateFlightDetails.getTotalNonBusinessSeats());
 				flightDetails.setTicketCost(updateFlightDetails.getTicketCost());

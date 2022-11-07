@@ -22,11 +22,14 @@ import {MatButtonModule} from '@angular/material/button';
 import { SearchflightComponent } from './user/searchflight/searchflight.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
-import { PreviewDetailsComponent } from './user/preview-details/preview-details.component';
+import { BottomSheetOverviewExampleSheet, PreviewDetailsComponent } from './user/preview-details/preview-details.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSelectModule} from '@angular/material/select';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -40,7 +43,8 @@ import {MatSelectModule} from '@angular/material/select';
     UserNavbarComponent,
     PageNotFoundComponent,
     SearchflightComponent,
-    PreviewDetailsComponent
+    PreviewDetailsComponent,
+    BottomSheetOverviewExampleSheet
   ],
   imports: [
     BrowserModule,
@@ -60,7 +64,10 @@ import {MatSelectModule} from '@angular/material/select';
     MatDatepickerModule,
     MatNativeDateModule,
     MatAutocompleteModule,
-    MatSelectModule
+    MatSelectModule,
+    MatStepperModule,
+    MatBottomSheetModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

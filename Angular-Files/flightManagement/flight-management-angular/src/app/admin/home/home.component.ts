@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     { column: "endDate", displayLabel: "End Date" },
     { column: "flyFrom", displayLabel: "Location From" },
     { column: "flyTo", displayLabel: "Location To" },
-    { column: "instrumentUsed", displayLabel: "Instrument Used" },
+    { column: "stops", displayLabel: "Stops" },
     { column: "meal", displayLabel: "Meals" },
     { column: "ticketCost", displayLabel: "Ticket Cost" },
     { column: "totalBusinessSeats", displayLabel: "Total Business Seats" },

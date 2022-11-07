@@ -79,7 +79,7 @@
                     <div>&nbsp;</div>
                     <div style="border-bottom:1px solid pink;width: 100px;"></div>
                 </span>
-                <span>
+                <span style="text-align: center;">
                     <div class="topRowStyles">
                         <span>
                             {{getDays(flightObject)}}
@@ -87,7 +87,7 @@
                             {{getMinutes(flightObject)}}
                         </span>
                     </div>
-                    <div> <small>Non stop</small></div>
+                    <div> <small>{{flightObject.stops}}</small></div>
                 </span>
                 <span>
                     <div>&nbsp;</div>
@@ -105,7 +105,7 @@
                         {{flightObject.ticketCost | currency:"INR"}}
                     </div>
                     <div>
-                        <button mat-stroked-button style="color:rgb(199, 131, 5);">View More</button>
+                        <button mat-stroked-button style="color:rgb(199, 131, 5);" routerLink="/user/preview" (click)="sendToPreview(flightObject)">View More</button>
                     </div>
                 </span>
             </div>

@@ -4,6 +4,7 @@ import { AddFlightComponent } from './admin/add-flight/add-flight.component';
 import { AdminNavbarComponent } from './admin/admin-navbar/admin-navbar.component';
 import { HomeComponent } from './admin/home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PreviewDetailsComponent } from './user/preview-details/preview-details.component';
 import { SearchflightComponent } from './user/searchflight/searchflight.component';
 import { UserNavbarComponent } from './user/user-navbar/user-navbar.component';
 
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: "admin/addFlight", component: AddFlightComponent },
   { path: "user", component: UserNavbarComponent },
   { path: "user/searchFlight", component: SearchflightComponent },
+  { path: "user/preview", component: PreviewDetailsComponent },
   { path: "**", component: PageNotFoundComponent },
 ];
 
