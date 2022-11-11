@@ -1,0 +1,23 @@
+mat-card {
+    box-shadow: 0px 0px 10px silver !important;
+    /* border-radius: 10px !important; */
+    margin: 8px 0px;
+    /* margin: 20px 20px; */
+    border: 1px solid skyblue !important;
+}
+
+.bodyContents {
+    display: flex;
+    justify-content: space-between;
+}
+
+.topRowStyles {
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: medium;
+}
+
+.priceCol {
+    color: green;
+    text-align: center;
+}

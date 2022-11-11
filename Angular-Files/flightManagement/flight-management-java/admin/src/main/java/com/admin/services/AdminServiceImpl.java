@@ -7,12 +7,16 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.admin.dto.FlightAirlineResponse;
 import com.admin.entity.AirlineDetails;
 import com.admin.entity.CityDetails;
+import com.admin.entity.FlightAirlineDetails;
+//import com.admin.entity.CustomDto;
 import com.admin.entity.FlightDetails;
 import com.admin.repo.IAdminRepository;
 import com.admin.repo.IAirlineDetails;
 import com.admin.repo.ICitiesRepository;
+import com.admin.repo.ICustomDtoRepo;
 
 @Service
 public class AdminServiceImpl implements IAdminService{
@@ -25,6 +29,9 @@ public class AdminServiceImpl implements IAdminService{
 	
 	@Autowired
 	IAirlineDetails airLineDetails;
+	
+	@Autowired
+	ICustomDtoRepo customDtoRepo;
 	
 	@Override
 	public FlightDetails addFlight(FlightDetails flightDetails) {
@@ -62,7 +69,7 @@ public class AdminServiceImpl implements IAdminService{
 				flightDetails.setFlyFrom(updateFlightDetails.getFlyFrom());
 				flightDetails.setFlyTo(updateFlightDetails.getFlyTo());
 				flightDetails.setStartDate(updateFlightDetails.getStartDate());
-				flightDetails.setEndDate(updateFlightDetails.getEndDate());
+				flightDetails.setendDate(updateFlightDetails.getendDate());
 				flightDetails.setstops(updateFlightDetails.getstops());
 				flightDetails.setTotalBusinessSeats(updateFlightDetails.getTotalBusinessSeats());
 				flightDetails.setTotalNonBusinessSeats(updateFlightDetails.getTotalNonBusinessSeats());
@@ -89,6 +96,16 @@ public class AdminServiceImpl implements IAdminService{
 	@Override
 	public List<AirlineDetails> getAirlineDetails() {
 		return airLineDetails.findAll();
+	}
+
+	@Override
+	public List<FlightAirlineResponse> getFlightAirlineData() {
+		return customDtoRepo.getFlightAirlineData();
+	}
+
+	@Override
+	public List<FlightAirlineDetails> getMyTestDetails() {
+		return customDtoRepo.getMyTestDetails();
 	}
 
 }

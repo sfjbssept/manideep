@@ -11,15 +11,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name= "airline_details")
 @Table(name = "airline_details")
-public class AirlineDetails {
+public class FlightAirlineDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	public String airline_id;
 	public String airline_name;
-
 	public int getId() {
 		return id;
 	}
@@ -38,38 +37,24 @@ public class AirlineDetails {
 	public void setAirline_name(String airline_name) {
 		this.airline_name = airline_name;
 	}
-	public AirlineDetails(int id, String airline_id, String airline_name) {
-		super();
-		this.id = id;
-		this.airline_id = airline_id;
-		this.airline_name = airline_name;
-	}
-	public AirlineDetails() {
+	public FlightAirlineDetails() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
+	public FlightAirlineDetails(int id, String airline_id, String airline_name, List<FlightDetails> flightDetails) {
+		super();
+		this.id = id;
+		this.airline_id = airline_id;
+		this.airline_name = airline_name;
+		this.flightDetails = flightDetails;
+	}
+
+	@OneToMany(targetEntity = FlightDetails.class , cascade = CascadeType.ALL)
+	@JoinColumn(name = "airlineId", referencedColumnName = "airline_id")
+	private List<FlightDetails> flightDetails;
 	
 //	@OneToMany(targetEntity = FlightDetails.class , cascade = CascadeType.ALL)
 //	@JoinColumn(name = "airlineId", referencedColumnName = "airline_id")
-//	private List<FlightDetails> flightDetails;
-//	public List<FlightDetails> getFlightDetails() {
-//		return flightDetails;
-//	}
-//	public void setFlightDetails(List<FlightDetails> flightDetails) {
-//		this.flightDetails = flightDetails;
-//	}
-//	public AirlineDetails(int id, int airline_id, String airline_name, List<FlightDetails> flightDetails) {
-//		super();
-//		this.id = id;
-//		this.airline_id = airline_id;
-//		this.airline_name = airline_name;
-//		this.flightDetails = flightDetails;
-//	}
-//	public AirlineDetails() {
-//		super();
-//		// TODO Auto-generated constructor stub
-//	}
-	
-
+//	private List<FlightDetails> flightDetails1;
 }

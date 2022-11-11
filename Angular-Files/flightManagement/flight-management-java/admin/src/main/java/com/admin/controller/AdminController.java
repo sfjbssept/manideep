@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.admin.dto.FlightAirlineResponse;
 import com.admin.entity.AirlineDetails;
 import com.admin.entity.CityDetails;
+import com.admin.entity.FlightAirlineDetails;
+//import com.admin.entity.CustomDto;
 import com.admin.entity.FlightDetails;
 import com.admin.services.IAdminService;
 
@@ -63,8 +66,13 @@ public class AdminController {
 		return "working...";
 	}
 	
-//	@GetMapping("/checkFlights")
-//	public List<FlightDetailsEntity> getFlightsNew() {
-//		return adminService.getFlightsNew();
-//	}
+	@GetMapping("/checkFlights")
+	public List<FlightAirlineResponse> getFlightsNew() {
+		return adminService.getFlightAirlineData();
+	}
+	
+	@GetMapping("/getMyTestDetails")
+	public List<FlightAirlineDetails> getMyTestDetails() {
+		return adminService.getMyTestDetails();
+	}
 }

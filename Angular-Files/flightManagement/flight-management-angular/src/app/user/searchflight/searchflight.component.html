@@ -1,114 +1,66 @@
 <app-user-navbar></app-user-navbar>
-<nav class="navbar sticky-top bg-light">
+<nav class="navbar sticky-top bg-light" style="z-index:1;">
     <div class="container-fluid d-flex justify-content-evenly">
         <form class="d-flex justify-content-evenly" role="search" [formGroup]="validation">
-
-            <!-- <mat-form-field appearance="fill">
-                <mat-label>From</mat-label>
-                <mat-select formControlName="flyFrom">
-                    <mat-option>--select</mat-option>
-                    <mat-option>--select</mat-option>
-                    <mat-option *ngFor="let fromCity of options" [value]="fromCity">
-                        {{fromCity}}
+            <div class="form-floating">
+                <mat-select [(ngModel)]="selectedTripType" formControlName="tripType" class="form-control"
+                    disableOptionCentering>
+                    <mat-option value='1'>One Way</mat-option>
+                    <mat-option value='2'>Round Trip</mat-option>
+                </mat-select>
+                <label for="floatingInput">Trip Type</label>
+            </div>
+            <div class="form-floating">
+                <mat-select name="" id="" formControlName="flyFrom" class="form-control"
+                    [ngStyle]="{'border-color' : isValidationError('flyFrom') ? 'red' : '#ced4da' }"
+                    disableOptionCentering>
+                    <mat-option *ngFor="let fromCity of cities" [value]="fromCity.cityId">
+                        {{"( " + fromCity.cityShortName + " ) " + fromCity.cityName}}
                     </mat-option>
                 </mat-select>
-            </mat-form-field> -->
-            
-            
-            <div class="form-floating">
-                <select name="" id="" formControlName="flyFrom" class="form-control"
-                [ngStyle]="{'border-color' : isValidationError('flyFrom') ? 'red' : '#ced4da' }">
-                    <!-- <option value="0">select from location</option> -->
-                    <option *ngFor="let fromCity of cities" [value]="fromCity.cityId">
-                        {{"(" + fromCity.cityShortName + " ) " + fromCity.cityName}}
-                    </option>
-                </select>
-                <label for="floatingInput">From<small>*</small></label>
-                <!-- <input type="text" class="form-control" id="floatingInput" placeholder="From" formControlName="flyFrom"
-                    [ngStyle]="{'border-color' : isValidationError('flyFrom') ? 'red' : '#ced4da' }">
-                <label for="floatingInput">From<small>*</small></label> -->
+                <label for="floatingInput">From</label>
             </div>
-            <div class="form-floating" style="margin: 10px 20px;">
-                <button class="btn"><i class="bi bi-arrow-left-right" (click)="swapFromAndTo()"></i></button>
-            </div>
-            <div class="form-floating">
-                <select name="" id="" formControlName="flyTo" class="form-control"
-                [ngStyle]="{'border-color' : isValidationError('flyTo') ? 'red' : '#ced4da' }">
-                    <option *ngFor="let fromCity of cities" [value]="fromCity.cityId">
-                        {{"( " + fromCity.cityShortName + " ) " + fromCity.cityName}}
-                    </option>
-                </select>
-                <label for="floatingInput">From<small>*</small></label>
-            </div>
-            <!-- <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" placeholder="To" formControlName="flyTo"
-                    [ngStyle]="{'border-color' : isValidationError('flyTo') ? 'red' : '#ced4da' }">
-                <label for="floatingInput">To<small>*</small></label>
-            </div> -->
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Choose a date</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="startDate">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
 
-            <div class="form-floating" style="margin: auto;margin-left: 30px;">
-                <button class="btn btn-outline-success" type="submit" (click)="searchFlight()">{{searchButtonName}}</button>
+            <div style="margin:auto;" (click)="swapFromAndTo()">
+                <button class="btn" style="outline: none !important;"><i class="bi bi-arrow-left-right"></i></button>
             </div>
-            <div class="form-floating" style="margin: auto;margin-left: 30px;" *ngIf="searched">
+            <div class="form-floating">
+                <mat-select name="" id="" formControlName="flyTo" class="form-control"
+                    [ngStyle]="{'border-color' : isValidationError('flyTo') ? 'red' : '#ced4da' }"
+                    disableOptionCentering>
+                    <mat-option *ngFor="let fromCity of cities" [value]="fromCity.cityId">
+                        {{"( " + fromCity.cityShortName + " ) " + fromCity.cityName}}
+                    </mat-option>
+                </mat-select>
+                <label for="floatingInput">To</label>
+            </div>
+
+            <div class="form-floating">
+                <input matInput [matDatepicker]="picker" class="form-control" formControlName="startDate"
+                    (click)="picker.open()" readonly="true">
+                <mat-datepicker #picker></mat-datepicker>
+                <label for="floatingInput">Departure Date</label>
+            </div>
+            <div class="form-floating" *ngIf="selectedTripType == '2'">
+                <input matInput [matDatepicker]="pickerReturn" class="form-control" formControlName="returnDate"
+                    (click)="pickerReturn.open()" readonly="true">
+                <mat-datepicker #pickerReturn></mat-datepicker>
+                <label for="floatingInput">Return Date</label>
+            </div>
+            <div class="form-floating">
+                <button class="btn btn-outline-success" type="submit"
+                    (click)="searchFlight()">{{searchButtonName}}</button>
+            </div>
+            <!-- <div class="form-floating" style="margin: auto;margin-left: 30px;" *ngIf="searched">
                 <button class="btn btn-outline-success" type="submit" (click)="getFlights()">Clear Search</button>
-            </div>
+            </div> -->
         </form>
     </div>
 </nav>
-<div class="container">
-    <mat-card *ngFor="let flightObject of flightDetails">
-        <mat-card-title><i class="bi bi-airplane-engines"></i> {{flightObject.airlineId}}</mat-card-title>
-        <mat-card-subtitle>
-        </mat-card-subtitle>
-        <mat-card-content>
-            <div class="bodyContents">
-                <span>
-                    <div class="topRowStyles">
-                        <!-- {{flightObject.startDate | date}},  -->
-                        {{flightObject.startDate | date:"HH:mm"}}
-                    </div>
-                    <div>{{flightObject.flyFrom}}</div>
-                </span>
-                <span>
-                    <div>&nbsp;</div>
-                    <div style="border-bottom:1px solid pink;width: 100px;"></div>
-                </span>
-                <span style="text-align: center;">
-                    <div class="topRowStyles">
-                        <span>
-                            {{getDays(flightObject)}}
-                            {{getHours(flightObject)}}
-                            {{getMinutes(flightObject)}}
-                        </span>
-                    </div>
-                    <div> <small>{{flightObject.stops}}</small></div>
-                </span>
-                <span>
-                    <div>&nbsp;</div>
-                    <div style="border-bottom:1px solid pink;width: 100px;"></div>
-                </span>
-                <span>
-                    <div class="topRowStyles">
-                        <!-- {{flightObject.endDate | date}},  -->
-                        {{flightObject.endDate | date:"HH:mm"}}
-                    </div>
-                    <div>{{flightObject.flyTo}}</div>
-                </span>
-                <span>
-                    <div class="priceCol topRowStyles">
-                        {{flightObject.ticketCost | currency:"INR"}}
-                    </div>
-                    <div>
-                        <button mat-stroked-button style="color:rgb(199, 131, 5);" routerLink="/user/preview" (click)="sendToPreview(flightObject)">View More</button>
-                    </div>
-                </span>
-            </div>
-        </mat-card-content>
-    </mat-card>
+<div style="display:flex;" class="container-fluid" *ngIf="searchedTripType == '2'">
+    <app-display-card [flightDetails]="oneWayFlightDetails" style="width:50%;overflow: scroll;height: 510px;">
+    </app-display-card>
+    <app-display-card [flightDetails]="twoWayFlightDetails" style="width:50%;overflow: scroll;height:510px;">
+    </app-display-card>
 </div>
+<app-display-card [flightDetails]="oneWayFlightDetails" *ngIf="searchedTripType == '1'"></app-display-card>

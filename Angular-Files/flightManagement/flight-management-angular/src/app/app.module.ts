@@ -30,6 +30,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatListModule} from '@angular/material/list';
+import { DisplayCardComponent } from './user/display-card/display-card.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import {MatListModule} from '@angular/material/list';
     PageNotFoundComponent,
     SearchflightComponent,
     PreviewDetailsComponent,
-    BottomSheetOverviewExampleSheet
+    BottomSheetOverviewExampleSheet,
+    DisplayCardComponent
   ],
   imports: [
     BrowserModule,

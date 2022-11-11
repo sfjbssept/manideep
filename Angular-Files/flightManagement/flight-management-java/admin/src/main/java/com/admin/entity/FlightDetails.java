@@ -103,10 +103,10 @@ public class FlightDetails {
 	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
-	public String getEndDate() {
+	public String getendDate() {
 		return endDate;
 	}
-	public void setEndDate(String endDate) {
+	public void setendDate(String endDate) {
 		this.endDate = endDate;
 	}
 	public String getstops() {
