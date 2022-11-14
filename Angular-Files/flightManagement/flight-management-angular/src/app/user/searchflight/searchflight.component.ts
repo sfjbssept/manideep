@@ -2,7 +2,6 @@ import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/cor
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
 import { map, startWith } from 'rxjs';
 import { AdminServiceService } from 'src/app/admin/admin-service.service';
 import FlightEntity from 'src/app/admin/FlightEntity';
@@ -60,18 +59,6 @@ export class SearchflightComponent implements OnInit {
         console.log(this.cities)
       }
     )
-  }
-  getDays(flightObject: any) {
-    var time = new Date(flightObject.endDate).getTime() - new Date(flightObject.startDate).getTime();
-    return moment.duration(time).days() == 0 ? "" : moment.duration(time).days() + "d"
-  }
-  getHours(flightObject: any) {
-    var time = new Date(flightObject.endDate).getTime() - new Date(flightObject.startDate).getTime();
-    return moment.duration(time).hours() == 0 ? "" : moment.duration(time).hours() + "h";
-  }
-  getMinutes(flightObject: any) {
-    var time = new Date(flightObject.endDate).getTime() - new Date(flightObject.startDate).getTime();
-    return moment.duration(time).minutes() == 0 ? "" : moment.duration(time).minutes() + "m";
   }
   isValidationError(name: any) {
     return (this.validation.controls[name].touched && this.validation.controls[name].status == 'INVALID') ? true : false
@@ -134,9 +121,5 @@ export class SearchflightComponent implements OnInit {
     const toValue = this.validation.get('flyTo')?.value
     this.validation.get('flyTo')?.setValue(fromValue)
     this.validation.get('flyFrom')?.setValue(toValue)
-  }
-
-  sendToPreview(flightObject: any){
-    sessionStorage.setItem("selectedFlight",JSON.stringify(flightObject))
   }
 }

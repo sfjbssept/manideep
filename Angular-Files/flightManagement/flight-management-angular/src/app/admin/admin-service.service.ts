@@ -11,7 +11,7 @@ export class AdminServiceService {
   constructor(public http: HttpClient, public router: Router) { }
 
   getAllFlights() {
-    return this.http.get(this.baseUrl + "getAllFlights")
+    return this.http.get(this.baseUrl + "getFlightsWithAirlineName")
   }
   deleteFlightById(flightId: any) {
     return this.http.delete(this.baseUrl + "deleteFlight/" + flightId, { responseType: "text" })
@@ -29,7 +29,7 @@ export class AdminServiceService {
     sessionStorage.getItem("loggedInUser") == "true" ? this.router.navigate(['/admin/home']) : this.router.navigate(['/admin'])
   }
   getAllFlightDetails() {
-    return this.http.get(this.baseUrl + "getAllFlights", { responseType: 'json' })
+    return this.http.get(this.baseUrl + "getFlightsWithAirlineName", { responseType: 'json' })
   }
 
   searchFlights(payload: any) {

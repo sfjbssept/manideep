@@ -12,10 +12,10 @@ public class CityDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	int cityId;
-	String cityShortName;
-	String cityName;
-	String airportName;
+	private int cityId;
+	private String cityShortName;
+	private String cityName;
+	private String airportName;
 	public CityDetails() {
 		super();
 		// TODO Auto-generated constructor stub

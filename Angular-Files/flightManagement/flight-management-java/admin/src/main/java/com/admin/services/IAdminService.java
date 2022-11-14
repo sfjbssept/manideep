@@ -3,6 +3,7 @@ package com.admin.services;
 import java.util.List;
 
 import com.admin.dto.FlightAirlineResponse;
+import com.admin.dto.Join_FlightCityAirlineResponse;
 import com.admin.entity.AirlineDetails;
 import com.admin.entity.CityDetails;
 import com.admin.entity.FlightAirlineDetails;
@@ -28,6 +29,6 @@ public interface IAdminService {
 	
 	List<FlightAirlineResponse> getFlightAirlineData();
 	
-	List<FlightAirlineDetails> getMyTestDetails();
+	List<Join_FlightCityAirlineResponse> getMyTestDetails();
 	
 }

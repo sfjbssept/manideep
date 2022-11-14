@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.admin.dto.FlightAirlineResponse;
+import com.admin.dto.Join_FlightCityAirlineResponse;
 import com.admin.entity.AirlineDetails;
 import com.admin.entity.CityDetails;
 import com.admin.entity.FlightAirlineDetails;
@@ -66,13 +67,13 @@ public class AdminController {
 		return "working...";
 	}
 	
-	@GetMapping("/checkFlights")
+	@GetMapping("/getMyTestDetails")
 	public List<FlightAirlineResponse> getFlightsNew() {
 		return adminService.getFlightAirlineData();
 	}
 	
-	@GetMapping("/getMyTestDetails")
-	public List<FlightAirlineDetails> getMyTestDetails() {
+	@GetMapping("/getFlightsWithAirlineName")
+	public List<Join_FlightCityAirlineResponse> getMyTestDetails() {
 		return adminService.getMyTestDetails();
 	}
 }

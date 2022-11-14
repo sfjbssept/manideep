@@ -8,7 +8,7 @@ import { AdminServiceService } from '../admin-service.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  editElementId: any;
+  editElementId: Number  = -1;
   isLoggedIn: boolean = false;
   airLineDetails: any;
   cities: any;
@@ -17,12 +17,12 @@ export class HomeComponent implements OnInit {
   dataSource: any
   displayedColumns?: String[]
   columnNamesManage: any = [
-    { column: "flightNumber", displayLabel: "Flight Name" },
-    { column: "airlineId", displayLabel: "AirLine Name" },
+    { column: "flightNumber", displayLabel: "Flight Number" },
+    { column: "airline_name", displayLabel: "AirLine Name" },
     { column: "startDate", displayLabel: "Start Date" },
     { column: "endDate", displayLabel: "End Date" },
-    { column: "flyFrom", displayLabel: "Location From" },
-    { column: "flyTo", displayLabel: "Location To" },
+    { column: "fromCityName", displayLabel: "Location From" },
+    { column: "toCityName", displayLabel: "Location To" },
     { column: "stops", displayLabel: "Stops" },
     { column: "meal", displayLabel: "Meals" },
     { column: "ticketCost", displayLabel: "Ticket Cost" },
@@ -71,16 +71,16 @@ export class HomeComponent implements OnInit {
   isEditEnable() {
     this.isEdit = !this.isEdit
     this.isDelete = false
-    this.editElementId = ""
+    this.editElementId = -1
   }
   isDeleteEnable() {
     this.isDelete = !this.isDelete
     this.isEdit = false
-    this.editElementId = ""
+    this.editElementId = -1
   }
 
-  edit(element: any) {
-    this.editElementId = element.id
+  edit(index: any) {
+    this.editElementId = index
   }
   delete(flightId: any) {
     this._auth.deleteFlightById(flightId).subscribe(
@@ -92,13 +92,22 @@ export class HomeComponent implements OnInit {
   }
 
   cancel() {
-    this.editElementId = ""
+    this.editElementId = -1
   }
   saveChanges(element: any) {
+    this.dataSource.forEach((dataSourceObj : any) => {
+      if(element.flightNumber == dataSourceObj.flightNumber){
+          element.airlineId = (this.airLineDetails.filter((x: any) => x.airline_id == element.airline_name))[0]?.airline_id
+          element.airline_name = (this.airLineDetails.filter((x: any) => x.airline_id == element.airline_name))[0]?.airline_name
+          element.flyFrom = (this.cities.filter((x: any) => x.cityId == element.fromCityName))[0]?.cityId
+          element.flyTo = (this.cities.filter((x: any) => x.cityId == element.toCityName))[0]?.cityId
+      }
+    });
     this._auth.editFlightById(element.flightNumber, element).subscribe(
       r => {
         console.log(r)
-        this.editElementId = ""
+        this.editElementId = -1
+        this.getAllFlightDetails()
       }
     )
   }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.admin.dto.FlightAirlineResponse;
+import com.admin.dto.Join_FlightCityAirlineResponse;
 import com.admin.entity.AirlineDetails;
 import com.admin.entity.CityDetails;
 import com.admin.entity.FlightAirlineDetails;
@@ -17,6 +18,7 @@ import com.admin.repo.IAdminRepository;
 import com.admin.repo.IAirlineDetails;
 import com.admin.repo.ICitiesRepository;
 import com.admin.repo.ICustomDtoRepo;
+import com.admin.repo.IJoinFlightCityAirlineRepo;
 
 @Service
 public class AdminServiceImpl implements IAdminService{
@@ -32,6 +34,9 @@ public class AdminServiceImpl implements IAdminService{
 	
 	@Autowired
 	ICustomDtoRepo customDtoRepo;
+	
+	@Autowired
+	IJoinFlightCityAirlineRepo joinFlightCityAirline;
 	
 	@Override
 	public FlightDetails addFlight(FlightDetails flightDetails) {
@@ -104,8 +109,8 @@ public class AdminServiceImpl implements IAdminService{
 	}
 
 	@Override
-	public List<FlightAirlineDetails> getMyTestDetails() {
-		return customDtoRepo.getMyTestDetails();
+	public List<Join_FlightCityAirlineResponse> getMyTestDetails() {
+		return joinFlightCityAirline.getJoinFLightCityAirline();
 	}
 
 }

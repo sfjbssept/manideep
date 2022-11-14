@@ -9,10 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.SecondaryTables;
 import javax.persistence.Table;
 
-@Entity(name= "airline_details")
+@Entity
 @Table(name = "airline_details")
+
 public class FlightAirlineDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
