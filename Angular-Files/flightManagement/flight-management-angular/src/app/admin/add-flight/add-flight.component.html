@@ -7,116 +7,151 @@
         <mat-card>
             <mat-card-title>Add New Flight Details</mat-card-title>
             <mat-card-actions>
-                <table>
-                    <tr>
+                <form action="" [formGroup]="validation">
+                    <table>
+                        <tr>
 
-                        <td>
-                            <label for="">Flight Number</label>
-                            <input type="number" placeholder="Enter value" class="form-control"
-                                [(ngModel)]="newFlightDetail.flightNumber">
-                        </td>
+                            <td>
+                                <div class="form-floating">
 
-
-
-                        <td>
-                            <label for="">Air Line Name</label>
-                            <!-- <input type="text" placeholder="Enter value" class="form-control"
-                                [(ngModel)]="newFlightDetail.airLineName"> -->
-                            <select name="" id="" class="form-control" [(ngModel)]="newFlightDetail.airlineId">
-                                <option value="0">--Select AirLine--</option>
-                                <option *ngFor="let airlineObj of airLineDetails" [value]="airlineObj.airline_id">
-                                    {{ airlineObj.airline_name }}
-                                </option>
-                            </select>
-                        </td>
+                                    <input type="number" placeholder="Enter value" class="form-control"
+                                        formControlName="flightNumber"
+                                        [ngStyle]="{'border-color' : isValidationError('flightNumber') ? 'red' : '#ced4da' }">
+                                    <label for="floatingInput">Flight Number</label>
+                                </div>
+                            </td>
 
 
 
-                        <td>
-                            <label for="">From</label>
-                            <select name="" id="" class="form-control" [(ngModel)]="newFlightDetail.flyFrom">
-                                <option value="0">--Select City--</option>
-                                <option *ngFor="let fromCity of cities" [value]="fromCity.cityId">
-                                    {{"(" + fromCity.cityShortName + " ) " + fromCity.cityName}}
-                                </option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-
-                        <td>
-                            <label for="">To</label>
-                            <select name="" id="" class="form-control" [(ngModel)]="newFlightDetail.flyTo">
-                                <option value="0">--Select City--</option>
-                                <option *ngFor="let toCity of cities" [value]="toCity.cityId">
-                                    {{"(" + toCity.cityShortName + " ) " + toCity.cityName}}
-                                </option>
-                            </select>
-                        </td>
+                            <td>
+                                <div class="form-floating">
+                                    <select name="" id="" class="form-control" formControlName="airlineId"
+                                        [ngStyle]="{'border-color' : isValidationError('airlineId') ? 'red' : '#ced4da' }">
+                                        <!-- <option value="0">--Select AirLine--</option> -->
+                                        <option *ngFor="let airlineObj of airLineDetails"
+                                            [value]="airlineObj.airline_id">
+                                            {{ airlineObj.airline_name }}
+                                        </option>
+                                    </select>
+                                    <label for="floatingInput">Air Line Name</label>
+                                </div>
+                            </td>
 
 
 
-                        <td>
-                            <label for="">Start Date</label>
-                            <input type="datetime-local" placeholder="Enter value" class="form-control"
-                                [(ngModel)]="newFlightDetail.startDate">
-                        </td>
+                            <td>
+                                <div class="form-floating">
+                                    <select name="" id="" class="form-control" formControlName="flyFrom"
+                                        [ngStyle]="{'border-color' : isValidationError('flyFrom') ? 'red' : '#ced4da' }">
+                                        <option value="0">--Select City--</option>
+                                        <option *ngFor="let fromCity of cities" [value]="fromCity.cityId">
+                                            {{"(" + fromCity.cityShortName + " ) " + fromCity.cityName}}
+                                        </option>
+                                    </select>
+                                    <label for="floatingInput">From</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <div class="form-floating">
+                                    <select name="" id="" class="form-control" formControlName="flyTo"
+                                        [ngStyle]="{'border-color' : isValidationError('flyTo') ? 'red' : '#ced4da' }">
+                                        <option value="0">--Select City--</option>
+                                        <option *ngFor="let toCity of cities" [value]="toCity.cityId">
+                                            {{"(" + toCity.cityShortName + " ) " + toCity.cityName}}
+                                        </option>
+                                    </select>
+                                    <label for="floatingInput">To</label>
+                                </div>
+                            </td>
 
 
 
-                        <td>
-                            <label for="">Return Date</label>
-                            <input type="datetime-local" placeholder="Enter value" class="form-control"
-                                [(ngModel)]="newFlightDetail.endDate">
-                        </td>
-                    </tr>
-                    <tr>
-
-                        <td>
-                            <label for="">Number of Stops</label>
-                            <input type="text" placeholder="Enter value" class="form-control"
-                                [(ngModel)]="newFlightDetail.stops">
-                        </td>
+                            <td>
+                                <div class="form-floating">
+                                    <input type="datetime-local" placeholder="Enter value" class="form-control"
+                                        formControlName="startDate"
+                                        [ngStyle]="{'border-color' : isValidationError('startDate') ? 'red' : '#ced4da' }">
+                                    <label for="floatingInput">Start Date</label>
+                                </div>
+                            </td>
 
 
 
-                        <td>
-                            <label for="">Total Business Seats Available</label>
-                            <input type="number" placeholder="Enter value" class="form-control"
-                                [(ngModel)]="newFlightDetail.totalBusinessSeats">
-                        </td>
+                            <td>
+                                <div class="form-floating">
+                                    <input type="datetime-local" placeholder="Enter value" class="form-control"
+                                        formControlName="endDate"
+                                        [ngStyle]="{'border-color' : isValidationError('endDate') ? 'red' : '#ced4da' }">
+                                    <label for="">Return Date</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <div class="form-floating">
+                                    <input type="text" placeholder="Enter value" class="form-control"
+                                        formControlName="stops"
+                                        [ngStyle]="{'border-color' : isValidationError('stops') ? 'red' : '#ced4da' }">
+                                    <label for="">Number of Stops</label>
+                                </div>
+                            </td>
 
 
 
-                        <td>
-                            <label for="">Total Non Business Seats Available</label>
-                            <input type="number" placeholder="Enter value" class="form-control"
-                                [(ngModel)]="newFlightDetail.totalNonBusinessSeats">
-                        </td>
-                    </tr>
-                    <tr>
-
-                        <td>
-                            <label for="">Tickt Cost</label>
-                            <input type="number" placeholder="Enter value" class="form-control"
-                                [(ngModel)]="newFlightDetail.ticketCost">
-                        </td>
+                            <td>
+                                <div class="form-floating">
+                                    <input type="number" placeholder="Enter value" class="form-control"
+                                        formControlName="totalBusinessSeats"
+                                        [ngStyle]="{'border-color' : isValidationError('totalBusinessSeats') ? 'red' : '#ced4da' }">
+                                    <label for="">Total Business Seats Available</label>
+                                </div>
+                            </td>
 
 
 
-                        <td>
-                            <label for="">Meals Provided</label>
-                            <input type="text" placeholder="Enter value" class="form-control"
-                                [(ngModel)]="newFlightDetail.meal">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">
-                            <input type="submit" name="" id="" class="btn btn-success col-12" value="Add Flight"
+                            <td>
+                                <div class="form-floating">
+                                    <input type="number" placeholder="Enter value" class="form-control"
+                                        formControlName="totalNonBusinessSeats"
+                                        [ngStyle]="{'border-color' : isValidationError('totalNonBusinessSeats') ? 'red' : '#ced4da' }">
+                                    <label for="">Total Non Business Seats Available</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <div class="form-floating">
+                                    <input type="number" placeholder="Enter value" class="form-control"
+                                        formControlName="ticketCost"
+                                        [ngStyle]="{'border-color' : isValidationError('ticketCost') ? 'red' : '#ced4da' }">
+                                        <label for="">Tickt Cost</label>
+                                </div>
+                            </td>
+
+
+
+                            <td>
+                                <div class="form-floating">
+                                    <input type="text" placeholder="Enter value" class="form-control"
+                                        formControlName="meal"
+                                        [ngStyle]="{'border-color' : isValidationError('meal') ? 'red' : '#ced4da' }">
+                                        <label for="">Meals Provided</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <input type="submit" name="" id="" class="btn btn-success col-12" value="Add Flight"
                                 (click)="addInventory()">
-                        </td>
-                    </tr>
-                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
             </mat-card-actions>
         </mat-card>
     </div>

@@ -3,7 +3,6 @@ package com.admin.dto;
 import java.util.List;
 
 import com.admin.entity.AirlineDetails;
-import com.admin.entity.FlightAirlineDetails;
 import com.admin.entity.FlightDetails;
 
 public class FlightAirlineResponse {

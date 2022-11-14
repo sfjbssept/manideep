@@ -20,27 +20,37 @@
             <span
               *ngIf="i != editElementId || displayColObj.column == ['flightNumber']">{{element[displayColObj.column]}}
             </span>
-            <span
-              *ngIf="(displayColObj.column == ['startDate'] || displayColObj.column == ['endDate']) && i == editElementId">
+            <span *ngIf="i == editElementId && showEditBox(displayColObj.column , ['startDate','endDate'])">
               <input type="datetime-local" class="form-control" [(ngModel)]="element[displayColObj.column]">
             </span>
-            <span
-              *ngIf="(displayColObj.column == ['fromCityName'] || displayColObj.column == ['toCityName']) && i == editElementId">
-              <select name="" id="" class="form-control" [(ngModel)]="element[displayColObj.column]">
+            <span *ngIf="i == editElementId && showEditBox(displayColObj.column , ['toCityName','fromCityName'])">
+              <!-- <select name="" id="" class="form-control" [(ngModel)]="element[displayColObj.column]">
                 <option *ngFor="let citiesObj of cities" [value]="citiesObj.cityId">
                   {{"(" + citiesObj.cityShortName + " ) " + citiesObj.cityName}}
                 </option>
-              </select>
+              </select> -->
+              <mat-select name="" id="" class="form-control" disableOptionCentering>
+                <mat-option  *ngFor="let citiesObj of cities" [value]="citiesObj.cityId">
+                  {{"(" + citiesObj.cityShortName + " ) " + citiesObj.cityName}}
+                </mat-option>
+              </mat-select>
             </span>
-            <span *ngIf="(displayColObj.column == ['airline_name']) && i == editElementId">
-              <select name="" id="" class="form-control" [(ngModel)]="element[displayColObj.column]">
-                <option *ngFor="let airlineObj of airLineDetails" [value]="airlineObj.airline_id">
+            <span *ngIf="i == editElementId && showEditBox(displayColObj.column , ['airline_name'])">
+              <!-- <select name="" id="" class="form-control" [(ngModel)]="element[displayColObj.column]">
+                <option *ngFor="let airlineObj of airLineDetails" [value]="airlineObj.airline_id"
+                  [selected]="element[displayColObj.column] == airlineObj.airline_name">
                   {{ airlineObj.airline_name }}
                 </option>
-              </select>
+              </select> -->
+              <mat-select name="" id="" class="form-control" disableOptionCentering>
+                <mat-option *ngFor="let airlineObj of airLineDetails" [value]="airlineObj.airline_id">
+                  {{ airlineObj.airline_name }}
+                </mat-option>
+              </mat-select>
             </span>
             <span
-              *ngIf="(displayColObj.column == ['stops'] || displayColObj.column == ['totalBusinessSeats'] || displayColObj.column == ['totalNonBusinessSeats'] || displayColObj.column == ['ticketCost'] || displayColObj.column == ['meal']) && i == editElementId">
+              *ngIf="i == editElementId && 
+              showEditBox(displayColObj.column , ['stops','totalBusinessSeats','totalNonBusinessSeats','ticketCost','meal'])">
               <input type="text" class="form-control" [(ngModel)]="element[displayColObj.column]">
             </span>
             <i class="bi bi-pencil-square" *ngIf="displayColObj.column == 'actions' && isEdit && (i != editElementId)"

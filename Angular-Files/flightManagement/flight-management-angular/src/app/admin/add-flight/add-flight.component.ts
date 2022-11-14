@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AdminServiceService } from '../admin-service.service';
 import FlightEntity from '../FlightEntity';
 
@@ -11,8 +13,9 @@ import FlightEntity from '../FlightEntity';
 export class AddFlightComponent implements OnInit {
   cities: any;
   airLineDetails: any;
+  validation: any;
 
-  constructor(private _auth: AdminServiceService,private _router: Router) { }
+  constructor(private _auth: AdminServiceService, private _router: Router, private formBuilder: FormBuilder) { }
   newFlightDetail: FlightEntity = new FlightEntity()
 
   ngOnInit(): void {
@@ -24,6 +27,21 @@ export class AddFlightComponent implements OnInit {
       // this.isLoggedIn = false
       return;
     }
+
+    this.validation = this.formBuilder.group({
+      flightNumber: ['', Validators.required],
+      airlineId: ['', Validators.required],
+      flyFrom: ['', Validators.required],
+      flyTo: ['', Validators.required],
+      startDate: ['', [Validators.required]],
+      endDate: ['', [Validators.required]],
+      stops: ['', Validators.required],
+      totalBusinessSeats: ['', Validators.required],
+      totalNonBusinessSeats: ['', Validators.required],
+      ticketCost: ['', Validators.required],
+      meal: ['', Validators.required],
+    })
+    this.validation.markAsUntouched()
     // this.newFlightDetail = [{
     //   // "id": 0,
     //   "flightNumber": 0,
@@ -48,19 +66,27 @@ export class AddFlightComponent implements OnInit {
     // Alliance Air.
     // TruJet.
 
-      console.log(this.newFlightDetail)
+    console.log(this.newFlightDetail)
     this.getCities()
     this.getAirlineDetails()
   }
+  isValidationError(name: any) {
+    return (this.validation.controls[name].touched && this.validation.controls[name].status == 'INVALID') ? true : false
+  }
   addInventory() {
     console.log(this.newFlightDetail)
-    this._auth.addFlight(this.newFlightDetail).subscribe(
-      r => {
-        console.log(r)
-      }
-    )
+    this.validation.markAllAsTouched()
+    if (this.validation.status == "VALID") {
+      this._auth.addFlight(this.validation.value).subscribe(
+        r => {
+          console.log(r)
+          this.validation.reset()
+          
+        }
+      )
+    }
   }
-  getCities(){
+  getCities() {
     this._auth.getCities().subscribe(
       r => {
         this.cities = r
@@ -68,7 +94,7 @@ export class AddFlightComponent implements OnInit {
     )
   }
 
-  getAirlineDetails(){
+  getAirlineDetails() {
     this._auth.getAirlineDetails().subscribe(
       r => {
         this.airLineDetails = r

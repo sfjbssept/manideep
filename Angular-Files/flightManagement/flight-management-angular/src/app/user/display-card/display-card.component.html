@@ -1,19 +1,21 @@
 <div class="container" style="padding: 15px 10px;" *ngIf="flightDetails && flightDetails.length > 0">
-    <span class="container">
-        <span style="font-weight:500;font-size:large;">
-            {{flightDetails[0].flyFrom}} <i class="bi bi-arrow-right"></i> {{flightDetails[0].flyTo}}
+    <div class="container" style="padding:20px 0px 10px;">
+        <span style="font-size:20px;">
+            {{flightDetails[0].fromCityName}} <i class="bi bi-arrow-right"></i> {{flightDetails[0].toCityName}}
         </span> &nbsp;
-        {{flightDetails[0].startDate | date : 'EEE, d MMM'}}
-    </span>
+        <span  style="font-weight:500;">
+            {{flightDetails[0].startDate | date : 'EEE, d MMM'}}
+        </span>
+    </div>
     <mat-card *ngFor="let flightObject of flightDetails">
         <mat-card-title>
             <!-- <i class="bi bi-airplane-engines"></i> -->
             <!-- <img src="assets/Vistar-icon.png" alt="" width="60" height="40"> -->
             <!-- <img src="assets/Vistara-icon.png" alt="" width="60" height="40"> -->
             <!-- <img src= "assets/Air India-icon.png" alt="" width="60" height="40"> -->
-            <img src="assets/AirAsia India-icon.png" alt="" width="60" height="40">
+            <img src="assets/{{flightObject.airline_name}}-icon.png" alt="" width="60" height="40">
             <!-- <img src="assets/IndiGo-icon.png" alt="" width="60" height="40"> -->
-            {{flightObject.airlineId}}
+            {{flightObject.airline_name }}
         </mat-card-title>
         <mat-card-subtitle>
         </mat-card-subtitle>
@@ -24,7 +26,7 @@
                         <!-- {{flightObject.startDate | date}},  -->
                         {{flightObject.startDate | date:"HH:mm"}}
                     </div>
-                    <div>{{flightObject.flyFrom}}</div>
+                    <div>{{flightObject.fromCityName}}</div>
                 </span>
                 <span>
                     <div>&nbsp;</div>
@@ -49,7 +51,7 @@
                         <!-- {{flightObject.endDate | date}},  -->
                         {{flightObject.endDate | date:"HH:mm"}}
                     </div>
-                    <div>{{flightObject.flyTo}}</div>
+                    <div>{{flightObject.toCityName}}</div>
                 </span>
                 <span>
                     <div class="priceCol topRowStyles">

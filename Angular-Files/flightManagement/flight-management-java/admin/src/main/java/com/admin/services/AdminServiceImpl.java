@@ -11,14 +11,11 @@ import com.admin.dto.FlightAirlineResponse;
 import com.admin.dto.Join_FlightCityAirlineResponse;
 import com.admin.entity.AirlineDetails;
 import com.admin.entity.CityDetails;
-import com.admin.entity.FlightAirlineDetails;
 //import com.admin.entity.CustomDto;
 import com.admin.entity.FlightDetails;
 import com.admin.repo.IAdminRepository;
 import com.admin.repo.IAirlineDetails;
 import com.admin.repo.ICitiesRepository;
-import com.admin.repo.ICustomDtoRepo;
-import com.admin.repo.IJoinFlightCityAirlineRepo;
 
 @Service
 public class AdminServiceImpl implements IAdminService{
@@ -31,12 +28,6 @@ public class AdminServiceImpl implements IAdminService{
 	
 	@Autowired
 	IAirlineDetails airLineDetails;
-	
-	@Autowired
-	ICustomDtoRepo customDtoRepo;
-	
-	@Autowired
-	IJoinFlightCityAirlineRepo joinFlightCityAirline;
 	
 	@Override
 	public FlightDetails addFlight(FlightDetails flightDetails) {
@@ -89,7 +80,7 @@ public class AdminServiceImpl implements IAdminService{
 	}
 
 	@Override
-	public List<FlightDetails> getFlightDetailsUsingJPQL(String startDate , String from , String to) {
+	public List<Join_FlightCityAirlineResponse> searchFlight(String startDate , String from , String to) {
 		return adminRepository.searchFlights(startDate , from , to);
 	}
 
@@ -104,13 +95,8 @@ public class AdminServiceImpl implements IAdminService{
 	}
 
 	@Override
-	public List<FlightAirlineResponse> getFlightAirlineData() {
-		return customDtoRepo.getFlightAirlineData();
-	}
-
-	@Override
 	public List<Join_FlightCityAirlineResponse> getMyTestDetails() {
-		return joinFlightCityAirline.getJoinFLightCityAirline();
+		return adminRepository.getJoinFLightCityAirline();
 	}
 
 }

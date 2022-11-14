@@ -15,7 +15,7 @@
                     [ngStyle]="{'border-color' : isValidationError('flyFrom') ? 'red' : '#ced4da' }"
                     disableOptionCentering>
                     <mat-option *ngFor="let fromCity of cities" [value]="fromCity.cityId">
-                        {{"( " + fromCity.cityShortName + " ) " + fromCity.cityName}}
+                        {{fromCity.cityName + " ( " + fromCity.cityShortName + " )"}}
                     </mat-option>
                 </mat-select>
                 <label for="floatingInput">From</label>
@@ -29,7 +29,7 @@
                     [ngStyle]="{'border-color' : isValidationError('flyTo') ? 'red' : '#ced4da' }"
                     disableOptionCentering>
                     <mat-option *ngFor="let fromCity of cities" [value]="fromCity.cityId">
-                        {{"( " + fromCity.cityShortName + " ) " + fromCity.cityName}}
+                        {{fromCity.cityName + " ( " + fromCity.cityShortName + " )"}}
                     </mat-option>
                 </mat-select>
                 <label for="floatingInput">To</label>

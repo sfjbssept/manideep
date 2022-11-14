@@ -6,7 +6,6 @@ import com.admin.dto.FlightAirlineResponse;
 import com.admin.dto.Join_FlightCityAirlineResponse;
 import com.admin.entity.AirlineDetails;
 import com.admin.entity.CityDetails;
-import com.admin.entity.FlightAirlineDetails;
 //import com.admin.entity.CustomDto;
 import com.admin.entity.FlightDetails;
 
@@ -25,9 +24,7 @@ public interface IAdminService {
 	
 	List<AirlineDetails> getAirlineDetails();
 	
-	List<FlightDetails> getFlightDetailsUsingJPQL(String startDate , String from , String to);
-	
-	List<FlightAirlineResponse> getFlightAirlineData();
+	List<Join_FlightCityAirlineResponse> searchFlight(String startDate , String from , String to);
 	
 	List<Join_FlightCityAirlineResponse> getMyTestDetails();
 	

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { timeout } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,7 @@ import { Router } from '@angular/router';
 export class AdminServiceService {
 
   baseUrl: String = "http://localhost:8081/"
-  constructor(public http: HttpClient, public router: Router) { }
+  constructor(public http: HttpClient, public router: Router, private toastr: ToastrService) { }
 
   getAllFlights() {
     return this.http.get(this.baseUrl + "getFlightsWithAirlineName")
@@ -46,5 +48,11 @@ export class AdminServiceService {
 
   setUserSession(sessionValue: any) {
     sessionStorage.setItem("loggedInUser", sessionValue)
+  }
+  getToasterMessage(message: any, title: any = '', timeout: any = 2000){
+    this.toastr.success(message, title, {
+      timeOut: timeout,
+      closeButton: true,
+    })
   }
 }

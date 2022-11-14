@@ -31,6 +31,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatListModule} from '@angular/material/list';
 import { DisplayCardComponent } from './user/display-card/display-card.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -69,7 +70,10 @@ import { DisplayCardComponent } from './user/display-card/display-card.component
     MatSelectModule,
     MatStepperModule,
     MatBottomSheetModule,
-    MatListModule
+    MatListModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
