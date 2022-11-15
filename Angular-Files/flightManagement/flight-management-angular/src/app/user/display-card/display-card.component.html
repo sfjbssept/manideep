@@ -1,12 +1,12 @@
 <div class="container" style="padding: 15px 10px;" *ngIf="flightDetails && flightDetails.length > 0">
-    <div class="container" style="padding:20px 0px 10px;">
+    <!-- <div class="container" style="padding:20px 0px 10px;">
         <span style="font-size:20px;">
             {{flightDetails[0].fromCityName}} <i class="bi bi-arrow-right"></i> {{flightDetails[0].toCityName}}
         </span> &nbsp;
         <span  style="font-weight:500;">
             {{flightDetails[0].startDate | date : 'EEE, d MMM'}}
         </span>
-    </div>
+    </div> -->
     <mat-card *ngFor="let flightObject of flightDetails">
         <mat-card-title>
             <!-- <i class="bi bi-airplane-engines"></i> -->

@@ -32,7 +32,8 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatListModule} from '@angular/material/list';
 import { DisplayCardComponent } from './user/display-card/display-card.component';
 import { ToastrModule } from 'ngx-toastr';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,8 @@ import { ToastrModule } from 'ngx-toastr';
     MatStepperModule,
     MatBottomSheetModule,
     MatListModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
     ToastrModule.forRoot({
       preventDuplicates: true,
     })

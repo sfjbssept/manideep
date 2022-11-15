@@ -46,9 +46,12 @@ export class HomeComponent implements OnInit {
     this.displayedColumns = this.columnNamesManage.map((c: any) => c.column);
     this.validation = this.formBuilder.group({
       flightNumber: ['', Validators.required],
-      airlineId: ['', Validators.required],
-      flyFrom: ['', Validators.required],
-      flyTo: ['', Validators.required],
+      // airlineId: ['', Validators.required],
+      airline_name: ['', Validators.required],
+      fromCityName: ['', Validators.required],
+      // flyFrom: ['', Validators.required],
+      toCityName: ['', Validators.required],
+      // flyTo: ['', Validators.required],
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
       stops: ['', Validators.required],
@@ -58,9 +61,9 @@ export class HomeComponent implements OnInit {
       meal: ['', Validators.required],
     })
     this.validation.markAsUntouched()
-    this.getAllFlightDetails();
     this.getAirlineDetails()
     this.getCities()
+    this.getAllFlightDetails();
     // this.showEditBox('input')
   }
   getAllFlightDetails() {
@@ -96,14 +99,29 @@ export class HomeComponent implements OnInit {
     this.editElementId = -1
   }
 
-  edit(index: any) {
+  edit(index: any, elementObject: any) {
     this.editElementId = index
+    this.validation.get('airline_name').setValue(elementObject.airlineId)
+    this.validation.get('endDate').setValue(elementObject.endDate)
+    this.validation.get('flightNumber').setValue(elementObject.flightNumber)
+    this.validation.get('fromCityName').setValue(elementObject.fromCityId)
+    this.validation.get('toCityName').setValue(elementObject.toCityId)
+    this.validation.get('meal').setValue(elementObject.meal)
+    this.validation.get('startDate').setValue(elementObject.startDate)
+    this.validation.get('stops').setValue(elementObject.stops)
+    this.validation.get('ticketCost').setValue(elementObject.ticketCost)
+    this.validation.get('totalNonBusinessSeats').setValue(elementObject.totalNonBusinessSeats)
+    this.validation.get('totalBusinessSeats').setValue(elementObject.totalBusinessSeats)
+    this.validation.markAsPristine()
   }
   delete(flightId: any) {
     this._auth.deleteFlightById(flightId).subscribe(
       r => {
         this.getAllFlightDetails();
-        console.log(r)
+        this._auth.getToasterMessage('Successfully Deleted', 'success')
+      },
+      r => {
+        this._auth.getToasterMessage('Oops! Please try again', 'error')
       }
     )
   }
@@ -112,25 +130,44 @@ export class HomeComponent implements OnInit {
     this.editElementId = -1
   }
   saveChanges(element: any) {
-    this.dataSource.forEach((dataSourceObj: any) => {
-      if (element.flightNumber == dataSourceObj.flightNumber) {
-        element.airlineId = (this.airLineDetails.filter((x: any) => x.airline_id == element.airline_name))[0]?.airline_id
-        element.airline_name = (this.airLineDetails.filter((x: any) => x.airline_id == element.airline_name))[0]?.airline_name
-        element.flyFrom = (this.cities.filter((x: any) => x.cityId == element.fromCityName))[0]?.cityId
-        element.flyTo = (this.cities.filter((x: any) => x.cityId == element.toCityName))[0]?.cityId
+    console.log(this.validation)
+    this.validation.markAllAsTouched()
+    if (this.validation.status == "VALID") {
+      if (this.validation.dirty) {
+        this.validation.value.airlineId = this.validation.value.airline_name
+        this.validation.value.flyFrom = this.validation.value.fromCityName
+        this.validation.value.flyTo = this.validation.value.toCityName
+        // this.dataSource.forEach((dataSourceObj: any) => {
+        //   if (element.flightNumber == dataSourceObj.flightNumber) {
+        //     element.airlineId = (this.airLineDetails.filter((x: any) => x.airline_id == element.airline_name))[0]?.airline_id
+        //     element.airline_name = (this.airLineDetails.filter((x: any) => x.airline_id == element.airline_name))[0]?.airline_name
+        //     element.flyFrom = (this.cities.filter((x: any) => x.cityId == element.fromCityName))[0]?.cityId
+        //     element.flyTo = (this.cities.filter((x: any) => x.cityId == element.toCityName))[0]?.cityId
+        //   }
+        // });
+        this._auth.editFlightById(element.flightNumber, this.validation.value).subscribe(
+          r => {
+            console.log(r)
+            this.editElementId = -1
+            this.getAllFlightDetails()
+            this._auth.getToasterMessage('Successfully updated', 'success')
+          },
+          r => {
+            this._auth.getToasterMessage('Oops! Please try again', 'error')
+          }
+        )
+      } else {
+        this._auth.getToasterMessage('No changes to update', 'warning')
       }
-    });
-    this._auth.editFlightById(element.flightNumber, element).subscribe(
-      r => {
-        console.log(r)
-        this.editElementId = -1
-        this.getAllFlightDetails()
-      }
-    )
+    } else {
+      this._auth.getToasterMessage('Please fill required details', 'error')
+    }
   }
-
-  showEditBox(colObjName: any ,list: any ) {
-    return list.some((x : any) => x == colObjName)
+  isValidationError(name: any) {
+    return (this.validation.controls[name].touched && this.validation.controls[name].status == 'INVALID') ? true : false
+  }
+  showEditBox(colObjName: any, list: any) {
+    return list.some((x: any) => x == colObjName)
   }
 
 }

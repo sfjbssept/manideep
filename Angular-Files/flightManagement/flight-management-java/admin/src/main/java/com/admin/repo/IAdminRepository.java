@@ -33,7 +33,7 @@ public interface IAdminRepository extends JpaRepository<FlightDetails, Integer> 
 			+ "LEFT JOIN AirlineDetails z on x.airlineId  = z.airline_id "
 			+ "where date(x.startDate) = date(?1) and x.flyFrom = ?2 and x.flyTo = ?3"
 			)
-	List<Join_FlightCityAirlineResponse> searchFlights(String startDate, String from , String to);
+	public List<Join_FlightCityAirlineResponse> searchFlights(String startDate, String from , String to);
 	
 	
 	

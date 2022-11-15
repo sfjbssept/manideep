@@ -7,7 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.admin.dto.FlightAirlineResponse;
+import com.admin.dto.SearchPayload;
+import com.admin.dto.SearchResponse;
 import com.admin.dto.Join_FlightCityAirlineResponse;
 import com.admin.entity.AirlineDetails;
 import com.admin.entity.CityDetails;
@@ -80,8 +81,10 @@ public class AdminServiceImpl implements IAdminService{
 	}
 
 	@Override
-	public List<Join_FlightCityAirlineResponse> searchFlight(String startDate , String from , String to) {
-		return adminRepository.searchFlights(startDate , from , to);
+	public SearchResponse searchFlight(String returnDate , String startDate , String from , String to) {
+		List<Join_FlightCityAirlineResponse> startDateSearchResp = adminRepository.searchFlights(startDate , from , to);
+		List<Join_FlightCityAirlineResponse> returnDateSearchResp = adminRepository.searchFlights(returnDate, to, from);
+		return new SearchResponse(startDateSearchResp, returnDateSearchResp);
 	}
 
 	@Override

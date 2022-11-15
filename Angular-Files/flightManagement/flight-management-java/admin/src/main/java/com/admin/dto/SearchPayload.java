@@ -5,31 +5,23 @@ import java.util.List;
 import com.admin.entity.AirlineDetails;
 import com.admin.entity.FlightDetails;
 
-public class FlightAirlineResponse {
+public class SearchPayload {
 	
-	private int flightNumber;
-	private String airlineId;
+	private String returnDate;
+	private String startDate;
 	private String flyFrom;
 	private String flyTo;
-	private String startDate;
-	private String endDate;
-	private String stops;
-	private int totalBusinessSeats;
-	private int totalNonBusinessSeats;
-	private int ticketCost;
-	private String meal;
-	public String airline_name;
-	public int getFlightNumber() {
-		return flightNumber;
+	public String getReturnDate() {
+		return returnDate;
 	}
-	public void setFlightNumber(int flightNumber) {
-		this.flightNumber = flightNumber;
+	public void setReturnDate(String returnDate) {
+		this.returnDate = returnDate;
 	}
-	public String getAirlineId() {
-		return airlineId;
+	public String getStartDate() {
+		return startDate;
 	}
-	public void setAirlineId(String airlineId) {
-		this.airlineId = airlineId;
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
 	public String getFlyFrom() {
 		return flyFrom;
@@ -43,75 +35,16 @@ public class FlightAirlineResponse {
 	public void setFlyTo(String flyTo) {
 		this.flyTo = flyTo;
 	}
-	public String getStartDate() {
-		return startDate;
-	}
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
-	}
-	public String getEndDate() {
-		return endDate;
-	}
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
-	}
-	public String getStops() {
-		return stops;
-	}
-	public void setStops(String stops) {
-		this.stops = stops;
-	}
-	public int getTotalBusinessSeats() {
-		return totalBusinessSeats;
-	}
-	public void setTotalBusinessSeats(int totalBusinessSeats) {
-		this.totalBusinessSeats = totalBusinessSeats;
-	}
-	public int getTotalNonBusinessSeats() {
-		return totalNonBusinessSeats;
-	}
-	public void setTotalNonBusinessSeats(int totalNonBusinessSeats) {
-		this.totalNonBusinessSeats = totalNonBusinessSeats;
-	}
-	public int getTicketCost() {
-		return ticketCost;
-	}
-	public void setTicketCost(int ticketCost) {
-		this.ticketCost = ticketCost;
-	}
-	public String getMeal() {
-		return meal;
-	}
-	public void setMeal(String meal) {
-		this.meal = meal;
-	}
-	public String getAirline_name() {
-		return airline_name;
-	}
-	public void setAirline_name(String airline_name) {
-		this.airline_name = airline_name;
-	}
-	public FlightAirlineResponse(int flightNumber, String airlineId, String flyFrom, String flyTo, String startDate,
-			String endDate, String stops, int totalBusinessSeats, int totalNonBusinessSeats, int ticketCost,
-			String meal, String airline_name) {
+	public SearchPayload(String returnDate, String startDate, String flyFrom, String flyTo) {
 		super();
-		this.flightNumber = flightNumber;
-		this.airlineId = airlineId;
+		this.returnDate = returnDate;
+		this.startDate = startDate;
 		this.flyFrom = flyFrom;
 		this.flyTo = flyTo;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.stops = stops;
-		this.totalBusinessSeats = totalBusinessSeats;
-		this.totalNonBusinessSeats = totalNonBusinessSeats;
-		this.ticketCost = ticketCost;
-		this.meal = meal;
-		this.airline_name = airline_name;
 	}
-	public FlightAirlineResponse() {
+	public SearchPayload() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
 	
 }

@@ -8,7 +8,13 @@
     <button class="btn btn-sm delete" (click)="isDeleteEnable()">Delete</button>
   </div>
   <div>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- <mat-progress-spinner
+        class="example-margin"
+        mode="indeterminate">
+    </mat-progress-spinner> -->
+    <mat-progress-bar mode="buffer" *ngIf="!dataSource" class="progressBar"></mat-progress-bar>
+    <span *ngIf="dataSource && dataSource.length == 0">No Flights added</span>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="dataSource && dataSource.length > 0">
       <ng-container *ngFor="let displayColObj of columnNamesManage">
         <ng-container [matColumnDef]="displayColObj.column">
           <th mat-header-cell *matHeaderCellDef>
@@ -16,33 +22,33 @@
               {{displayColObj.displayLabel}}
             </span>
           </th>
-          <td mat-cell *matCellDef="let element ;let i = index">
+          <td mat-cell *matCellDef="let element ;let i = index" [formGroup]="validation">
             <span
               *ngIf="i != editElementId || displayColObj.column == ['flightNumber']">{{element[displayColObj.column]}}
             </span>
             <span *ngIf="i == editElementId && showEditBox(displayColObj.column , ['startDate','endDate'])">
-              <input type="datetime-local" class="form-control" [(ngModel)]="element[displayColObj.column]">
+              <input type="datetime-local" class="form-control" [formControlName]="displayColObj.column"
+              [ngStyle]="{'border-color' : isValidationError(displayColObj.column) ? 'red' : '#ced4da' }">
             </span>
             <span *ngIf="i == editElementId && showEditBox(displayColObj.column , ['toCityName','fromCityName'])">
-              <!-- <select name="" id="" class="form-control" [(ngModel)]="element[displayColObj.column]">
-                <option *ngFor="let citiesObj of cities" [value]="citiesObj.cityId">
-                  {{"(" + citiesObj.cityShortName + " ) " + citiesObj.cityName}}
-                </option>
-              </select> -->
-              <mat-select name="" id="" class="form-control" disableOptionCentering>
-                <mat-option  *ngFor="let citiesObj of cities" [value]="citiesObj.cityId">
+              <!-- <mat-select name="" id="" class="form-control" disableOptionCentering [formControlName]="displayColObj.column"
+              [ngStyle]="{'border-color' : isValidationError(displayColObj.column) ? 'red' : '#ced4da' }">
+                <mat-option  *ngFor="let citiesObj of cities" [attr.value]="citiesObj.cityId" 
+                [attr.selected]="this.validation.get(displayColObj.column).value == citiesObj.cityId  ? true : null">
                   {{"(" + citiesObj.cityShortName + " ) " + citiesObj.cityName}}
                 </mat-option>
-              </mat-select>
+              </mat-select> -->
+              <mat-select name="" id="" [formControlName]="displayColObj.column" class="form-control"
+                    [ngStyle]="{'border-color' : isValidationError(displayColObj.column) ? 'red' : '#ced4da' }"
+                    disableOptionCentering>
+                    <mat-option *ngFor="let citiesObj of cities" [value]="citiesObj.cityId">
+                        {{citiesObj.cityName + " ( " + citiesObj.cityShortName + " )"}}
+                    </mat-option>
+                </mat-select>
             </span>
             <span *ngIf="i == editElementId && showEditBox(displayColObj.column , ['airline_name'])">
-              <!-- <select name="" id="" class="form-control" [(ngModel)]="element[displayColObj.column]">
-                <option *ngFor="let airlineObj of airLineDetails" [value]="airlineObj.airline_id"
-                  [selected]="element[displayColObj.column] == airlineObj.airline_name">
-                  {{ airlineObj.airline_name }}
-                </option>
-              </select> -->
-              <mat-select name="" id="" class="form-control" disableOptionCentering>
+              <mat-select name="" id="" class="form-control" disableOptionCentering [formControlName]="displayColObj.column"
+              [ngStyle]="{'border-color' : isValidationError(displayColObj.column) ? 'red' : '#ced4da' }">
                 <mat-option *ngFor="let airlineObj of airLineDetails" [value]="airlineObj.airline_id">
                   {{ airlineObj.airline_name }}
                 </mat-option>
@@ -51,10 +57,11 @@
             <span
               *ngIf="i == editElementId && 
               showEditBox(displayColObj.column , ['stops','totalBusinessSeats','totalNonBusinessSeats','ticketCost','meal'])">
-              <input type="text" class="form-control" [(ngModel)]="element[displayColObj.column]">
+              <input type="text" class="form-control" [formControlName]="displayColObj.column"
+              [ngStyle]="{'border-color' : isValidationError(displayColObj.column) ? 'red' : '#ced4da' }">
             </span>
             <i class="bi bi-pencil-square" *ngIf="displayColObj.column == 'actions' && isEdit && (i != editElementId)"
-              (click)="edit(i)" title="Edit Record"></i>
+              (click)="edit(i, element)" title="Edit Record"></i>
 
             <span style="display: flex; justify-content: space-between;"
               *ngIf="displayColObj.column == 'actions' && isEdit && i == editElementId">

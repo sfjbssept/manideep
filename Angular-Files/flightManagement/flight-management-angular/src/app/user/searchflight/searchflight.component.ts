@@ -67,39 +67,23 @@ export class SearchflightComponent implements OnInit {
     
     this.validation.markAllAsTouched()
     if (this.validation.status == "VALID") {
-      var oneWayPayload = JSON.parse(JSON.stringify(this.flightStructure));
-      var twoWayPayload = JSON.parse(JSON.stringify(this.flightStructure));
       this.searched = true
       this.searchButtonName = 'Update Search'
-      oneWayPayload.flyFrom = this.validation.value['flyFrom']
-      oneWayPayload.flyTo = this.validation.value['flyTo']
-      oneWayPayload.startDate = this.validation.value['startDate']
-      twoWayPayload.flyTo = this.validation.value['flyFrom']
-      twoWayPayload.flyFrom = this.validation.value['flyTo']
-      twoWayPayload.startDate = this.validation.value['returnDate']
-      if (this.selectedTripType == '1') {
-        //One way
-        this._adminAuth.searchFlights(oneWayPayload).subscribe(
-          r => {
-            this.oneWayFlightDetails = r
-            this.searchedTripType = '1'
-          }
-        )
-      } else {
-        //Two way, assignment will be reverse
-        this.searchedTripType = '2'
-        this._adminAuth.searchFlights(oneWayPayload).subscribe(
-          r => {
-            this.oneWayFlightDetails = r
-          }
-        )
-        this._adminAuth.searchFlights(twoWayPayload).subscribe(
-          r => {
-            this.twoWayFlightDetails = r
-          }
-        )
-        
+
+      var searchPayload = {
+        "returnDate": this.selectedTripType == '2' ? this.validation.value['returnDate'] : '',
+        "startDate": this.validation.value['startDate'],
+        "flyFrom": this.validation.value['flyFrom'],
+        "flyTo": this.validation.value['flyTo']
       }
+
+      this._adminAuth.searchFlights(searchPayload).subscribe(
+        r => {
+          console.log(r)
+        }
+      )
+      
+
     }
   }
   getFlights() {

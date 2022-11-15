@@ -57,10 +57,34 @@
         </form>
     </div>
 </nav>
+<div style="display:flex;" *ngIf="searchedTripType == '2'">
+    <div style="width:50%;text-align:center;border-bottom: 1px solid black;padding:20px 0px;" class="container-fluid">
+        <div *ngIf="oneWayFlightDetails && oneWayFlightDetails.length > 0">
+            <span style="font-size:20px;">
+                {{oneWayFlightDetails[0].fromCityName}} <i class="bi bi-arrow-right"></i>
+                {{oneWayFlightDetails[0].toCityName}}
+            </span> &nbsp;
+            <span style="font-weight:500;">
+                {{oneWayFlightDetails[0].startDate | date : 'EEE, d MMM'}}
+            </span>
+        </div>
+    </div>
+    <div style="width:50%;text-align:center;border-bottom: 1px solid black;padding:20px 0px;" class="container-fluid">
+        <div *ngIf="twoWayFlightDetails && twoWayFlightDetails.length > 0">
+            <span style="font-size:20px;">
+                {{twoWayFlightDetails[0].fromCityName}} <i class="bi bi-arrow-right"></i>
+                {{twoWayFlightDetails[0].toCityName}}
+            </span> &nbsp;
+            <span style="font-weight:500;">
+                {{twoWayFlightDetails[0].startDate | date : 'EEE, d MMM'}}
+            </span>
+        </div>
+    </div>
+</div>
 <div style="display:flex;" class="container-fluid" *ngIf="searchedTripType == '2'">
-    <app-display-card [flightDetails]="oneWayFlightDetails" style="width:50%;overflow: scroll;height: 510px;">
+    <app-display-card [flightDetails]="oneWayFlightDetails" style="width:50%;overflow: scroll;height: 430px;">
     </app-display-card>
-    <app-display-card [flightDetails]="twoWayFlightDetails" style="width:50%;overflow: scroll;height:510px;">
+    <app-display-card [flightDetails]="twoWayFlightDetails" style="width:50%;overflow: scroll;height: 430px;">
     </app-display-card>
 </div>
 <app-display-card [flightDetails]="oneWayFlightDetails" *ngIf="searchedTripType == '1'"></app-display-card>

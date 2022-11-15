@@ -49,10 +49,22 @@ export class AdminServiceService {
   setUserSession(sessionValue: any) {
     sessionStorage.setItem("loggedInUser", sessionValue)
   }
-  getToasterMessage(message: any, title: any = '', timeout: any = 2000){
-    this.toastr.success(message, title, {
-      timeOut: timeout,
-      closeButton: true,
-    })
+  getToasterMessage(message: any, toasterType: any , title: any = '', timeout: any = 2000){
+    if (toasterType == 'success') {
+      this.toastr.success(message, title, {
+        timeOut: timeout,
+        closeButton: true,
+      })
+    } else if(toasterType == 'warning'){
+      this.toastr.warning(message, title, {
+        timeOut: timeout,
+        closeButton: true,
+      })
+    }else{
+      this.toastr.error(message, title, {
+        timeOut: timeout,
+        closeButton: true,
+      })
+    }
   }
 }

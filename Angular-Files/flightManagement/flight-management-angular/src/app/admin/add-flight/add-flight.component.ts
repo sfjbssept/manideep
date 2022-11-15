@@ -81,7 +81,10 @@ export class AddFlightComponent implements OnInit {
         r => {
           console.log(r)
           this.validation.reset()
-          
+          this._auth.getToasterMessage('Flight details added', 'success')
+        },
+        r => {
+          this._auth.getToasterMessage('Oops! Please try again', 'error')
         }
       )
     }
