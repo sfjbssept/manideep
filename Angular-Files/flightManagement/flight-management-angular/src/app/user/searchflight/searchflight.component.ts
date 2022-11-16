@@ -20,7 +20,7 @@ export class SearchflightComponent implements OnInit {
   constructor(private _adminAuth: AdminServiceService, private _userAuth: UserServiceService, private _router: Router, private formBuilder: FormBuilder) { }
   @ViewChild(MatAccordion) accordion: MatAccordion;
   panelOpenState = false;
-  flightStructure: FlightEntity = new FlightEntity()
+  // flightStructure: FlightEntity = new FlightEntity()
   oneWayFlightDetails: any;
   twoWayFlightDetails: any;
   // date: any;
@@ -78,8 +78,10 @@ export class SearchflightComponent implements OnInit {
       }
 
       this._adminAuth.searchFlights(searchPayload).subscribe(
-        r => {
-          console.log(r)
+        (r: any) => {
+          this.searchedTripType = this.selectedTripType == '2' ? '2' : '1'
+          this.oneWayFlightDetails = r.departureResp
+          this.twoWayFlightDetails = r.returnResp
         }
       )
       
