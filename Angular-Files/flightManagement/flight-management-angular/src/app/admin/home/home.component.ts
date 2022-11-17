@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
 import { AdminServiceService } from '../admin-service.service';
 
 @Component({
@@ -14,8 +16,9 @@ export class HomeComponent implements OnInit {
   airLineDetails: any;
   cities: any;
   validation: any;
+  dialogDataJson: any;
 
-  constructor(private _auth: AdminServiceService, private _router: Router, private formBuilder: FormBuilder) { }
+  constructor(private _auth: AdminServiceService, private _router: Router, private formBuilder: FormBuilder, public dialog: MatDialog) { }
   dataSource: any
   displayedColumns?: String[]
   columnNamesManage: any = [
@@ -100,6 +103,17 @@ export class HomeComponent implements OnInit {
   }
 
   edit(index: any, elementObject: any) {
+    // this.dialogDataJson = {
+    //   dialogType: "data",
+    //   dialogData: ""
+    // }
+    // const dialogRef = this.dialog.open(DialogBoxComponent, {
+    //   width: '100%',
+    //   data: this.dialogDataJson,
+    // });
+    // dialogRef.afterClosed().subscribe(result => {
+
+    // })
     this.editElementId = index
     this.validation.get('airline_name').setValue(elementObject.airlineId)
     this.validation.get('endDate').setValue(elementObject.endDate)
@@ -115,15 +129,27 @@ export class HomeComponent implements OnInit {
     this.validation.markAsPristine()
   }
   delete(flightId: any) {
-    this._auth.deleteFlightById(flightId).subscribe(
-      r => {
-        this.getAllFlightDetails();
-        this._auth.getToasterMessage('Successfully Deleted', 'success')
-      },
-      r => {
-        this._auth.getToasterMessage('Oops! Please try again', 'error')
+    this.dialogDataJson = {
+      dialogType: "deleteDialog",
+      dialogData: ""
+    }
+    const dialogRef = this.dialog.open(DialogBoxComponent, {
+      width: '250px',
+      data: this.dialogDataJson,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 'yes'){
+        this._auth.deleteFlightById(flightId).subscribe(
+          r => {
+            this.getAllFlightDetails();
+            this._auth.getToasterMessage('Successfully Deleted', 'success')
+          },
+          r => {
+            this._auth.getToasterMessage('Oops! Please try again', 'error')
+          }
+        )
       }
-    )
+    });
   }
 
   cancel() {

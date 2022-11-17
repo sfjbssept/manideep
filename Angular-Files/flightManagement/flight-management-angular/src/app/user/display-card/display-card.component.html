@@ -1,68 +1,79 @@
-<div class="container" style="padding: 15px 10px;" *ngIf="flightDetails && flightDetails.length > 0">
-    <!-- <div class="container" style="padding:20px 0px 10px;">
-        <span style="font-size:20px;">
-            {{flightDetails[0].fromCityName}} <i class="bi bi-arrow-right"></i> {{flightDetails[0].toCityName}}
-        </span> &nbsp;
-        <span  style="font-weight:500;">
-            {{flightDetails[0].startDate | date : 'EEE, d MMM'}}
-        </span>
-    </div> -->
-    <mat-card *ngFor="let flightObject of flightDetails">
-        <mat-card-title>
-            <!-- <i class="bi bi-airplane-engines"></i> -->
-            <!-- <img src="assets/Vistar-icon.png" alt="" width="60" height="40"> -->
-            <!-- <img src="assets/Vistara-icon.png" alt="" width="60" height="40"> -->
-            <!-- <img src= "assets/Air India-icon.png" alt="" width="60" height="40"> -->
-            <img src="assets/{{flightObject.airline_name}}-icon.png" alt="" width="60" height="40">
-            <!-- <img src="assets/IndiGo-icon.png" alt="" width="60" height="40"> -->
-            {{flightObject.airline_name }}
-        </mat-card-title>
-        <mat-card-subtitle>
-        </mat-card-subtitle>
-        <mat-card-content>
-            <div class="bodyContents">
-                <span>
-                    <div class="topRowStyles">
-                        <!-- {{flightObject.startDate | date}},  -->
-                        {{flightObject.startDate | date:"HH:mm"}}
-                    </div>
-                    <div>{{flightObject.fromCityName}}</div>
+<div class="container" style="padding: 15px 10px;">
+    <div *ngIf="flightDetails?.length == 0">
+        <mat-card align="center">
+            <mat-card-title>
+                <fa-icon [icon]="faPlane"></fa-icon> No flights found
+            </mat-card-title>
+            <mat-card-content>
+                <!-- No flights found -->
+            </mat-card-content>
+            <mat-card-subtitle>
+                No flights found on this route for the requested date.
+            </mat-card-subtitle>
+        </mat-card>
+    </div>
+    <div *ngIf="flightDetails?.length > 0">
+        <mat-card *ngFor="let flightObject of flightDetails">
+            <mat-card-title>
+                <!-- <i class="bi bi-airplane-engines"></i> -->
+                <!-- <img src="assets/Vistar-icon.png" alt="" width="60" height="40"> -->
+                <!-- <img src="assets/Vistara-icon.png" alt="" width="60" height="40"> -->
+                <!-- <img src= "assets/Air India-icon.png" alt="" width="60" height="40"> -->
+                <img src="assets/{{flightObject.airline_name}}-icon.png" alt="" width="60" height="40">
+                <!-- <img src="assets/IndiGo-icon.png" alt="" width="60" height="40"> -->
+                {{flightObject.airline_name }}
+                <span style="float:right;" *ngIf="tripType">
+                    <input type="radio" [name]="'selected_'+tripType">
                 </span>
-                <span>
-                    <div>&nbsp;</div>
-                    <div style="border-bottom:1px solid pink;width: 100px;"></div>
-                </span>
-                <span style="text-align: center;">
-                    <div class="topRowStyles">
-                        <span>
-                            {{getDays(flightObject)}}
-                            {{getHours(flightObject)}}
-                            {{getMinutes(flightObject)}}
-                        </span>
-                    </div>
-                    <div> <small>{{flightObject.stops}}</small></div>
-                </span>
-                <span>
-                    <div>&nbsp;</div>
-                    <div style="border-bottom:1px solid pink;width: 100px;"></div>
-                </span>
-                <span>
-                    <div class="topRowStyles">
-                        <!-- {{flightObject.endDate | date}},  -->
-                        {{flightObject.endDate | date:"HH:mm"}}
-                    </div>
-                    <div>{{flightObject.toCityName}}</div>
-                </span>
-                <span>
-                    <div class="priceCol topRowStyles">
-                        {{flightObject.ticketCost | currency:"INR"}}
-                    </div>
-                    <div>
-                        <button mat-stroked-button style="color:rgb(199, 131, 5);" routerLink="/user/preview"
-                            (click)="sendToPreview(flightObject)">View More</button>
-                    </div>
-                </span>
-            </div>
-        </mat-card-content>
-    </mat-card>
+            </mat-card-title>
+            <mat-card-subtitle>
+                {{flightObject.flightNumber}}
+            </mat-card-subtitle>
+            <mat-card-content>
+                <div class="bodyContents">
+                    <span>
+                        <div class="topRowStyles">
+                            <!-- {{flightObject.startDate | date}},  -->
+                            {{flightObject.startDate | date:"HH:mm"}}
+                        </div>
+                        <div>{{flightObject.fromCityName}}</div>
+                    </span>
+                    <span>
+                        <div>&nbsp;</div>
+                        <div style="border-bottom:1px solid pink;width: 100px;"></div>
+                    </span>
+                    <span style="text-align: center;">
+                        <div class="topRowStyles">
+                            <span>
+                                {{getDays(flightObject)}}
+                                {{getHours(flightObject)}}
+                                {{getMinutes(flightObject)}}
+                            </span>
+                        </div>
+                        <div> <small>{{flightObject.stops}}</small></div>
+                    </span>
+                    <span>
+                        <div>&nbsp;</div>
+                        <div style="border-bottom:1px solid pink;width: 100px;"></div>
+                    </span>
+                    <span>
+                        <div class="topRowStyles">
+                            <!-- {{flightObject.endDate | date}},  -->
+                            {{flightObject.endDate | date:"HH:mm"}}
+                        </div>
+                        <div>{{flightObject.toCityName}}</div>
+                    </span>
+                    <span>
+                        <div class="priceCol topRowStyles">
+                            {{flightObject.ticketCost | currency:"INR"}}
+                        </div>
+                        <div>
+                            <button mat-stroked-button style="color:rgb(199, 131, 5);" routerLink="/user/preview"
+                                (click)="sendToPreview(flightObject)">View More</button>
+                        </div>
+                    </span>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
 </div>

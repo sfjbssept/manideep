@@ -7,25 +7,15 @@ import javax.persistence.Id;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.ConstructorResult;
 import javax.persistence.ColumnResult;
-
-
-//@NamedNativeQuery(name = "ChessPlayer.findPlayerNameDtoById_Named",
-//query = "select " +
-//		" cd.city_name as from_city, " +
-//		" cd.city_short_name as from_city_short_name , " +
-//		" cdd.city_name as to_city, " +
-//        " cdd.city_short_name as to_city_short_name" +
-//		" from flight_details fd" +
-//		" left join airline_details ad on fd.airline_id = ad.airline_id" +
-//		" left join cities_details cd on fd.fly_from = cd.city_id" +
-//		" left join cities_details cdd on fd.fly_to = cdd.city_id",
-//resultSetMapping = "Mapping.PlayerNameDto")
-//@SqlResultSetMapping(name = "Mapping.PlayerNameDto",
-//   classes = @ConstructorResult(targetClass = PlayerNameDto.class,
-//                                columns = {@ColumnResult(name = "first"),
-//                                           @ColumnResult(name = "last")}))
 
 @Entity
 @Table(name = "flight_details")
@@ -44,29 +34,8 @@ public class FlightDetails {
 	private int totalNonBusinessSeats;
 	private int ticketCost;
 	private String meal;
-	public FlightDetails(int id, int flightNumber, String airlineId, String flyFrom, String flyTo, String startDate,
-			String endDate, String stops, int totalBusinessSeats, int totalNonBusinessSeats, int ticketCost,
-			String meal) {
-		super();
-		this.id = id;
-		this.flightNumber = flightNumber;
-		this.airlineId = airlineId;
-		this.flyFrom = flyFrom;
-		this.flyTo = flyTo;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.stops = stops;
-		this.totalBusinessSeats = totalBusinessSeats;
-		this.totalNonBusinessSeats = totalNonBusinessSeats;
-		this.ticketCost = ticketCost;
-		this.meal = meal;
-	}
-	
-	public FlightDetails() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
+	private String cabinBag;
+	private String checkIn;
 	public int getId() {
 		return id;
 	}
@@ -79,10 +48,10 @@ public class FlightDetails {
 	public void setFlightNumber(int flightNumber) {
 		this.flightNumber = flightNumber;
 	}
-	public String getairlineId() {
+	public String getAirlineId() {
 		return airlineId;
 	}
-	public void setairlineId(String airlineId) {
+	public void setAirlineId(String airlineId) {
 		this.airlineId = airlineId;
 	}
 	public String getFlyFrom() {
@@ -103,16 +72,16 @@ public class FlightDetails {
 	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
-	public String getendDate() {
+	public String getEndDate() {
 		return endDate;
 	}
-	public void setendDate(String endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
-	public String getstops() {
+	public String getStops() {
 		return stops;
 	}
-	public void setstops(String stops) {
+	public void setStops(String stops) {
 		this.stops = stops;
 	}
 	public int getTotalBusinessSeats() {
@@ -139,6 +108,39 @@ public class FlightDetails {
 	public void setMeal(String meal) {
 		this.meal = meal;
 	}
-	
-	
+	public String getCabinBag() {
+		return cabinBag;
+	}
+	public void setCabinBag(String cabinBag) {
+		this.cabinBag = cabinBag;
+	}
+	public String getCheckIn() {
+		return checkIn;
+	}
+	public void setCheckIn(String checkIn) {
+		this.checkIn = checkIn;
+	}
+	public FlightDetails(int id, int flightNumber, String airlineId, String flyFrom, String flyTo, String startDate,
+			String endDate, String stops, int totalBusinessSeats, int totalNonBusinessSeats, int ticketCost,
+			String meal, String cabinBag, String checkIn) {
+		super();
+		this.id = id;
+		this.flightNumber = flightNumber;
+		this.airlineId = airlineId;
+		this.flyFrom = flyFrom;
+		this.flyTo = flyTo;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.stops = stops;
+		this.totalBusinessSeats = totalBusinessSeats;
+		this.totalNonBusinessSeats = totalNonBusinessSeats;
+		this.ticketCost = ticketCost;
+		this.meal = meal;
+		this.cabinBag = cabinBag;
+		this.checkIn = checkIn;
+	}
+	public FlightDetails() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 }

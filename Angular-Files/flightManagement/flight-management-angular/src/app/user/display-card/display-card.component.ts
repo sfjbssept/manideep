@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
-
+import { faCoffee, faPlaneCircleExclamation, faPlaneCircleXmark } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-display-card',
   templateUrl: './display-card.component.html',
@@ -9,6 +9,8 @@ import * as moment from 'moment';
 export class DisplayCardComponent implements OnInit {
 
   @Input() flightDetails: any
+  @Input() tripType: any
+  faPlane = faPlaneCircleExclamation
   constructor() { }
 
   ngOnInit(): void {

@@ -34,6 +34,9 @@ import { DisplayCardComponent } from './user/display-card/display-card.component
 import { ToastrModule } from 'ngx-toastr';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { BookingHistoryComponent } from './user/booking-history/booking-history.component';
+import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     SearchflightComponent,
     PreviewDetailsComponent,
     BottomSheetOverviewExampleSheet,
-    DisplayCardComponent
+    DisplayCardComponent,
+    BookingHistoryComponent,
+    DialogBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +79,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatListModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
+    FontAwesomeModule,
     ToastrModule.forRoot({
       preventDuplicates: true,
     })

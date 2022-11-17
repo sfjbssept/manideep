@@ -17,6 +17,9 @@ export class SearchflightComponent implements OnInit {
   searchButtonName: string = "Search";
   defaultValue: string;
   searchedTripType: String;
+  searchedFromCityName: any;
+  searchedToCityName: any;
+  searchPayload: { returnDate: any; startDate: any; flyFrom: any; flyTo: any; };
   constructor(private _adminAuth: AdminServiceService, private _userAuth: UserServiceService, private _router: Router, private formBuilder: FormBuilder) { }
   @ViewChild(MatAccordion) accordion: MatAccordion;
   panelOpenState = false;
@@ -70,14 +73,17 @@ export class SearchflightComponent implements OnInit {
       this.searched = true
       this.searchButtonName = 'Update Search'
 
-      var searchPayload = {
+      this.searchedFromCityName = this.cities.filter((x: any) => x.cityId == this.validation.value['flyFrom'])[0].cityName
+      this.searchedToCityName = this.cities.filter((x: any) => x.cityId == this.validation.value['flyTo'])[0].cityName
+
+      this.searchPayload = {
         "returnDate": this.selectedTripType == '2' ? this.validation.value['returnDate'] : '',
         "startDate": this.validation.value['startDate'],
         "flyFrom": this.validation.value['flyFrom'],
         "flyTo": this.validation.value['flyTo']
       }
 
-      this._adminAuth.searchFlights(searchPayload).subscribe(
+      this._adminAuth.searchFlights(this.searchPayload).subscribe(
         (r: any) => {
           this.searchedTripType = this.selectedTripType == '2' ? '2' : '1'
           this.oneWayFlightDetails = r.departureResp
