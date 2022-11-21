@@ -1,7 +1,7 @@
 package com.admin.dto;
 
 public class Join_FlightCityAirlineResponse {
-	
+
 	private int flightNumber;
 	private String airlineId;
 	private String flyFrom;
@@ -9,22 +9,25 @@ public class Join_FlightCityAirlineResponse {
 	private String startDate;
 	private String endDate;
 	private String stops;
-	private int totalBusinessSeats;
-	private int totalNonBusinessSeats;
+	private String classType;
+	private int availableSeats;
 	private int ticketCost;
 	private String meal;
-	
+
 	private int fromCityId;
 	private String fromCityShortName;
 	private String fromCityName;
 	private String fromAirportName;
-	
+
 	private int toCityId;
 	private String toCityShortName;
 	private String toCityName;
 	private String toAirportName;
-	
+
 	private String airline_name;
+
+	private String cabinBag;
+	private String checkIn;
 
 	public int getFlightNumber() {
 		return flightNumber;
@@ -82,20 +85,20 @@ public class Join_FlightCityAirlineResponse {
 		this.stops = stops;
 	}
 
-	public int getTotalBusinessSeats() {
-		return totalBusinessSeats;
+	public String getClassType() {
+		return classType;
 	}
 
-	public void setTotalBusinessSeats(int totalBusinessSeats) {
-		this.totalBusinessSeats = totalBusinessSeats;
+	public void setClassType(String classType) {
+		this.classType = classType;
 	}
 
-	public int getTotalNonBusinessSeats() {
-		return totalNonBusinessSeats;
+	public int getAvailableSeats() {
+		return availableSeats;
 	}
 
-	public void setTotalNonBusinessSeats(int totalNonBusinessSeats) {
-		this.totalNonBusinessSeats = totalNonBusinessSeats;
+	public void setAvailableSeats(int availableSeats) {
+		this.availableSeats = availableSeats;
 	}
 
 	public int getTicketCost() {
@@ -186,11 +189,27 @@ public class Join_FlightCityAirlineResponse {
 		this.airline_name = airline_name;
 	}
 
+	public String getCabinBag() {
+		return cabinBag;
+	}
+
+	public void setCabinBag(String cabinBag) {
+		this.cabinBag = cabinBag;
+	}
+
+	public String getCheckIn() {
+		return checkIn;
+	}
+
+	public void setCheckIn(String checkIn) {
+		this.checkIn = checkIn;
+	}
+
 	public Join_FlightCityAirlineResponse(int flightNumber, String airlineId, String flyFrom, String flyTo,
-			String startDate, String endDate, String stops, int totalBusinessSeats, int totalNonBusinessSeats,
-			int ticketCost, String meal, int fromCityId, String fromCityShortName, String fromCityName,
-			String fromAirportName, int toCityId, String toCityShortName, String toCityName, String toAirportName,
-			String airline_name) {
+			String startDate, String endDate, String stops, String classType, int availableSeats, int ticketCost,
+			String meal, int fromCityId, String fromCityShortName, String fromCityName, String fromAirportName,
+			int toCityId, String toCityShortName, String toCityName, String toAirportName, String airline_name,
+			String cabinBag, String checkIn) {
 		super();
 		this.flightNumber = flightNumber;
 		this.airlineId = airlineId;
@@ -199,8 +218,8 @@ public class Join_FlightCityAirlineResponse {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.stops = stops;
-		this.totalBusinessSeats = totalBusinessSeats;
-		this.totalNonBusinessSeats = totalNonBusinessSeats;
+		this.classType = classType;
+		this.availableSeats = availableSeats;
 		this.ticketCost = ticketCost;
 		this.meal = meal;
 		this.fromCityId = fromCityId;
@@ -212,13 +231,26 @@ public class Join_FlightCityAirlineResponse {
 		this.toCityName = toCityName;
 		this.toAirportName = toAirportName;
 		this.airline_name = airline_name;
+		this.cabinBag = cabinBag;
+		this.checkIn = checkIn;
 	}
 
 	public Join_FlightCityAirlineResponse() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Join_FlightCityAirlineResponse [flightNumber=" + flightNumber + ", airlineId=" + airlineId
+				+ ", flyFrom=" + flyFrom + ", flyTo=" + flyTo + ", startDate=" + startDate + ", endDate=" + endDate
+				+ ", stops=" + stops + ", classType=" + classType + ", availableSeats=" + availableSeats
+				+ ", ticketCost=" + ticketCost + ", meal=" + meal + ", fromCityId=" + fromCityId
+				+ ", fromCityShortName=" + fromCityShortName + ", fromCityName=" + fromCityName + ", fromAirportName="
+				+ fromAirportName + ", toCityId=" + toCityId + ", toCityShortName=" + toCityShortName + ", toCityName="
+				+ toCityName + ", toAirportName=" + toAirportName + ", airline_name=" + airline_name + ", cabinBag="
+				+ cabinBag + ", checkIn=" + checkIn + "]";
+	}
 	
 	
 }

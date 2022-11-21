@@ -1,5 +1,5 @@
 .form-floating{
-    width: 200px;
+    width: 150px;
     margin: auto 5px;
 }
 /* img{
@@ -12,4 +12,7 @@
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent; /* make scrollbar transparent */
+}
+fa-icon{
+  margin: 0px 10px;
 }

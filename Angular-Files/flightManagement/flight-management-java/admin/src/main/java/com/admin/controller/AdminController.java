@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.admin.dto.BookFlightPayload;
 import com.admin.dto.Join_FlightCityAirlineResponse;
 import com.admin.dto.SearchPayload;
 import com.admin.dto.SearchResponse;
@@ -59,7 +60,9 @@ public class AdminController {
 	
 	@PostMapping("/searchFlight")
 	public SearchResponse searchFlight(@RequestBody SearchPayload searchPayload) {
-		return adminService.searchFlight(searchPayload.getReturnDate() , searchPayload.getStartDate() , searchPayload.getFlyFrom() , searchPayload.getFlyTo());
+		return adminService.searchFlight(searchPayload.getReturnDate() , searchPayload.getStartDate() , 
+				searchPayload.getFlyFrom() , searchPayload.getFlyTo() , searchPayload.getClassType(),
+				searchPayload.getNoOfAdults());
 	}
 	
 	@GetMapping("/working")
@@ -70,5 +73,11 @@ public class AdminController {
 	@GetMapping("/getFlightsWithAirlineName")
 	public List<Join_FlightCityAirlineResponse> getMyTestDetails() {
 		return adminService.getMyTestDetails();
+	}
+	
+	@PostMapping("/flight/booking")
+	public String bookFlight(@RequestBody BookFlightPayload bookFlightPayload) {
+		//returns PNR number
+		return adminService.bookFlight(bookFlightPayload);
 	}
 }

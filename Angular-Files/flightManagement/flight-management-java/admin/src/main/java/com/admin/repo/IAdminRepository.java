@@ -22,33 +22,35 @@ public interface IAdminRepository extends JpaRepository<FlightDetails, Integer> 
 	@Query("select "
 			+ "new com.admin.dto.Join_FlightCityAirlineResponse ("
 			+ "x.flightNumber, x.airlineId , x.flyFrom , x.flyTo, x.startDate, x.endDate , x.stops , "
-			+ "x.totalBusinessSeats, x.totalNonBusinessSeats, x.ticketCost, x.meal, "
+			+ "x.classType, x.availableSeats, x.ticketCost, x.meal, "
 			+ "fromCityObj.cityId, fromCityObj.cityShortName, fromCityObj.cityName, fromCityObj.airportName, "
 			+ "toCityObj.cityId, toCityObj.cityShortName, toCityObj.cityName, toCityObj.airportName, "
-			+ "z.airline_name"
+			+ "z.airline_name,  x.cabinBag , x.checkIn"
 			+ ")"
 			+ " from FlightDetails x "
 			+ "LEFT JOIN CityDetails fromCityObj on x.flyFrom  = fromCityObj.cityId "
 			+ "LEFT JOIN CityDetails toCityObj on x.flyTo  = toCityObj.cityId "
 			+ "LEFT JOIN AirlineDetails z on x.airlineId  = z.airline_id "
-			+ "where date(x.startDate) = date(?1) and x.flyFrom = ?2 and x.flyTo = ?3"
+			+ "where date(x.startDate) = date(?1) and x.flyFrom = ?2 and x.flyTo = ?3 "
+			+ "and x.classType = ?4 and x.availableSeats >= ?5"
 			)
-	public List<Join_FlightCityAirlineResponse> searchFlights(String startDate, String from , String to);
+	public List<Join_FlightCityAirlineResponse> searchFlights(String startDate, String from , String to , 
+			String classType, int noOfAdults);
 	
 	
 	
 	@Query("select "
 			+ "new com.admin.dto.Join_FlightCityAirlineResponse ("
-			+ "x.flightNumber, x.airlineId , x.flyFrom , x.flyTo, x.startDate, x.endDate , x.stops , "
-			+ "x.totalBusinessSeats, x.totalNonBusinessSeats, x.ticketCost, x.meal, "
+			+ "x.flightNumber, x.airlineId , x.flyFrom , x.flyTo, x.startDate, x.endDate , x.stops , x.classType, x.availableSeats, x.ticketCost, x.meal, "
 			+ "fromCityObj.cityId, fromCityObj.cityShortName, fromCityObj.cityName, fromCityObj.airportName, "
 			+ "toCityObj.cityId, toCityObj.cityShortName, toCityObj.cityName, toCityObj.airportName, "
-			+ "z.airline_name"
+			+ "z.airline_name,  x.cabinBag , x.checkIn"
 			+ ")"
 			+ " from FlightDetails x "
 			+ "LEFT JOIN CityDetails fromCityObj on x.flyFrom  = fromCityObj.cityId "
 			+ "LEFT JOIN CityDetails toCityObj on x.flyTo  = toCityObj.cityId "
-			+ "LEFT JOIN AirlineDetails z on x.airlineId  = z.airline_id ")
+			+ "LEFT JOIN AirlineDetails z on x.airlineId  = z.airline_id "
+			)
 	public List<Join_FlightCityAirlineResponse> getJoinFLightCityAirline();
 	
 //	@Query(nativeQuery = true)

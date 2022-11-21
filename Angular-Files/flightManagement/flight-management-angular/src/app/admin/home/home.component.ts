@@ -24,15 +24,17 @@ export class HomeComponent implements OnInit {
   columnNamesManage: any = [
     { column: "flightNumber", displayLabel: "Flight Number" },
     { column: "airline_name", displayLabel: "AirLine Name" },
-    { column: "startDate", displayLabel: "Start Date" },
-    { column: "endDate", displayLabel: "End Date" },
+    { column: "startDate", displayLabel: "Departure" },
+    { column: "endDate", displayLabel: "Arrival" },
     { column: "fromCityName", displayLabel: "Location From" },
     { column: "toCityName", displayLabel: "Location To" },
     { column: "stops", displayLabel: "Stops" },
     { column: "meal", displayLabel: "Meals" },
-    { column: "ticketCost", displayLabel: "Ticket Cost" },
-    { column: "totalBusinessSeats", displayLabel: "Total Business Seats" },
-    { column: "totalNonBusinessSeats", displayLabel: "Total Non Business Seats" },
+    { column: "ticketCost", displayLabel: "Price" },
+    { column: "availableSeats", displayLabel: "Available Seats" },
+    { column: "classType", displayLabel: "Class Type" },
+    { column: "cabinBag", displayLabel: "Cabin Bag" },
+    { column: "checkIn", displayLabel: "Check In" },
     { column: "actions", displayLabel: "Actions" },
   ];
   isEdit: boolean = false
@@ -58,8 +60,10 @@ export class HomeComponent implements OnInit {
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
       stops: ['', Validators.required],
-      totalBusinessSeats: ['', Validators.required],
-      totalNonBusinessSeats: ['', Validators.required],
+      availableSeats: ['', Validators.required],
+      classType: ['', Validators.required],
+      checkIn: ['', Validators.required],
+      cabinBag: ['', Validators.required],
       ticketCost: ['', Validators.required],
       meal: ['', Validators.required],
     })
@@ -124,8 +128,10 @@ export class HomeComponent implements OnInit {
     this.validation.get('startDate').setValue(elementObject.startDate)
     this.validation.get('stops').setValue(elementObject.stops)
     this.validation.get('ticketCost').setValue(elementObject.ticketCost)
-    this.validation.get('totalNonBusinessSeats').setValue(elementObject.totalNonBusinessSeats)
-    this.validation.get('totalBusinessSeats').setValue(elementObject.totalBusinessSeats)
+    this.validation.get('classType').setValue(elementObject.classType)
+    this.validation.get('availableSeats').setValue(elementObject.availableSeats)
+    this.validation.get('checkIn').setValue(elementObject.checkIn)
+    this.validation.get('cabinBag').setValue(elementObject.cabinBag)
     this.validation.markAsPristine()
   }
   delete(flightId: any) {

@@ -36,10 +36,12 @@ export class AddFlightComponent implements OnInit {
       startDate: ['', [Validators.required]],
       endDate: ['', [Validators.required]],
       stops: ['', Validators.required],
-      totalBusinessSeats: ['', Validators.required],
-      totalNonBusinessSeats: ['', Validators.required],
+      classType: ['', Validators.required],
+      availableSeats: ['', Validators.required],
       ticketCost: ['', Validators.required],
       meal: ['', Validators.required],
+      checkIn: ['', Validators.required],
+      cabinBag: ['', Validators.required],
     })
     this.validation.markAsUntouched()
     // this.newFlightDetail = [{
@@ -51,8 +53,8 @@ export class AddFlightComponent implements OnInit {
     //   "startDate": "",
     //   "endDate": "",
     //   "instrumentUsed": "",
-    //   "totalBusinessSeats": 0,
-    //   "totalNonBusinessSeats": 0,
+    //   "classType": 0,
+    //   "availableSeats": 0,
     //   "ticketCost": 0,
     //   "meal": ""
     // }]

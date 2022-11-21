@@ -1,41 +1,180 @@
 <app-user-navbar></app-user-navbar>
 
-<div class="container">
-    <mat-stepper linear #stepper>
-        <mat-step [stepControl]="firstFormGroup" [optional]="isOptional">
-            <form [formGroup]="firstFormGroup">
-                <ng-template matStepLabel>Fill out your name</ng-template>
-                <mat-form-field appearance="fill">
-                    <mat-label>Name</mat-label>
-                    <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                </mat-form-field>
-                <div>
-                    <button mat-button matStepperNext>Next</button>
-                </div>
-            </form>
-        </mat-step>
-        <mat-step [stepControl]="secondFormGroup" [optional]="isOptional">
-            <form [formGroup]="secondFormGroup">
-                <ng-template matStepLabel>Fill out your address</ng-template>
-                <mat-form-field appearance="fill">
-                    <mat-label>Address</mat-label>
-                    <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY" required>
-                </mat-form-field>
-                <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
-                </div>
-            </form>
-        </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
-            <p>You are now done.</p>
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="stepper.reset()">Reset</button>
-                <button mat-button (click)="checkOut()">CheckOut</button>
-            </div>
-        </mat-step>
-    </mat-stepper>
+<div class="container-fluid" style="padding-top:20px;">
+    <div style="display:flex;">
 
+        <div style="width:32%;padding:5px">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>Traveller Details</mat-card-title>
+                    <!-- <mat-card-subtitle *ngIf="passengerValidation.status == 'INVALID'" style="color:red">
+                        Please fill all mandate fields
+                    </mat-card-subtitle> -->
+                </mat-card-header>
+                <mat-card-content>
+                    <form [formGroup]="passengerValidation" *ngIf="passengerValidation">
+                        <div class="input-group" *ngFor="let item of createRange(noOfAdults); let ind = index"
+                            style="margin-top:15px;">
+                            <div style="padding:10px;background-color:rgb(231, 222, 222);width:100%;">
+                                <span>
+                                    Passenger {{ind + 1}}
+                                </span>
+                                <span style="float:right;">
+                                    {{ind + 1}} <small>of</small> {{noOfAdults}}
+                                </span>
+                            </div>
+                            <span class="input-group">
+                                <div class="form-floating">
+                                    <mat-select name="" id="" class="form-control" disableOptionCentering
+                                        formControlName="passenger-{{ind}}-gender"
+                                        [ngStyle]="{'border-color' : isValidationError('passenger-'+ ind + '-gender') ? 'red' : '#ced4da' }"
+                                        style="border-radius: 0;">
+                                        <mat-option *ngFor="let opt of ['Male','Female','Others']" [value]="opt">
+                                            {{opt}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <label for="floatingInput">Gender*</label>
+                                </div>
+                            </span>
+                            <div class="form-floating" style="width: 70%;margin: 0;">
+                                <input type="text" name="" id="" class="form-control" placeholder="h"
+                                    formControlName="passenger-{{ind}}-name"
+                                    [ngStyle]="{'border-color' : isValidationError('passenger-'+ ind + '-name') ? 'red' : '#ced4da' }"
+                                    style="border-bottom-left-radius:5px !important;">
+                                <label for="floatingInput">Full Name*</label>
+                            </div>
+                            <div class="form-floating" style="width: 30%;margin: 0;">
+                                <input type="number" min="18" max="100" name="" id="" class="form-control"
+                                    placeholder="h" formControlName="passenger-{{ind}}-age"
+                                    [ngStyle]="{'border-color' : isValidationError('passenger-'+ ind + '-age') ? 'red' : '#ced4da' }"
+                                    style="border-top-right-radius:0;">
+                                <span style="font-size:10px;"
+                                    [ngStyle]="{'color' : isValidationError('passenger-'+ ind + '-age') ? 'red' : '' }"
+                                    *ngIf="isValidationError('passenger-'+ ind + '-age')">
+                                    Age should be 18 to 99
+                                </span>
+                                <label for="floatingInput">Age*</label>
+                            </div>
+                        </div>
+                        <div style="margin-top:50px;">
+                            <h2>Contact Details</h2>
+                            <div class="input-group">
+                                <div class="form-floating" style="width: 30%;margin: 0;">
+                                    <input type="number" id="" class="form-control" placeholder="h"
+                                        formControlName="mobileNumber"
+                                        [ngStyle]="{'border-color' : isValidationError('mobileNumber') ? 'red' : '#ced4da' }">
+                                    <label for="floatingInput">Mobile No*</label>
+                                </div>
+                                <div class="form-floating" style="width: 30%;margin: 0;">
+                                    <input type="email" name="" id="" class="form-control" placeholder="h"
+                                        formControlName="emailId"
+                                        [ngStyle]="{'border-color' : isValidationError('emailId') ? 'red' : '#ced4da' }">
+                                    <label for="floatingInput">Email Id*</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </mat-card-content>
+                <mat-card-actions>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+        <div style="width:48%;padding:5px">
+            <mat-card style="background-color:rgb(248, 250, 250);">
+                <mat-card-header>
+                    <mat-card-title>Flight Review</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-card style="border-left:5px solid skyblue;padding-top: 40px;margin-top: 10px;"
+                        *ngFor="let flightObj of selectedFlightDetails">
+                        <div style="left:0;top:0;position: absolute;background-color: aquamarine;padding:5px;
+                            border-bottom-right-radius: 5px;">
+                            <fa-icon [icon]="iconDeparture"></fa-icon>
+                            <span *ngIf="flightObj.tripType == 'tripA'"> Departure | {{flightObj.startDate |
+                                date}}</span>
+                            <span *ngIf="flightObj.tripType == 'tripB'"> Return | {{flightObj.startDate | date}}</span>
+                            <span *ngIf="flightObj.tripType == 'departure'"> {{flightObj.tripType | titlecase}} |
+                                {{flightObj.startDate | date}}</span>
+                        </div>
+                        <span style="font-size:20px;">
+                            {{flightObj.fromCityName}} <sub>{{flightObj.startDate | date:'h:mm a'}}</sub>
+                            &nbsp;
+                            <i class="bi bi-arrow-right"></i>
+                            &nbsp;
+                            {{flightObj.toCityName}} <sub>{{flightObj.endDate | date:'h:mm a'}}</sub>
+                        </span>
+                        <span style="right:0;top:0;position: absolute">
+                            <img src="assets/{{flightObj.airline_name}}-icon.png" alt="" width="95" height="65">
+                        </span>
+                        <mat-card-subtitle style="margin-top:10px;">
+                            {{flightObj.airline_name}} |
+                            {{flightObj.flightNumber}} |
+                            {{flightObj.stops}} |
+                            {{getHours(flightObj)}}
+                            {{getMinutes(flightObj)}}
+                        </mat-card-subtitle>
+                        <mat-card-content>
+                            <div style="display:flex;justify-content:space-between;">
+                                <div>
+                                    <span>Baggage</span>
+                                    <mat-card-subtitle>
+                                        Adult
+                                    </mat-card-subtitle>
+                                </div>
+                                <div>
+                                    <span>Check-in</span>
+                                    <mat-card-subtitle>{{flightObj.checkIn}} Kgs</mat-card-subtitle>
+                                </div>
+                                <div>
+                                    <span>Cabin</span>
+                                    <mat-card-subtitle>{{flightObj.cabinBag}} Kgs</mat-card-subtitle>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                        <span style="bottom:0;right:0;position: absolute;background-color: goldenrod;padding:5px;
+                        border-top-left-radius: 5px;color: white;">{{flightObj.ticketCost | currency:"INR"}}</span>
+                    </mat-card>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div style="width:20%;padding:5px">
+            <mat-card style="background-color:rgb(250, 244, 244);">
+                <mat-card-header>
+                    <mat-card-title>Fare Summary</mat-card-title>
+                    <!-- <mat-card-subtitle>Start</mat-card-subtitle> -->
+                </mat-card-header>
+                <mat-card-content>
+                    <div>
+                        <h3 style="margin: 0px 0px 5px;">Base Fare</h3>
+                        <span *ngFor="let fObj of selectedFlightDetails">
+                            <mat-card-subtitle style="margin: 0px;">
+                                <span *ngIf="fObj.tripType == 'tripA'">Departure</span>
+                                <span *ngIf="fObj.tripType == 'tripB'">Return</span>
+                            </mat-card-subtitle>
+                            <span style="display:flex;justify-content: space-between;">
+                                <span style="padding-bottom: 10px !important;">Adult(s) <br> ({{noOfAdults}} X
+                                    {{fObj.ticketCost | currency:"INR"}})</span>
+                                <span><br>{{getBaseFare(fObj) | currency:"INR"}}</span>
+                            </span>
+                        </span>
+                    </div>
+                    <mat-divider style="margin: 5px 0px;"></mat-divider>
+                    <div>
+                        <h3 style="margin:0;">Miscellaneous</h3>
+                        <span>Tax</span>
+                        <span style="float:right;">{{tax | currency:"INR"}}</span>
+                    </div>
+                </mat-card-content>
+                <mat-divider></mat-divider>
+                <mat-card-actions
+                    style="padding:16px 0px 0px;margin:0;font-size: 20px;font-weight: 500;display:flex;justify-content: space-between;">
+                    <button mat-button>
+                        <h2 style="margin:0px">Grand Total</h2>
+                    </button>
+                    <button mat-raised-button color="accent" (click)="openPaymentSheet()">{{getTotalFare() |
+                        currency:"INR"}}</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
 </div>

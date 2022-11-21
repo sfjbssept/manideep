@@ -25,14 +25,14 @@
 
                             <td>
                                 <div class="form-floating">
-                                    <select name="" id="" class="form-control" formControlName="airlineId"
+                                    <mat-select name="" id="" class="form-control" formControlName="airlineId"
                                         [ngStyle]="{'border-color' : isValidationError('airlineId') ? 'red' : '#ced4da' }">
                                         <!-- <option value="0">--Select AirLine--</option> -->
-                                        <option *ngFor="let airlineObj of airLineDetails"
+                                        <mat-option *ngFor="let airlineObj of airLineDetails"
                                             [value]="airlineObj.airline_id">
                                             {{ airlineObj.airline_name }}
-                                        </option>
-                                    </select>
+                                        </mat-option>
+                                    </mat-select>
                                     <label for="floatingInput">Air Line Name</label>
                                 </div>
                             </td>
@@ -41,13 +41,13 @@
 
                             <td>
                                 <div class="form-floating">
-                                    <select name="" id="" class="form-control" formControlName="flyFrom"
+                                    <mat-select name="" id="" class="form-control" formControlName="flyFrom"
                                         [ngStyle]="{'border-color' : isValidationError('flyFrom') ? 'red' : '#ced4da' }">
-                                        <option value="0">--Select City--</option>
-                                        <option *ngFor="let fromCity of cities" [value]="fromCity.cityId">
+                                        <mat-option value="0">--Select City--</mat-option>
+                                        <mat-option *ngFor="let fromCity of cities" [value]="fromCity.cityId">
                                             {{"(" + fromCity.cityShortName + " ) " + fromCity.cityName}}
-                                        </option>
-                                    </select>
+                                        </mat-option>
+                                    </mat-select>
                                     <label for="floatingInput">From</label>
                                 </div>
                             </td>
@@ -56,13 +56,13 @@
 
                             <td>
                                 <div class="form-floating">
-                                    <select name="" id="" class="form-control" formControlName="flyTo"
+                                    <mat-select name="" id="" class="form-control" formControlName="flyTo"
                                         [ngStyle]="{'border-color' : isValidationError('flyTo') ? 'red' : '#ced4da' }">
-                                        <option value="0">--Select City--</option>
-                                        <option *ngFor="let toCity of cities" [value]="toCity.cityId">
+                                        <mat-option value="0">--Select City--</mat-option>
+                                        <mat-option *ngFor="let toCity of cities" [value]="toCity.cityId">
                                             {{"(" + toCity.cityShortName + " ) " + toCity.cityName}}
-                                        </option>
-                                    </select>
+                                        </mat-option>
+                                    </mat-select>
                                     <label for="floatingInput">To</label>
                                 </div>
                             </td>
@@ -104,10 +104,17 @@
 
                             <td>
                                 <div class="form-floating">
-                                    <input type="number" placeholder="Enter value" class="form-control"
-                                        formControlName="totalBusinessSeats"
-                                        [ngStyle]="{'border-color' : isValidationError('totalBusinessSeats') ? 'red' : '#ced4da' }">
-                                    <label for="">Total Business Seats Available</label>
+                                    <!-- <input type="text" placeholder="Enter value" class="form-control"
+                                        formControlName="classType"
+                                        [ngStyle]="{'border-color' : isValidationError('classType') ? 'red' : '#ced4da' }"> -->
+                                    <mat-select name="" id="" class="form-control" formControlName="classType"
+                                        [ngStyle]="{'border-color' : isValidationError('classType') ? 'red' : '#ced4da' }">
+                                        <!-- <option value="0">--Select City--</option> -->
+                                        <mat-option *ngFor="let classType of ['Economy','Business','First Class']" [value]="classType">
+                                            {{classType}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <label for="">Class Type</label>
                                 </div>
                             </td>
 
@@ -116,9 +123,9 @@
                             <td>
                                 <div class="form-floating">
                                     <input type="number" placeholder="Enter value" class="form-control"
-                                        formControlName="totalNonBusinessSeats"
-                                        [ngStyle]="{'border-color' : isValidationError('totalNonBusinessSeats') ? 'red' : '#ced4da' }">
-                                    <label for="">Total Non Business Seats Available</label>
+                                        formControlName="availableSeats"
+                                        [ngStyle]="{'border-color' : isValidationError('availableSeats') ? 'red' : '#ced4da' }">
+                                    <label for="">Available Seats</label>
                                 </div>
                             </td>
                         </tr>
@@ -129,7 +136,7 @@
                                     <input type="number" placeholder="Enter value" class="form-control"
                                         formControlName="ticketCost"
                                         [ngStyle]="{'border-color' : isValidationError('ticketCost') ? 'red' : '#ced4da' }">
-                                        <label for="">Tickt Cost</label>
+                                    <label for="">Tickt Cost</label>
                                 </div>
                             </td>
 
@@ -140,14 +147,33 @@
                                     <input type="text" placeholder="Enter value" class="form-control"
                                         formControlName="meal"
                                         [ngStyle]="{'border-color' : isValidationError('meal') ? 'red' : '#ced4da' }">
-                                        <label for="">Meals Provided</label>
+                                    <label for="">Meals Provided</label>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="form-floating">
+                                    <input type="number" placeholder="Enter value" class="form-control"
+                                        formControlName="checkIn"
+                                        [ngStyle]="{'border-color' : isValidationError('checkIn') ? 'red' : '#ced4da' }">
+                                    <label for="">Check In</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-floating">
+                                    <input type="number" placeholder="Enter value" class="form-control"
+                                        formControlName="cabinBag"
+                                        [ngStyle]="{'border-color' : isValidationError('cabinBag') ? 'red' : '#ced4da' }">
+                                    <label for="">Babin Bag</label>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="3">
                                 <input type="submit" name="" id="" class="btn btn-success col-12" value="Add Flight"
-                                (click)="addInventory()">
+                                    (click)="addInventory()">
                             </td>
                         </tr>
                     </table>

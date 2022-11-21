@@ -19,10 +19,10 @@ import { UserNavbarComponent } from './user/user-navbar/user-navbar.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
-import { SearchflightComponent } from './user/searchflight/searchflight.component';
+import { PreviewBottomSheet, SearchflightComponent } from './user/searchflight/searchflight.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
-import { BottomSheetOverviewExampleSheet, PreviewDetailsComponent } from './user/preview-details/preview-details.component';
+import {PaymentBottomSheet, PreviewDetailsComponent } from './user/preview-details/preview-details.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -50,7 +50,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     PageNotFoundComponent,
     SearchflightComponent,
     PreviewDetailsComponent,
-    BottomSheetOverviewExampleSheet,
+    PaymentBottomSheet,
+    PreviewBottomSheet,
     DisplayCardComponent,
     BookingHistoryComponent,
     DialogBoxComponent

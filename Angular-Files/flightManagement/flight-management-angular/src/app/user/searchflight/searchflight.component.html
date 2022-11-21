@@ -47,7 +47,31 @@
                 <mat-datepicker #pickerReturn></mat-datepicker>
                 <label for="floatingInput">Return Date</label>
             </div>
-            <div class="form-floating">
+            <div style="display:flex;">
+                <div class="form-floating" style="width: 80px;margin: 0;">
+                    <mat-select name="" id="" formControlName="noOfAdults" class="form-control"
+                        [ngStyle]="{'border-color' : isValidationError('noOfAdults') ? 'red' : '#ced4da' }"
+                        disableOptionCentering
+                        style="width: 80px;border-top-right-radius: 0;border-bottom-right-radius: 0;">
+                        <mat-option *ngFor="let opt of [1,2,3,4,5,6,7,8,9]" [value]="opt">
+                            {{opt}}
+                        </mat-option>
+                    </mat-select>
+                    <label for="floatingInput">Adult</label>
+                </div>
+                <div class="form-floating" style="width: 120px;margin: 0;">
+                    <mat-select name="" id="" formControlName="class" class="form-control"
+                        [ngStyle]="{'border-color' : isValidationError('class') ? 'red' : '#ced4da' }"
+                        disableOptionCentering
+                        style="width: 120px;border-top-left-radius: 0;border-bottom-left-radius: 0">
+                        <mat-option *ngFor="let opt of ['Economy','Business','First Class']" [value]="opt">
+                            {{opt}}
+                        </mat-option>
+                    </mat-select>
+                    <label for="floatingInput">Class</label>
+                </div>
+            </div>
+            <div class="form-floating" align="center">
                 <button class="btn btn-outline-success" type="submit"
                     (click)="searchFlight()">{{searchButtonName}}</button>
             </div>
@@ -60,31 +84,50 @@
 <div style="display:flex;" *ngIf="searchedTripType == '2'">
     <div style="width:50%;text-align:center;border-bottom: 1px solid black;padding:20px 0px;" class="container-fluid">
         <!-- Departure  -->
-            <span style="font-size:20px;">
-                {{searchedFromCityName}} 
-                <i class="bi bi-arrow-right"></i>
-                {{searchedToCityName}}
-            </span> &nbsp;
-            <span style="font-weight:500;">
-                {{searchPayload.startDate | date : 'EEE, d MMM'}}
-            </span>
+        <span style="font-size:20px;">
+            {{searchedFromCityName}}
+            <!-- <i class="bi bi-arrow-right"></i> -->
+            <fa-icon [icon]="iconDeparture"></fa-icon>
+            {{searchedToCityName}}
+        </span> &nbsp;
+        <sub style="font-weight:500;">
+            {{searchPayload.startDate | date : 'EEE, d MMM'}}
+        </sub>
     </div>
     <div style="width:50%;text-align:center;border-bottom: 1px solid black;padding:20px 0px;" class="container-fluid">
         <!-- Return  -->
-            <span style="font-size:20px;">
-                {{searchedToCityName}}
-                <i class="bi bi-arrow-right"></i>
-                {{searchedFromCityName}} 
-            </span> &nbsp;
-            <span style="font-weight:500;">
-                {{searchPayload.returnDate | date : 'EEE, d MMM'}}
-            </span>
+        <span style="font-size:20px;">
+            {{searchedToCityName}}
+            <!-- <i class="bi bi-arrow-right"></i> -->
+            <fa-icon [icon]="iconDeparture"></fa-icon>
+            {{searchedFromCityName}}
+        </span> &nbsp;
+        <sub style="font-weight:500;">
+            {{searchPayload.returnDate | date : 'EEE, d MMM'}}
+        </sub>
     </div>
 </div>
+
+<!-- <button (click)="openBottomSheet()">Click</button> -->
 <div style="display:flex;" class="container-fluid" *ngIf="searchedTripType == '2'">
-    <app-display-card [flightDetails]="oneWayFlightDetails" tripType="departure" style="width:50%;overflow: scroll;height: 430px;">
+    <app-display-card [flightDetails]="oneWayFlightDetails" tripType="tripA"
+        style="width:50%;overflow: scroll;height: 430px;">
     </app-display-card>
-    <app-display-card [flightDetails]="twoWayFlightDetails" tripType="return" style="width:50%;overflow: scroll;height: 430px;">
+    <app-display-card [flightDetails]="twoWayFlightDetails" tripType="tripB"
+        style="width:50%;overflow: scroll;height: 430px;">
     </app-display-card>
 </div>
-<app-display-card [flightDetails]="oneWayFlightDetails" *ngIf="searchedTripType == '1'"></app-display-card>
+<app-display-card [flightDetails]="oneWayFlightDetails" tripType="departure" *ngIf="searchedTripType == '1'">
+</app-display-card>
+<!-- <nav class="navbar fixed-bottom bg-light py-md-3" style="z-index:1;" *ngIf="searchedTripType == '2'"> -->
+<!-- <div class="container-fluid d-flex justify-content-around"> -->
+<!-- <div>
+            Flight 1
+        </div>
+        <div>
+            Flight 2
+        </div> -->
+<!-- </div> -->
+<!-- </nav> -->
+<button (click)="bookNow()" class="btn btn-sm btn-success col-12 fixed-bottom py-md-3"
+    *ngIf="searchedTripType == '2'">BOOK NOW</button>

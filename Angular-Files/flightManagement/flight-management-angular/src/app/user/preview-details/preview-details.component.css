@@ -1,0 +1,9 @@
+::ng-deep .mat-card-header-text{
+    margin: 0 !important;
+}
+::ng-deep .iconClass {
+    transform: scaleX(-1) !important;
+    -moz-transform: scaleX(-1) !important;
+    -webkit-transform: scaleX(-1) !important;
+    -ms-transform: scaleX(-1) !important;
+}

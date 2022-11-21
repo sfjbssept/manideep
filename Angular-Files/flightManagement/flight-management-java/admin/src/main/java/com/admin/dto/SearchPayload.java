@@ -11,6 +11,8 @@ public class SearchPayload {
 	private String startDate;
 	private String flyFrom;
 	private String flyTo;
+	private String classType;
+	private int noOfAdults;
 	public String getReturnDate() {
 		return returnDate;
 	}
@@ -35,16 +37,32 @@ public class SearchPayload {
 	public void setFlyTo(String flyTo) {
 		this.flyTo = flyTo;
 	}
-	public SearchPayload(String returnDate, String startDate, String flyFrom, String flyTo) {
+	public String getClassType() {
+		return classType;
+	}
+	public void setClassType(String classType) {
+		this.classType = classType;
+	}
+	public int getNoOfAdults() {
+		return noOfAdults;
+	}
+	public void setNoOfAdults(int noOfAdults) {
+		this.noOfAdults = noOfAdults;
+	}
+	public SearchPayload(String returnDate, String startDate, String flyFrom, String flyTo, String classType,
+			int noOfAdults) {
 		super();
 		this.returnDate = returnDate;
 		this.startDate = startDate;
 		this.flyFrom = flyFrom;
 		this.flyTo = flyTo;
+		this.classType = classType;
+		this.noOfAdults = noOfAdults;
 	}
 	public SearchPayload() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	
 }

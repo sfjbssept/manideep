@@ -13,12 +13,12 @@
         </mat-card>
     </div>
     <div *ngIf="flightDetails?.length > 0">
-        <mat-card *ngFor="let flightObject of flightDetails;let i = index" (click)="tripType && cardClicked(i)" [ngStyle]="{'cursor':tripType ? 'pointer' : ''}">
+        <mat-card *ngFor="let flightObject of flightDetails;let i = index" (click)="tripType != 'departure' && cardClicked(i,flightObject)" [ngStyle]="{'cursor':tripType != 'departure' ? 'pointer' : ''}">
             <mat-card-title>
                 <img src="assets/{{flightObject.airline_name}}-icon.png" alt="" width="60" height="40">
                 {{flightObject.airline_name }}
-                <span style="float:right;" *ngIf="tripType">
-                    <input type="radio" [name]="'selected_'+tripType" [checked]="i == selectedCardIndex && checked">
+                <span style="float:right;" *ngIf="tripType != 'departure'">
+                    <input type="radio" [name]="'selected_'+tripType" [checked]="i == selectedCardIndex && checked" style="height:20px; width:20px;">
                 </span>
             </mat-card-title>
             <mat-card-subtitle>
@@ -62,9 +62,8 @@
                         <div class="priceCol topRowStyles">
                             {{flightObject.ticketCost | currency:"INR"}}
                         </div>
-                        <div>
-                            <button mat-stroked-button style="color:rgb(199, 131, 5);" routerLink="/user/preview"
-                                (click)="sendToPreview(flightObject)">View More</button>
+                        <div *ngIf="this.tripType == 'departure'">
+                            <button mat-stroked-button style="color:rgb(199, 131, 5);"(click)="sendToPreview(flightObject)">View More</button>
                         </div>
                     </span>
                 </div>
