@@ -13,17 +13,12 @@
         </mat-card>
     </div>
     <div *ngIf="flightDetails?.length > 0">
-        <mat-card *ngFor="let flightObject of flightDetails">
+        <mat-card *ngFor="let flightObject of flightDetails;let i = index" (click)="tripType && cardClicked(i)" [ngStyle]="{'cursor':tripType ? 'pointer' : ''}">
             <mat-card-title>
-                <!-- <i class="bi bi-airplane-engines"></i> -->
-                <!-- <img src="assets/Vistar-icon.png" alt="" width="60" height="40"> -->
-                <!-- <img src="assets/Vistara-icon.png" alt="" width="60" height="40"> -->
-                <!-- <img src= "assets/Air India-icon.png" alt="" width="60" height="40"> -->
                 <img src="assets/{{flightObject.airline_name}}-icon.png" alt="" width="60" height="40">
-                <!-- <img src="assets/IndiGo-icon.png" alt="" width="60" height="40"> -->
                 {{flightObject.airline_name }}
                 <span style="float:right;" *ngIf="tripType">
-                    <input type="radio" [name]="'selected_'+tripType">
+                    <input type="radio" [name]="'selected_'+tripType" [checked]="i == selectedCardIndex && checked">
                 </span>
             </mat-card-title>
             <mat-card-subtitle>

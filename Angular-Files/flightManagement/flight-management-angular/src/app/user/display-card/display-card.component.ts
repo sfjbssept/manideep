@@ -11,6 +11,8 @@ export class DisplayCardComponent implements OnInit {
   @Input() flightDetails: any
   @Input() tripType: any
   faPlane = faPlaneCircleExclamation
+  checked: boolean;
+  selectedCardIndex: any;
   constructor() { }
 
   ngOnInit(): void {
@@ -28,6 +30,10 @@ export class DisplayCardComponent implements OnInit {
     return moment.duration(time).minutes() == 0 ? "" : moment.duration(time).minutes() + "m";
   }
   sendToPreview(flightObject: any){
-    sessionStorage.setItem("selectedFlight",JSON.stringify(flightObject))
+    sessionStorage.setItem("selectedFlight",JSON.stringify([flightObject]))
+  }
+  cardClicked(index: any){
+    this.selectedCardIndex = index
+    this.checked = true
   }
 }
