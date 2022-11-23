@@ -4,9 +4,6 @@ import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-shee
 import { MatAccordion } from '@angular/material/expansion';
 import { Router } from '@angular/router';
 import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
-import { map, startWith } from 'rxjs';
-import { AdminServiceService } from 'src/app/admin/admin-service.service';
-import FlightEntity from 'src/app/admin/FlightEntity';
 import { UserServiceService } from '../user-service.service';
 
 @Component({
@@ -22,7 +19,7 @@ export class SearchflightComponent implements OnInit {
   searchedFromCityName: any;
   searchedToCityName: any;
   searchPayload: any;
-  constructor(private _adminAuth: AdminServiceService, private _userAuth: UserServiceService, private _router: Router, private formBuilder: FormBuilder, private _bottomSheet: MatBottomSheet) { }
+  constructor(private _userAuth: UserServiceService, private _router: Router, private formBuilder: FormBuilder, private _bottomSheet: MatBottomSheet) { }
   @ViewChild(MatAccordion) accordion: MatAccordion;
   panelOpenState = false;
   // flightStructure: FlightEntity = new FlightEntity()
@@ -41,7 +38,6 @@ export class SearchflightComponent implements OnInit {
       this._router.navigate(["/user"])
       return
     }
-    // this.getFlights()
     this.getCities()
     this.validation = this.formBuilder.group({
       tripType: ['', Validators.required],
@@ -59,7 +55,7 @@ export class SearchflightComponent implements OnInit {
 
   }
   getCities() {
-    this._adminAuth.getCities().subscribe(
+    this._userAuth.getCities().subscribe(
       r => {
         this.cities = r
         this.defaultValue = this.cities[0].cityId
@@ -78,7 +74,7 @@ export class SearchflightComponent implements OnInit {
     this.validation.markAllAsTouched()
     if (this.validation.status == "VALID") {
       if (!this.validation.dirty) {
-        this._adminAuth.getToasterMessage("Please update values to get new results", 'warning',"No change detected",5000)
+        this._userAuth.getToasterMessage("Please update values to get new results", 'warning',"No change detected",5000)
       } else {
         this.searched = true
         this.searchButtonName = 'Update Search'
@@ -95,7 +91,7 @@ export class SearchflightComponent implements OnInit {
           "classType": this.validation.value['class']
         }
         localStorage.setItem("searchPayload", JSON.stringify(this.searchPayload))
-        this._adminAuth.searchFlights(this.searchPayload).subscribe(
+        this._userAuth.searchFlights(this.searchPayload).subscribe(
           (r: any) => {
             this.searchedTripType = this.selectedTripType == '2' ? '2' : '1'
             this.oneWayFlightDetails = JSON.parse(JSON.stringify(r.departureResp))
@@ -107,20 +103,6 @@ export class SearchflightComponent implements OnInit {
         this.validation.markAsPristine()
       }
     }
-  }
-  getFlights() {
-    this._adminAuth.getAllFlightDetails().subscribe(
-      r => {
-        this.oneWayFlightDetails = r
-        this.searchButtonName = 'Search'
-        this.searched = false
-        this.validation.get('flyFrom')?.setValue('')
-        this.validation.get('flyTo')?.setValue('')
-        this.validation.get('startDate')?.setValue(new Date(new Date().setDate(new Date().getDate())))
-        this.validation.markAsUntouched()
-        console.log(this.oneWayFlightDetails)
-      }
-    )
   }
   swapFromAndTo() {
     const fromValue = this.validation.get('flyFrom')?.value
@@ -147,7 +129,7 @@ export class SearchflightComponent implements OnInit {
       localStorage.setItem("selectedDepartureFlight", JSON.stringify(finalFlightsList))
       window.open("http://localhost:4200/user/preview", "_blank");
     } else {
-      this._adminAuth.getToasterMessage("Departure and return flight", 'warning', 'Please Select', 5000)
+      this._userAuth.getToasterMessage("Departure and return flight", 'warning', 'Please Select', 5000)
     }
   }
   

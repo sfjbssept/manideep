@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.admin.dto.BookFlightPayload;
 import com.admin.dto.Join_FlightCityAirlineResponse;
@@ -28,7 +29,7 @@ public class AdminController {
 	
 	@Autowired
 	IAdminService adminService;
-
+	
 	@PostMapping("/addFlight")
 	public FlightDetails addFlight(@RequestBody FlightDetails flightDetails) {
 		System.out.println("reached..service");
@@ -65,10 +66,6 @@ public class AdminController {
 				searchPayload.getNoOfAdults());
 	}
 	
-	@GetMapping("/working")
-	public String working() {
-		return "working...";
-	}
 	
 	@GetMapping("/getFlightsWithAirlineName")
 	public List<Join_FlightCityAirlineResponse> getMyTestDetails() {
@@ -80,4 +77,19 @@ public class AdminController {
 		//returns PNR number
 		return adminService.bookFlight(bookFlightPayload);
 	}
+
+	//testing
+	@GetMapping("/working")
+	public String working() {
+		return "admin working...";
+	}
+	
+	//testing eureka server functionality
+	@PostMapping("/callFromUserToAdmin")
+	public String adminTest(@RequestBody String requestJson) {
+		return "value passed from user service : "+requestJson;
+	}
+	
+	
+	
 }

@@ -9,7 +9,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UserServiceService {
   userBaseUrl: String = "http://localhost:7071/"
-  adminBaseUrl: String = "http://localhost:8081/"
   constructor(public http: HttpClient , public router: Router, private toastr: ToastrService) { }
 
   isSessionExist(){
@@ -30,7 +29,15 @@ export class UserServiceService {
   }
 
   bookFlight(bookingPayload: any){
-    return this.http.post(this.adminBaseUrl + 'flight/booking' , bookingPayload, { responseType: "text" })
+    return this.http.post(this.userBaseUrl + 'flightBooking' , bookingPayload, { responseType: "text" })
+  }
+
+  getCities(){
+    return this.http.get(this.userBaseUrl + "getAllCities", { responseType: 'json' })
+  }
+
+  searchFlights(payload: any) {
+    return this.http.post(this.userBaseUrl + "flightSearch", payload, { responseType: 'json' })
   }
 
   userRegistration(payload: any){

@@ -1,7 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { AdminNavbarComponent } from '../../admin/admin-navbar/admin-navbar.component';
-import { AdminServiceService } from '../../admin/admin-service.service';
 import { UserServiceService } from '../user-service.service';
 
 @Component({

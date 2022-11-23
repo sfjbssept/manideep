@@ -4,7 +4,6 @@ import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-shee
 import { Router } from '@angular/router';
 import { faPlaneArrival, faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 import * as RandExp from "randexp";
-import { AdminServiceService } from 'src/app/admin/admin-service.service';
 import { UserServiceService } from '../user-service.service';
 
 @Component({
@@ -30,7 +29,7 @@ export class PreviewDetailsComponent implements OnInit, OnDestroy {
   passengerValidation: any;
   totalCost: number;
   constructor(private _userAuth: UserServiceService, public router: Router, private _formBuilder: FormBuilder,
-    private _bottomSheet: MatBottomSheet, private formBuilder: FormBuilder, private _adminService: AdminServiceService) { }
+    private _bottomSheet: MatBottomSheet, private formBuilder: FormBuilder) { }
 
   ngOnDestroy(): void {
     // localStorage.removeItem("selectedDepartureFlight");
@@ -138,19 +137,19 @@ export class PreviewDetailsComponent implements OnInit, OnDestroy {
           }
           this._userAuth.bookFlight(payload).subscribe(
             r => {
-              this._adminService.getToasterMessage(r, 'success', 'Booking was successful', 10000)
+              this._userAuth.getToasterMessage(r, 'success', 'Booking was successful', 10000)
               localStorage.removeItem("selectedDepartureFlight")
               localStorage.removeItem("searchPayload")
               // this.ngOnInit()
             },
             r => {
-              this._adminService.getToasterMessage('Something went wrong please try again', 'error')
+              this._userAuth.getToasterMessage('Something went wrong please try again', 'error')
             }
           )
         }
       });
     } else {
-      this._adminService.getToasterMessage('Please fill mandate details', 'warning')
+      this._userAuth.getToasterMessage('Please fill mandate details', 'warning')
     }
   }
 }
