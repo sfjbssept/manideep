@@ -1,8 +1,10 @@
 package com.user.services;
 
+import org.springframework.http.ResponseEntity;
+
 import com.user.entity.LoginUserDetails;
 
 public interface IUserDetails {
-	LoginUserDetails addUser(LoginUserDetails userDetails);
-	String getUser(LoginUserDetails userDetails);
+	ResponseEntity<String> addUser(LoginUserDetails userDetails);
+	ResponseEntity<?> getUser(LoginUserDetails userDetails);
 }

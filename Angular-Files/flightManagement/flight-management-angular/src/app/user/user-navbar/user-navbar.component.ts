@@ -19,19 +19,20 @@ export class UserNavbarComponent implements OnInit {
     // if(!this._auth.isSessionExist()) this.logOut()
   }
   signIn() {
-    if(this._router.url == "/user" && localStorage.getItem("userName")){
+    if(this._router.url == "/user" && localStorage.getItem("userSession")){
       //session exist and this components loads on every page
       this._router.navigate(['user/searchFlight'])
-    }else if(!localStorage.getItem("userName")){
+    }else if(!localStorage.getItem("userSession")){
       //1st login
-      localStorage.setItem("userName","manideep")
+      // localStorage.setItem("userSession","manideep")
       this._router.navigate(['user/searchFlight'])
     }
-    this.navBarTitleName = "Welcome " + localStorage.getItem("userName")
+    var userSession = JSON.parse(localStorage.getItem("userSession") || '{}')
+    this.navBarTitleName = "Welcome " + userSession?.userName
     this.isUserLoggedIn = true
   }
   signUp() {
-    alert("hii")
+    this.signIn()
   }
   showSignUpCard() {
     this.showLoginCard = false
@@ -40,7 +41,7 @@ export class UserNavbarComponent implements OnInit {
     this.showLoginCard = true
   }
   logOut(){
-    localStorage.removeItem("userName")
+    localStorage.removeItem("userSession")
     this.isUserLoggedIn = false
   }
 }

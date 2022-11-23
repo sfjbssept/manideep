@@ -13,7 +13,7 @@ import { UserServiceService } from '../user-service.service';
   styleUrls: ['./preview-details.component.css']
 })
 export class PreviewDetailsComponent implements OnInit, OnDestroy {
-
+  [key: string]: any;
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
@@ -97,7 +97,8 @@ export class PreviewDetailsComponent implements OnInit, OnDestroy {
       }
     });
     if (reached) return this.totalCost + this.tax
-    return this.totalCost + this.tax
+    this.totalCost += this.tax
+    return this.totalCost
   }
   createRange(number: any) {
     return new Array(number).fill(0)
@@ -109,47 +110,45 @@ export class PreviewDetailsComponent implements OnInit, OnDestroy {
   openPaymentSheet(): void {
     this.passengerValidation.markAllAsTouched()
     if (this.passengerValidation.status == 'VALID') {
-      this._bottomSheet.open(PaymentBottomSheet);
-      console.log(this.passengerValidation)
-      var passengersList = []
-      // for (const [index, [key, value]] of Object.entries(Object.entries(this.passengerValidation.value))) {
-      //   console.log(`${index}: ${key} = ${value}`);
-      // }
+      const dialogRef = this._bottomSheet.open(PaymentBottomSheet);
 
-      // for (let index = 0; index < this.noOfAdults; index++) {
-      //   if ()
-      // }
-
-      // Object.entries(this.passengerValidation.value).forEach(([key, value], index) => {
-      //   console.log(`${index}: ${key} = ${value}`);
-      //   if () {
-      //     var obj = {
-      //       "passengerName": "Manideep",
-      //       "passengerGender": "male",
-      //       "passengerAge": 34
-      //     }
-      //     passengersList.push(obj)
-      //   }
-      // });
-
-      var payload = {
-        "passengersDetails": [
-          {
-            "passengerName": "Manideep",
-            "passengerGender": "male",
-            "passengerAge": 34
+      dialogRef.afterDismissed().subscribe(result => {
+        if (result) {
+          var passengersList = []
+          var tempObj: any = {}
+          for (let i = 0; i < this.noOfAdults; i++) {
+            tempObj = {}
+            Object.entries(this.passengerValidation.value).forEach(([key, value], index) => {
+              var splitedPassengerDetails = key.split('-')
+              if (key.includes(i.toString())) {
+                var nameToTitleCase = splitedPassengerDetails[2].charAt(0).toUpperCase() + splitedPassengerDetails[2].slice(1)
+                tempObj[splitedPassengerDetails[0] + nameToTitleCase] = value
+              }
+            });
+            passengersList.push(tempObj)
           }
-        ],
-        "this.totalCost": this.totalCost,
-        "contactMobileNumber": this.passengerValidation.value.mobileNumber,
-        "contactMailid": this.passengerValidation.value.emailId,
-        "bookingFlightObj": this.selectedFlightDetails
-      }
-      this._userAuth.bookFlight(payload).subscribe(
-        r => {
-          alert("success")
+
+          var payload = {
+            "passengersDetails": passengersList,
+            "totalCost": this.getTotalFare(),
+            "contactMobileNumber": this.passengerValidation.value.mobileNumber,
+            "contactMailid": this.passengerValidation.value.emailId,
+            "bookingFlightObj": this.selectedFlightDetails,
+            "paymentMode": result
+          }
+          this._userAuth.bookFlight(payload).subscribe(
+            r => {
+              this._adminService.getToasterMessage(r, 'success', 'Booking was successful', 10000)
+              localStorage.removeItem("selectedDepartureFlight")
+              localStorage.removeItem("searchPayload")
+              // this.ngOnInit()
+            },
+            r => {
+              this._adminService.getToasterMessage('Something went wrong please try again', 'error')
+            }
+          )
         }
-      )
+      });
     } else {
       this._adminService.getToasterMessage('Please fill mandate details', 'warning')
     }
@@ -163,8 +162,7 @@ export class PreviewDetailsComponent implements OnInit, OnDestroy {
 export class PaymentBottomSheet {
   constructor(private _bottomSheetRef: MatBottomSheetRef<PaymentBottomSheet>) { }
 
-  openLink(event: MouseEvent): void {
-    this._bottomSheetRef.dismiss();
-    event.preventDefault();
+  paymentModeType(paymentName: any): void {
+    this._bottomSheetRef.dismiss(paymentName);
   }
 }

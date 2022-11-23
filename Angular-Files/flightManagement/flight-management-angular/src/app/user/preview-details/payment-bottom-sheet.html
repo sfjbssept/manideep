@@ -1,22 +1,28 @@
-<mat-nav-list style="width:min-content;">
-    <a href="https://keep.google.com/" mat-list-item (click)="openLink($event)">
-      <span matListItemTitle>Google Keep</span>
-      <span matLine>Add to a note</span>
-    </a>
-  
-    <a href="https://docs.google.com/" mat-list-item (click)="openLink($event)">
-      <span matListItemTitle>Google Docs</span>
-      <span matLine>Embed in a document</span>
-    </a>
-  
-    <a href="https://plus.google.com/" mat-list-item (click)="openLink($event)">
-      <span matListItemTitle>Google Plus</span>
-      <span matLine>Share with your friends</span>
-    </a>
-  
-    <a href="https://hangouts.google.com/" mat-list-item (click)="openLink($event)">
-      <span matListItemTitle>Google Hangouts</span>
-      <span matLine>Show to your coworkers</span>
-    </a>
-  </mat-nav-list>
-  
+<style>
+  .nameDiv  {
+    margin: 10px;
+    cursor: pointer;
+    background-color: silver;
+  }
+</style>
+
+<div class="container-fluid">
+  <h1 style="text-align:center;">Payment Mode</h1>
+
+  <div style="text-align: center;background-color: silver;" class="nameDiv" (click)="paymentModeType('creditcard')">
+    <img src="assets/credit-card.png" alt="" width="30" height="30"> &nbsp;
+    <span>Credit Card</span>
+  </div>
+  <div style="text-align: center;" class="nameDiv" (click)="paymentModeType('creditcard')">
+    <img src="assets/paypal.png" alt="" width="30" height="30"> &nbsp;
+    <span>Paypal</span>
+  </div>
+  <div style="text-align: center;" class="nameDiv" (click)="paymentModeType('creditcard')">
+    <img src="assets/google-pay.png" alt="" width="30" height="30"> &nbsp;
+    <span>GPay</span>
+  </div>
+  <div style="text-align: center;" class="nameDiv" (click)="paymentModeType('creditcard')">
+    <img src="assets/paytm.png" alt="" width="30" height="30"> &nbsp;
+    <span>Paytm</span>
+  </div>
+</div>

@@ -242,7 +242,7 @@ public class Join_FlightCityAirlineResponse {
 
 	@Override
 	public String toString() {
-		return "Join_FlightCityAirlineResponse [flightNumber=" + flightNumber + ", airlineId=" + airlineId
+		return "Join_FlightCityAirlineResponse\n\n [flightNumber=" + flightNumber + ", airlineId=" + airlineId
 				+ ", flyFrom=" + flyFrom + ", flyTo=" + flyTo + ", startDate=" + startDate + ", endDate=" + endDate
 				+ ", stops=" + stops + ", classType=" + classType + ", availableSeats=" + availableSeats
 				+ ", ticketCost=" + ticketCost + ", meal=" + meal + ", fromCityId=" + fromCityId
