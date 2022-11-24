@@ -11,6 +11,17 @@ public class BookFlightPayload {
 	private String contactMailid;
 	private Long contactMobileNumber;
 	private String paymentMode;
+	private String loginUserEmail;
+	
+	
+
+	public String getLoginUserEmail() {
+		return loginUserEmail;
+	}
+
+	public void setLoginUserEmail(String loginUserEmail) {
+		this.loginUserEmail = loginUserEmail;
+	}
 
 	public List<PassengersDetails> getPassengersDetails() {
 		return passengersDetails;
@@ -67,7 +78,7 @@ public class BookFlightPayload {
 
 	public BookFlightPayload(List<PassengersDetails> passengersDetails, int totalCost,
 			List<Join_FlightCityAirlineResponse> bookingFlightObj, String contactMailid, Long contactMobileNumber,
-			String paymentMode) {
+			String paymentMode, String loginUserEmail) {
 		super();
 		this.passengersDetails = passengersDetails;
 		this.totalCost = totalCost;
@@ -75,18 +86,15 @@ public class BookFlightPayload {
 		this.contactMailid = contactMailid;
 		this.contactMobileNumber = contactMobileNumber;
 		this.paymentMode = paymentMode;
+		this.loginUserEmail = loginUserEmail;
 	}
 
 	@Override
 	public String toString() {
 		return "BookFlightPayload [passengersDetails=" + passengersDetails + ", totalCost=" + totalCost
 				+ ", bookingFlightObj=" + bookingFlightObj + ", contactMailid=" + contactMailid
-				+ ", contactMobileNumber=" + contactMobileNumber + "]";
-	}
-
-
-	
-	
-	
+				+ ", contactMobileNumber=" + contactMobileNumber + ", paymentMode=" + paymentMode + ", loginUserEmail="
+				+ loginUserEmail + "]";
+	}	
 	
 }

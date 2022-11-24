@@ -23,8 +23,13 @@ public class BookingDetails {
 	private int departureFlightNumber;
 	private int returnFlightNumber;
 	private String paymentMode;
+	private String loginUserEmail;
+	
+
+	
 	public BookingDetails(int id, String pnr, Long contactMobileNumber, String contactMailid, Date bookedDate,
-			int totalCost, boolean isRoundTrip, int departureFlightNumber, int returnFlightNumber, String paymentMode) {
+			int totalCost, boolean isRoundTrip, int departureFlightNumber, int returnFlightNumber, String paymentMode,
+			String loginUserEmail) {
 		super();
 		this.id = id;
 		this.pnr = pnr;
@@ -36,8 +41,17 @@ public class BookingDetails {
 		this.departureFlightNumber = departureFlightNumber;
 		this.returnFlightNumber = returnFlightNumber;
 		this.paymentMode = paymentMode;
+		this.loginUserEmail = loginUserEmail;
 	}
-	
+
+	public String getLoginUserEmail() {
+		return loginUserEmail;
+	}
+
+	public void setLoginUserEmail(String loginUserEmail) {
+		this.loginUserEmail = loginUserEmail;
+	}
+
 	public String getPaymentMode() {
 		return paymentMode;
 	}

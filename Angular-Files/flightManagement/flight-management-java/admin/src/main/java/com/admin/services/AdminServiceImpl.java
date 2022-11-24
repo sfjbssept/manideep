@@ -162,6 +162,7 @@ public class AdminServiceImpl implements IAdminService {
 			bookingDetails.setBookedDate(new Date());
 			bookingDetails.setPnr(PNR);
 			bookingDetails.setPaymentMode(bookFlightPayload.getPaymentMode());
+			bookingDetails.setLoginUserEmail(bookFlightPayload.getLoginUserEmail());
 			if (bookFlightPayload.getBookingFlightObj().size() == 2) {
 				// Round trip
 				bookingDetails.setRoundTrip(true);

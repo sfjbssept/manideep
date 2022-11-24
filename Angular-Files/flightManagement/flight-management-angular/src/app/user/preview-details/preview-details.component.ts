@@ -133,7 +133,8 @@ export class PreviewDetailsComponent implements OnInit, OnDestroy {
             "contactMobileNumber": this.passengerValidation.value.mobileNumber,
             "contactMailid": this.passengerValidation.value.emailId,
             "bookingFlightObj": this.selectedFlightDetails,
-            "paymentMode": result
+            "paymentMode": result,
+            "loginUserEmail": JSON.parse(localStorage.getItem("userSession") || '{}')?.email,
           }
           this._userAuth.bookFlight(payload).subscribe(
             r => {
